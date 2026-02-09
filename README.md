@@ -58,6 +58,18 @@ Apply tuned weights back into `data/questions.json` (creates backup first):
 npm run tune:reachability:apply
 ```
 
+Tune for both 100% reachability and balanced class probabilities:
+
+```bash
+npm run tune:balance
+```
+
+Apply balanced tuning result:
+
+```bash
+npm run tune:balance:apply
+```
+
 Useful flags:
 
 - `--target-reachability 1` (or `100`) for 100% goal
@@ -65,6 +77,11 @@ Useful flags:
 - `--workers 0` to auto-use CPU cores (`N-1`)
 - `--search-iterations`, `--search-restarts` for deeper per-class search
 - `--weight-mutation-count`, `--weight-mutation-step`, `--weight-limit` for mutation behavior
+- `--optimize-probability` to include class outcome distribution tuning
+- `--target-probability 6.25` for equal per-class target (percent or ratio accepted)
+- `--target-probabilities class_a=8,class_b=5,...` for per-class targets by id
+- `--probability-samples 40000` for Monte Carlo distribution estimates
+- `--probability-tolerance 1` acceptable max deviation from target (percent or ratio)
 
 ## GitHub Pages Deployment
 

@@ -2,7 +2,7 @@ import { cpus } from 'node:os'
 import { copyFile, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { Worker, isMainThread, parentPort, workerData } from 'node:worker_threads'
+import { Worker } from 'node:worker_threads'
 
 type QuestionsMatrix = number[][][]
 
@@ -136,8 +136,31 @@ interface ReachabilityResult {
   classResults: SearchTaskResult[]
 }
 
+interface ProbabilityResult {
+  sampleCount: number
+  counts: number[]
+  probabilities: number[]
+  targetProbabilities: number[]
+  mae: number
+  rmse: number
+  maxAbs: number
+  penalty: number
+}
+
+interface CandidateEvaluation {
+  reachability: ReachabilityResult
+  probability: ProbabilityResult | null
+  score: number
+}
+
 interface CliOptions {
   targetReachability: number
+  optimizeProbability: boolean
+  targetProbabilityPerClass: number | null
+  targetProbabilitiesSpec: string | null
+  probabilitySamples: number
+  probabilityTolerance: number
+  probabilityWeight: number
   timeoutMs: number
   workerCount: number
   searchIterations: number
@@ -202,33 +225,6 @@ function createRandomAnswers(
   random: () => number,
 ): number[] {
   return matrix.map((question) => Math.floor(random() * question.length))
-}
-
-function mutateAnswers(
-  current: number[],
-  matrix: QuestionsMatrix,
-  random: () => number,
-  mutationSpan: number,
-): number[] {
-  const next = [...current]
-  const steps = 1 + Math.floor(random() * Math.max(1, mutationSpan))
-
-  for (let step = 0; step < steps; step += 1) {
-    const questionIndex = Math.floor(random() * matrix.length)
-    const optionCount = matrix[questionIndex].length
-    if (optionCount <= 1) {
-      continue
-    }
-
-    const previousOption = next[questionIndex]
-    let nextOption = previousOption
-    while (nextOption === previousOption) {
-      nextOption = Math.floor(random() * optionCount)
-    }
-    next[questionIndex] = nextOption
-  }
-
-  return next
 }
 
 function scoreAnswers(
@@ -386,154 +382,6 @@ function evaluateResults(
   return { checks, winnerIndex }
 }
 
-function outranks(
-  candidateIndex: number,
-  targetIndex: number,
-  results: NormalizedResult[],
-): boolean {
-  const candidatePriority = results[candidateIndex].priority
-  const targetPriority = results[targetIndex].priority
-  if (candidatePriority !== targetPriority) {
-    return candidatePriority > targetPriority
-  }
-  return candidateIndex < targetIndex
-}
-
-function objectiveForTarget(
-  targetIndex: number,
-  winnerIndex: number,
-  checks: ResultCheck[],
-  results: NormalizedResult[],
-): number {
-  if (winnerIndex === targetIndex) {
-    return 1_000_000_000
-  }
-
-  const target = checks[targetIndex]
-  let blockers = 0
-
-  for (let index = 0; index < checks.length; index += 1) {
-    if (index === targetIndex) {
-      continue
-    }
-    if (!checks[index].passed) {
-      continue
-    }
-    if (outranks(index, targetIndex, results)) {
-      blockers += 1
-    }
-  }
-
-  const passed = target.passCount
-  const failed = target.totalCount - target.passCount
-
-  return (
-    passed * 1200 -
-    failed * 1000 -
-    target.totalGap * 85 -
-    blockers * 1500
-  )
-}
-
-function searchForTarget(
-  matrix: QuestionsMatrix,
-  targetIndex: number,
-  seed: number,
-  dimensionsCount: number,
-  results: NormalizedResult[],
-  config: SearchConfig,
-): SearchTaskResult {
-  const random = mulberry32(seed)
-  let bestAnswers = createRandomAnswers(matrix, random)
-  let bestScore = Number.NEGATIVE_INFINITY
-
-  for (let restart = 0; restart < config.searchRestarts; restart += 1) {
-    let currentAnswers =
-      restart === 0 ? [...bestAnswers] : createRandomAnswers(matrix, random)
-    let currentScore = Number.NEGATIVE_INFINITY
-
-    const currentSummary = summarizeScores(
-      scoreAnswers(dimensionsCount, matrix, currentAnswers),
-    )
-    const currentEvaluation = evaluateResults(currentSummary, results)
-    currentScore = objectiveForTarget(
-      targetIndex,
-      currentEvaluation.winnerIndex,
-      currentEvaluation.checks,
-      results,
-    )
-
-    if (currentEvaluation.winnerIndex === targetIndex) {
-      return {
-        taskId: 0,
-        targetIndex,
-        found: true,
-        bestScore: currentScore,
-        bestAnswers: currentAnswers,
-      }
-    }
-
-    if (currentScore > bestScore) {
-      bestScore = currentScore
-      bestAnswers = [...currentAnswers]
-    }
-
-    let temperature = 1
-    for (let iteration = 0; iteration < config.searchIterations; iteration += 1) {
-      const candidateAnswers = mutateAnswers(
-        currentAnswers,
-        matrix,
-        random,
-        config.answerMutationSpan,
-      )
-      const candidateSummary = summarizeScores(
-        scoreAnswers(dimensionsCount, matrix, candidateAnswers),
-      )
-      const candidateEvaluation = evaluateResults(candidateSummary, results)
-      const candidateScore = objectiveForTarget(
-        targetIndex,
-        candidateEvaluation.winnerIndex,
-        candidateEvaluation.checks,
-        results,
-      )
-
-      if (candidateEvaluation.winnerIndex === targetIndex) {
-        return {
-          taskId: 0,
-          targetIndex,
-          found: true,
-          bestScore: candidateScore,
-          bestAnswers: candidateAnswers,
-        }
-      }
-
-      if (candidateScore > bestScore) {
-        bestScore = candidateScore
-        bestAnswers = [...candidateAnswers]
-      }
-
-      const delta = candidateScore - currentScore
-      const acceptanceThreshold = Math.exp(
-        clamp(delta / Math.max(1, temperature * 700), -60, 60),
-      )
-      if (delta >= 0 || random() < acceptanceThreshold) {
-        currentAnswers = candidateAnswers
-        currentScore = candidateScore
-      }
-
-      temperature *= 0.9997
-    }
-  }
-
-  return {
-    taskId: 0,
-    targetIndex,
-    found: false,
-    bestScore,
-    bestAnswers,
-  }
-}
-
 class WorkerPool {
   private workers: Worker[] = []
   private pending = new Map<number, WorkerPending>()
@@ -667,6 +515,13 @@ function getStringArg(
   return raw
 }
 
+function normalizeProbabilityInput(value: number): number {
+  if (!Number.isFinite(value) || value < 0) {
+    throw new Error(`Invalid probability value: ${value}`)
+  }
+  return value > 1 ? value / 100 : value
+}
+
 function buildCliOptions(argv: string[]): CliOptions {
   const args = parseArgMap(argv)
 
@@ -681,11 +536,36 @@ function buildCliOptions(argv: string[]): CliOptions {
   const targetReachability =
     rawTarget > 1 ? clamp(rawTarget / 100, 0, 1) : clamp(rawTarget, 0, 1)
 
+  const optimizeProbability = getBooleanArg(args, 'optimize-probability', false)
+  const rawTargetPerClass = args.get('target-probability')
+  const targetProbabilityPerClass =
+    rawTargetPerClass === undefined || rawTargetPerClass === true
+      ? null
+      : normalizeProbabilityInput(Number(rawTargetPerClass))
+
+  const targetProbabilitiesSpecRaw = args.get('target-probabilities')
+  const targetProbabilitiesSpec =
+    targetProbabilitiesSpecRaw === undefined || targetProbabilitiesSpecRaw === true
+      ? null
+      : String(targetProbabilitiesSpecRaw)
+
+  const rawProbabilityTolerance = getNumberArg(args, 'probability-tolerance', 1)
+  const probabilityTolerance =
+    rawProbabilityTolerance >= 1
+      ? clamp(rawProbabilityTolerance / 100, 0, 1)
+      : clamp(rawProbabilityTolerance, 0, 1)
+
   const timeoutMs = Math.max(30_000, Math.floor(getNumberArg(args, 'timeout-ms', 3_600_000)))
   const maxAttempts = Math.max(1, Math.floor(getNumberArg(args, 'max-attempts', Number.MAX_SAFE_INTEGER)))
 
   return {
     targetReachability,
+    optimizeProbability,
+    targetProbabilityPerClass,
+    targetProbabilitiesSpec,
+    probabilitySamples: Math.max(1000, Math.floor(getNumberArg(args, 'probability-samples', 20000))),
+    probabilityTolerance,
+    probabilityWeight: Math.max(0, getNumberArg(args, 'probability-weight', 1)),
     timeoutMs,
     workerCount: Math.max(1, workerCount),
     searchIterations: Math.max(100, Math.floor(getNumberArg(args, 'search-iterations', 8_000))),
@@ -881,6 +761,113 @@ async function loadData(options: CliOptions): Promise<LoadedData> {
   }
 }
 
+function buildTargetProbabilities(
+  options: CliOptions,
+  resultIds: string[],
+): number[] | null {
+  if (!options.optimizeProbability) {
+    return null
+  }
+
+  if (options.targetProbabilitiesSpec) {
+    const entries = options.targetProbabilitiesSpec
+      .split(',')
+      .map((entry) => entry.trim())
+      .filter((entry) => entry.length > 0)
+      .map((entry) => {
+        const [id, rawValue] = entry.split('=').map((part) => part.trim())
+        if (!id || rawValue === undefined) {
+          throw new Error(
+            `Invalid --target-probabilities segment "${entry}". Expected "class_id=value".`,
+          )
+        }
+        return [id, normalizeProbabilityInput(Number(rawValue))] as const
+      })
+
+    const targetById = new Map(entries)
+    const unknown = entries
+      .map(([id]) => id)
+      .filter((id) => !resultIds.includes(id))
+    if (unknown.length > 0) {
+      throw new Error(
+        `Unknown class ids in --target-probabilities: ${unknown.join(', ')}`,
+      )
+    }
+
+    const missing = resultIds.filter((id) => !targetById.has(id))
+    if (missing.length > 0) {
+      throw new Error(
+        `Missing class ids in --target-probabilities: ${missing.join(', ')}`,
+      )
+    }
+
+    const rawTargets = resultIds.map((id) => targetById.get(id) ?? 0)
+    const total = rawTargets.reduce((sum, value) => sum + value, 0)
+    if (total <= 0) {
+      throw new Error('Sum of target probabilities must be > 0.')
+    }
+    return rawTargets.map((value) => value / total)
+  }
+
+  if (options.targetProbabilityPerClass !== null) {
+    const rawTargets = Array.from(
+      { length: resultIds.length },
+      () => options.targetProbabilityPerClass as number,
+    )
+    const total = rawTargets.reduce((sum, value) => sum + value, 0)
+    return rawTargets.map((value) => value / total)
+  }
+
+  return Array.from({ length: resultIds.length }, () => 1 / resultIds.length)
+}
+
+function estimateProbabilities(
+  matrix: QuestionsMatrix,
+  dimensionsCount: number,
+  results: NormalizedResult[],
+  sampleCount: number,
+  seed: number,
+  targetProbabilities: number[],
+  probabilityWeight: number,
+): ProbabilityResult {
+  const random = mulberry32(seed)
+  const counts = Array.from({ length: results.length }, () => 0)
+
+  for (let sampleIndex = 0; sampleIndex < sampleCount; sampleIndex += 1) {
+    const answers = createRandomAnswers(matrix, random)
+    const summary = summarizeScores(scoreAnswers(dimensionsCount, matrix, answers))
+    const { winnerIndex } = evaluateResults(summary, results)
+    counts[winnerIndex] += 1
+  }
+
+  const probabilities = counts.map((count) => count / sampleCount)
+  const absDiffs = probabilities.map((probability, index) =>
+    Math.abs(probability - targetProbabilities[index]),
+  )
+  const sqDiffs = probabilities.map((probability, index) => {
+    const diff = probability - targetProbabilities[index]
+    return diff * diff
+  })
+
+  const mae = absDiffs.reduce((sum, value) => sum + value, 0) / probabilities.length
+  const rmse = Math.sqrt(sqDiffs.reduce((sum, value) => sum + value, 0) / probabilities.length)
+  const maxAbs = Math.max(...absDiffs)
+
+  // Weighted penalty used for optimization; lower is better.
+  const penalty = probabilityWeight * (mae * 1.0 + rmse * 1.3 + maxAbs * 1.6)
+
+  return {
+    sampleCount,
+    counts,
+    probabilities,
+    targetProbabilities,
+    mae,
+    rmse,
+    maxAbs,
+    penalty,
+  }
+}
+
 function compareReachabilityResults(
   left: ReachabilityResult,
   right: ReachabilityResult,
@@ -889,6 +876,24 @@ function compareReachabilityResults(
     return left.foundCount - right.foundCount
   }
   return left.utility - right.utility
+}
+
+function compareCandidateEvaluations(
+  left: CandidateEvaluation,
+  right: CandidateEvaluation,
+): number {
+  const reachabilityDiff = compareReachabilityResults(left.reachability, right.reachability)
+  if (reachabilityDiff !== 0) {
+    return reachabilityDiff
+  }
+
+  if (left.probability && right.probability) {
+    if (left.probability.penalty !== right.probability.penalty) {
+      return right.probability.penalty - left.probability.penalty
+    }
+  }
+
+  return left.score - right.score
 }
 
 async function evaluateReachability(
@@ -936,22 +941,83 @@ async function evaluateReachability(
   }
 }
 
+async function evaluateCandidate(
+  matrix: QuestionsMatrix,
+  loaded: LoadedData,
+  pool: WorkerPool,
+  seedBase: number,
+  options: CliOptions,
+  targetProbabilities: number[] | null,
+): Promise<CandidateEvaluation> {
+  const reachability = await evaluateReachability(
+    matrix,
+    loaded.results,
+    pool,
+    seedBase,
+  )
+
+  const probability =
+    targetProbabilities === null
+      ? null
+      : estimateProbabilities(
+          matrix,
+          loaded.dimensions.length,
+          loaded.results,
+          options.probabilitySamples,
+          seedBase ^ 0x9e3779b9,
+          targetProbabilities,
+          options.probabilityWeight,
+        )
+
+  // Composite score for annealing acceptance and tie-breaker.
+  const score =
+    reachability.foundCount * 1_000_000_000_000 +
+    reachability.utility * 10_000 -
+    (probability?.penalty ?? 0) * 1_000_000
+
+  return {
+    reachability,
+    probability,
+    score,
+  }
+}
+
+function goalMet(
+  candidate: CandidateEvaluation,
+  options: CliOptions,
+): boolean {
+  if (candidate.reachability.reachability < options.targetReachability) {
+    return false
+  }
+  if (!options.optimizeProbability || !candidate.probability) {
+    return true
+  }
+  return candidate.probability.maxAbs <= options.probabilityTolerance
+}
+
 function formatPercent(value: number): string {
   return `${(value * 100).toFixed(2)}%`
 }
 
-function printSummary(prefix: string, result: ReachabilityResult): void {
+function printSummary(prefix: string, result: CandidateEvaluation): void {
   console.log(
-    `${prefix} ${formatPercent(result.reachability)} (${result.foundCount}/${result.totalCount})`,
+    `${prefix} ${formatPercent(result.reachability.reachability)} (${result.reachability.foundCount}/${result.reachability.totalCount})`,
   )
-  if (result.missingIds.length > 0) {
-    console.log(`Missing classes: ${result.missingIds.join(', ')}`)
+  if (result.reachability.missingIds.length > 0) {
+    console.log(`Missing classes: ${result.reachability.missingIds.join(', ')}`)
+  }
+  if (result.probability) {
+    console.log(
+      `Distribution error: MAE=${formatPercent(result.probability.mae)} | RMSE=${formatPercent(result.probability.rmse)} | MaxAbs=${formatPercent(result.probability.maxAbs)} | samples=${result.probability.sampleCount}`,
+    )
   }
 }
 
 async function runMain(): Promise<void> {
   const options = buildCliOptions(process.argv.slice(2))
   const loaded = await loadData(options)
+  const resultIds = loaded.results.map((result) => result.id)
+  const targetProbabilities = buildTargetProbabilities(options, resultIds)
   const searchConfig: SearchConfig = {
     searchIterations: options.searchIterations,
     searchRestarts: options.searchRestarts,
@@ -968,9 +1034,17 @@ async function runMain(): Promise<void> {
       `searchRestarts=${options.searchRestarts}`,
       `weightMutationCount=${options.weightMutationCount}`,
       `weightMutationStep=${options.weightMutationStep}`,
+      `optimizeProbability=${String(options.optimizeProbability)}`,
+      `probabilitySamples=${options.probabilitySamples}`,
+      `probabilityTolerance=${formatPercent(options.probabilityTolerance)}`,
       `write=${String(options.write)}`,
     ].join(' | '),
   )
+
+  if (targetProbabilities) {
+    const targetPct = targetProbabilities.map((value) => Number((value * 100).toFixed(2)))
+    console.log(`Target class probabilities (%): ${targetPct.join(', ')}`)
+  }
 
   const pool = new WorkerPool(options.workerCount, {
     dimensionsCount: loaded.dimensions.length,
@@ -985,72 +1059,71 @@ async function runMain(): Promise<void> {
 
   try {
     let currentMatrix = cloneMatrix(loaded.questionsMatrix)
-    let currentResult = await evaluateReachability(
+    let currentResult = await evaluateCandidate(
       currentMatrix,
-      loaded.results,
+      loaded,
       pool,
       options.seed,
+      options,
+      targetProbabilities,
     )
     let bestMatrix = cloneMatrix(currentMatrix)
     let bestResult = currentResult
 
     printSummary('Initial reachability:', bestResult)
 
-    if (bestResult.reachability < options.targetReachability) {
-      let temperature = 1
+    let temperature = 1
+    while (
+      Date.now() < deadline &&
+      attempt < options.maxAttempts &&
+      !goalMet(bestResult, options)
+    ) {
+      attempt += 1
+      const candidate = cloneMatrix(currentMatrix)
+      applyWeightMutations(
+        candidate,
+        loaded.dimensions.length,
+        options.weightMutationCount,
+        options.weightMutationStep,
+        options.weightLimit,
+        random,
+      )
 
-      while (
-        Date.now() < deadline &&
-        attempt < options.maxAttempts &&
-        bestResult.reachability < options.targetReachability
-      ) {
-        attempt += 1
-        const candidate = cloneMatrix(currentMatrix)
-        applyWeightMutations(
-          candidate,
-          loaded.dimensions.length,
-          options.weightMutationCount,
-          options.weightMutationStep,
-          options.weightLimit,
-          random,
-        )
+      const candidateResult = await evaluateCandidate(
+        candidate,
+        loaded,
+        pool,
+        options.seed + attempt * 97,
+        options,
+        targetProbabilities,
+      )
 
-        const candidateResult = await evaluateReachability(
-          candidate,
-          loaded.results,
-          pool,
-          options.seed + attempt * 97,
-        )
+      const betterThanCurrent =
+        compareCandidateEvaluations(candidateResult, currentResult) > 0
 
-        const betterThanCurrent = compareReachabilityResults(
-          candidateResult,
-          currentResult,
-        ) > 0
-
-        const delta = candidateResult.utility - currentResult.utility
-        const acceptance = Math.exp(
-          clamp(delta / Math.max(1, temperature * REACHABILITY_SCALE), -60, 60),
-        )
-        if (betterThanCurrent || random() < acceptance) {
-          currentMatrix = candidate
-          currentResult = candidateResult
-        }
-
-        if (compareReachabilityResults(candidateResult, bestResult) > 0) {
-          bestMatrix = cloneMatrix(candidate)
-          bestResult = candidateResult
-          const elapsedSec = ((Date.now() - startedAt) / 1000).toFixed(1)
-          printSummary(`Improved @${elapsedSec}s (attempt ${attempt}):`, bestResult)
-        } else if (attempt % 10 === 0) {
-          const elapsedSec = ((Date.now() - startedAt) / 1000).toFixed(1)
-          printSummary(`Progress @${elapsedSec}s (attempt ${attempt}):`, bestResult)
-        }
-
-        temperature *= 0.997
+      const delta = candidateResult.score - currentResult.score
+      const acceptance = Math.exp(
+        clamp(delta / Math.max(1, temperature * 1_000_000_000), -60, 60),
+      )
+      if (betterThanCurrent || random() < acceptance) {
+        currentMatrix = candidate
+        currentResult = candidateResult
       }
+
+      if (compareCandidateEvaluations(candidateResult, bestResult) > 0) {
+        bestMatrix = cloneMatrix(candidate)
+        bestResult = candidateResult
+        const elapsedSec = ((Date.now() - startedAt) / 1000).toFixed(1)
+        printSummary(`Improved @${elapsedSec}s (attempt ${attempt}):`, bestResult)
+      } else if (attempt % 10 === 0) {
+        const elapsedSec = ((Date.now() - startedAt) / 1000).toFixed(1)
+        printSummary(`Progress @${elapsedSec}s (attempt ${attempt}):`, bestResult)
+      }
+
+      temperature *= 0.997
     }
 
-    const reachedTarget = bestResult.reachability >= options.targetReachability
+    const reachedTarget = goalMet(bestResult, options)
     printSummary('Best reachability:', bestResult)
 
     if (!options.write) {
@@ -1080,44 +1153,7 @@ async function runMain(): Promise<void> {
   }
 }
 
-function runWorker(): void {
-  const init = workerData as WorkerInitData
-  const port = parentPort
-  if (!port) {
-    throw new Error('Worker started without a parent port.')
-  }
-
-  port.on('message', (task: SearchTask) => {
-    try {
-      const search = searchForTarget(
-        task.matrix,
-        task.targetIndex,
-        task.seed,
-        init.dimensionsCount,
-        init.results,
-        init.searchConfig,
-      )
-
-      port.postMessage({
-        ...search,
-        taskId: task.taskId,
-      } satisfies SearchTaskResult)
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Unknown worker error.'
-      port.postMessage({
-        taskId: task.taskId,
-        error: message,
-      } satisfies SearchTaskError)
-    }
-  })
-}
-
-if (!isMainThread) {
-  runWorker()
-} else {
-  runMain().catch((error) => {
-    console.error(error instanceof Error ? error.message : error)
-    process.exit(1)
-  })
-}
+runMain().catch((error) => {
+  console.error(error instanceof Error ? error.message : error)
+  process.exit(1)
+})
