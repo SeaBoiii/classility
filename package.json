@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "export": "tsx scripts/export.ts",
-    "export:all": "tsx scripts/export.ts --all"
+    "export:all": "tsx scripts/export.ts --all",
+    "tune:reachability": "tsx scripts/tune-reachability.ts --target-reachability 1 --timeout-ms 3600000 --workers 0",
+    "tune:reachability:apply": "tsx scripts/tune-reachability.ts --target-reachability 1 --timeout-ms 3600000 --workers 0 --write"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.2.8",

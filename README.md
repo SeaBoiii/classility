@@ -44,6 +44,28 @@ npx playwright install chromium
 
 Generated images go to `out/`.
 
+## Reachability Tuner
+
+Evaluate/tune question weights to maximize class reachability based on result conditions:
+
+```bash
+npm run tune:reachability
+```
+
+Apply tuned weights back into `data/questions.json` (creates backup first):
+
+```bash
+npm run tune:reachability:apply
+```
+
+Useful flags:
+
+- `--target-reachability 1` (or `100`) for 100% goal
+- `--timeout-ms 3600000` for long runs
+- `--workers 0` to auto-use CPU cores (`N-1`)
+- `--search-iterations`, `--search-restarts` for deeper per-class search
+- `--weight-mutation-count`, `--weight-mutation-step`, `--weight-limit` for mutation behavior
+
 ## GitHub Pages Deployment
 
 This project is configured for GitHub Pages:
