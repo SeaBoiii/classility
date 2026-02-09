@@ -124,6 +124,13 @@ export function ResultPage() {
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
+              onClick={() => navigate('/cards')}
+              className="rounded-md border border-[#8d6a3f] px-4 py-2 font-title text-xs tracking-[0.15em] uppercase text-[#efcf93] transition hover:border-[#e2bd71] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd892]"
+            >
+              View Cards
+            </button>
+            <button
+              type="button"
               onClick={() => navigate('/quiz')}
               className="rounded-md border border-[#8d6a3f] px-4 py-2 font-title text-xs tracking-[0.15em] uppercase text-[#efcf93] transition hover:border-[#e2bd71] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd892]"
             >

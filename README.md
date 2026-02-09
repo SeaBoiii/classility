@@ -65,6 +65,7 @@ Enable once in repository settings:
 - `/quiz` quiz UI (20 questions, each supports optional image)
 - `/result` result from latest attempt
 - `/result?seed=demo` deterministic debug seed run
+- `/cards` class card browser (`Single` and `All` views)
 - `/card/:id` standalone 900x1400 card renderer (used by export script)
 
 On GitHub Pages, these are accessed with hash URLs (example: `/#/result?seed=demo`).

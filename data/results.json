@@ -38,7 +38,7 @@
       "tagline": "Steel and Spell, One Tempo",
       "style": "Adaptive burst dueling",
       "risk": "Resource drain from dual focus",
-      "partyRole": "Arcane duelist / frontline finisher",
+      "partyRole": "Arcane Duelist / Frontline Finisher",
       "growthQuest": "Choose when to channel and when to commit steel.",
       "signatureItem": "Runic Longsword of the Split Current",
       "battleHabit": "Break the line with a weave-step strike.",
@@ -87,7 +87,7 @@
       "tagline": "A Vow Given Form",
       "style": "Protective pressure play",
       "risk": "Overcommitting to every burden",
-      "partyRole": "Defensive striker and guardian core",
+      "partyRole": "Defensive Striker and Guardian Core",
       "growthQuest": "Trust allies to carry shared responsibility.",
       "signatureItem": "Sunward Oathshield",
       "battleHabit": "Anchor first, then force a decisive counter.",
@@ -136,7 +136,7 @@
       "tagline": "Silence Before Impact",
       "style": "High-precision infiltration",
       "risk": "Isolation from team tempo",
-      "partyRole": "Elimination specialist",
+      "partyRole": "Elimination Specialist",
       "growthQuest": "Coordinate earlier instead of solving alone.",
       "signatureItem": "Veilthread Dirks",
       "battleHabit": "Create one clean opening and exit instantly.",
@@ -185,7 +185,7 @@
       "tagline": "Momentum Through Meaning",
       "style": "Morale and tempo control",
       "risk": "Spreading attention too wide",
-      "partyRole": "Support conductor",
+      "partyRole": "Support Conductor",
       "growthQuest": "Protect your own rhythm while lifting others.",
       "signatureItem": "Resonance Lute of Echoed Courage",
       "battleHabit": "Stabilize morale before escalating force.",
@@ -193,7 +193,8 @@
         "You lift morale without forcing it.",
         "You read the room quickly.",
         "You inspire action through meaning."
-      ]
+      ],
+      "classSprite": "bard.png"
     },
     {
       "id": "class_monk",
@@ -233,7 +234,7 @@
       "tagline": "Discipline in Motion",
       "style": "Measured speed and control",
       "risk": "Holding back too long",
-      "partyRole": "Mobile disruptor",
+      "partyRole": "Mobile Disruptor",
       "growthQuest": "Convert restraint into decisive finishing windows.",
       "signatureItem": "Stormbead Prayer Wraps",
       "battleHabit": "Counter at the exact edge of range.",
@@ -241,7 +242,8 @@
         "You stay sharp under pressure.",
         "You prefer clean execution to drama.",
         "You move fast, but not impulsively."
-      ]
+      ],
+      "classSprite": "monk.png"
     },
     {
       "id": "class_druid",
@@ -281,7 +283,7 @@
       "tagline": "Wild Balance, Human Care",
       "style": "Sustained adaptive support",
       "risk": "Overextending to save everything",
-      "partyRole": "Restorative controller",
+      "partyRole": "Restorative Controller",
       "growthQuest": "Accept tradeoffs without losing compassion.",
       "signatureItem": "Verdant Totem of Returning Tides",
       "battleHabit": "Shift from restoration to control on one cue.",
@@ -289,7 +291,8 @@
         "You care deeply, but you’re not naïve.",
         "You’re drawn to patterns bigger than the moment.",
         "You can restore strength without demanding dependence."
-      ]
+      ],
+      "classSprite": "druid.png"
     },
     {
       "id": "class_artificer",
@@ -329,7 +332,7 @@
       "tagline": "Prepared Brilliance",
       "style": "Tool-driven tactical play",
       "risk": "Analysis delay under urgency",
-      "partyRole": "Utility engineer",
+      "partyRole": "Utility Engineer",
       "growthQuest": "Ship practical answers faster in chaos.",
       "signatureItem": "Modular Aether Gauntlet",
       "battleHabit": "Win by changing the rules of the room.",
@@ -337,7 +340,8 @@
         "You build systems, not just solutions.",
         "You like controlled experimentation.",
         "You win by making problems smaller."
-      ]
+      ],
+      "classSprite": "artificer.png"
     },
     {
       "id": "class_captain",
@@ -377,7 +381,7 @@
       "tagline": "Order Under Fire",
       "style": "Command-and-cover sequencing",
       "risk": "Assuming every decision must be yours",
-      "partyRole": "Field commander",
+      "partyRole": "Field Commander",
       "growthQuest": "Delegate initiative without losing direction.",
       "signatureItem": "Bannerblade of the First Call",
       "battleHabit": "Assign lanes before the clash lands.",
@@ -385,7 +389,8 @@
         "You naturally assign roles and stabilize chaos.",
         "You protect others through structure.",
         "You make teams feel safer and sharper."
-      ]
+      ],
+      "classSprite": "captain.png"
     },
     {
       "id": "class_berserker",
@@ -416,7 +421,7 @@
       "tagline": "Impact Without Hesitation",
       "style": "Explosive frontline pressure",
       "risk": "Tunnel vision in extended fights",
-      "partyRole": "Shock initiator",
+      "partyRole": "Shock Initiator",
       "growthQuest": "Pace your power across longer engagements.",
       "signatureItem": "Ironmaw Greataxe",
       "battleHabit": "Break stalemates with first-contact force.",
@@ -424,7 +429,8 @@
         "You prefer direct solutions.",
         "You can tolerate risk when it ends uncertainty.",
         "You become most alive under pressure."
-      ]
+      ],
+      "classSprite": "berserker.png"
     },
     {
       "id": "class_guardian",
@@ -455,7 +461,7 @@
       "tagline": "The Last Wall Standing",
       "style": "Endurance-first defense",
       "risk": "Carrying damage that should be shared",
-      "partyRole": "Primary protector",
+      "partyRole": "Primary Protector",
       "growthQuest": "Turn durability into coordinated team confidence.",
       "signatureItem": "Bastion Wardplate",
       "battleHabit": "Absorb pressure to buy team execution time.",
@@ -463,7 +469,8 @@
         "You stay composed in crisis.",
         "You protect first, explain later.",
         "You carry responsibility without flinching."
-      ]
+      ],
+      "classSprite": "guardian.png"
     },
     {
       "id": "class_ranger",
@@ -494,7 +501,7 @@
       "tagline": "Pathfinder of Pressure",
       "style": "Mobility and angle control",
       "risk": "Operating too far from support",
-      "partyRole": "Scout skirmisher",
+      "partyRole": "Scout Skirmisher",
       "growthQuest": "Surface information sooner for team tempo.",
       "signatureItem": "Whisperwind Longbow",
       "battleHabit": "Reposition before opponents settle.",
@@ -502,7 +509,8 @@
         "You adapt quickly without panicking.",
         "You like freedom of movement.",
         "You prefer precision over brute force."
-      ]
+      ],
+      "classSprite": "ranger.png"
     },
     {
       "id": "class_tactician",
@@ -533,7 +541,7 @@
       "tagline": "Win Before Steel Meets Steel",
       "style": "Scenario planning and control",
       "risk": "Overplanning when speed is required",
-      "partyRole": "Strategic coordinator",
+      "partyRole": "Strategic Coordinator",
       "growthQuest": "Trust informed instinct when plans fracture.",
       "signatureItem": "War Table Codex",
       "battleHabit": "Create layered contingencies before engagement.",
@@ -541,7 +549,8 @@
         "You hate wasted effort.",
         "You plan for failure modes.",
         "You prefer repeatable wins."
-      ]
+      ],
+      "classSprite": "tactician.png"
     },
     {
       "id": "class_sorcerer",
@@ -572,7 +581,7 @@
       "tagline": "Possibility Made Dangerous",
       "style": "High-variance arcane offense",
       "risk": "Collateral from unchecked output",
-      "partyRole": "Burst caster",
+      "partyRole": "Burst Caster",
       "growthQuest": "Pair experimentation with stronger guardrails.",
       "signatureItem": "Prismheart Catalyst",
       "battleHabit": "Escalate through creative spell chaining.",
@@ -580,7 +589,8 @@
         "You’re drawn to the unknown.",
         "You learn by trying.",
         "You make surprising connections."
-      ]
+      ],
+      "classSprite": "sorcerer.png"
     },
     {
       "id": "class_cleric",
@@ -611,7 +621,7 @@
       "tagline": "Purpose That Restores",
       "style": "Steady support and recovery",
       "risk": "Self-neglect in prolonged attrition",
-      "partyRole": "Healer anchor",
+      "partyRole": "Healer Anchor",
       "growthQuest": "Protect your own reserves while sustaining others.",
       "signatureItem": "Sanctum Reliquary",
       "battleHabit": "Reset the team before pushing momentum.",
@@ -619,7 +629,8 @@
         "You care with consistency.",
         "You steady others during stress.",
         "You choose meaning over ego."
-      ]
+      ],
+      "classSprite": "cleric.png"
     },
     {
       "id": "class_rogue",
@@ -650,7 +661,7 @@
       "tagline": "Leverage in the Shadows",
       "style": "Subtle disruption and extraction",
       "risk": "Overreliance on solo plays",
-      "partyRole": "Disruption specialist",
+      "partyRole": "Disruption Specialist",
       "growthQuest": "Coordinate strikes with team windows.",
       "signatureItem": "Nightglass Stiletto",
       "battleHabit": "Turn enemy certainty into misdirection.",
@@ -658,7 +669,8 @@
         "You notice opportunities fast.",
         "You prefer subtle solutions.",
         "You understand incentives and pressure points."
-      ]
+      ],
+      "classSprite": "rogue.png"
     },
     {
       "id": "class_warlord",
@@ -689,7 +701,7 @@
       "tagline": "Direction With Consequence",
       "style": "Aggressive command tempo",
       "risk": "Rigid calls in fluid situations",
-      "partyRole": "Offensive commander",
+      "partyRole": "Offensive Commander",
       "growthQuest": "Keep clarity while adapting mid-fight.",
       "signatureItem": "Command Pike of Ember Lines",
       "battleHabit": "Issue one clear call and press advantage.",
@@ -697,7 +709,8 @@
         "You naturally coordinate people.",
         "You make decisions when others hesitate.",
         "You create momentum with clarity."
-      ]
+      ],
+      "classSprite": "warlord.png"
     }
   ]
 }
