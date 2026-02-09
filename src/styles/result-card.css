@@ -199,6 +199,17 @@
   text-align: center;
 }
 
+.rc-sprite-slice {
+  position: relative;
+  overflow: hidden;
+}
+
+.rc-sprite-slice img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .rc-title-banner {
   margin-inline: auto;
   width: min(680px, 100%);
@@ -223,6 +234,14 @@
   text-shadow:
     0 2px 0 rgba(27, 18, 12, 0.45),
     0 5px 14px rgba(0, 0, 0, 0.44);
+}
+
+.rc-title-art {
+  margin-inline: auto;
+  width: min(700px, 100%);
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .rc-header > p {
@@ -271,6 +290,7 @@
 
 .rc-left h2,
 .rc-stat-panel__header h3,
+.rc-traits-title,
 .rc-meta-panel h3 {
   margin: 0;
   font-family: 'Cinzel', serif;
@@ -288,7 +308,28 @@
   color: #271a11;
 }
 
-.rc-signals {
+.rc-duo-art {
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.rc-summary-copy {
+  margin-top: 0;
+}
+
+.rc-lore-copy {
+  font-family: 'Cormorant Garamond', 'EB Garamond', serif;
+  font-size: 20px;
+  line-height: 1.34;
+  letter-spacing: 0.01em;
+  font-style: italic;
+  color: #251910;
+}
+
+.rc-traits {
   margin: 10px 0 0;
   padding: 0;
   list-style: none;
@@ -296,7 +337,7 @@
   gap: 8px;
 }
 
-.rc-signals li {
+.rc-traits li {
   position: relative;
   padding-left: 23px;
   font-family: 'EB Garamond', serif;
@@ -305,7 +346,7 @@
   color: #281c13;
 }
 
-.rc-signals li::before {
+.rc-traits li::before {
   content: '◆';
   position: absolute;
   left: 0;
@@ -317,15 +358,6 @@
 .rc-stat-panel__header {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-}
-
-.rc-stat-panel__header p {
-  margin: 0;
-  font-family: 'EB Garamond', serif;
-  font-size: 15px;
-  letter-spacing: 0.06em;
-  color: #5a3d21;
 }
 
 .rc-stat-list {

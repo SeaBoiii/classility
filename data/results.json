@@ -5,11 +5,6 @@
       "title": "Spellblade",
       "summary": "You fuse steel and spell—decisive force guided by arcane intuition.",
       "lore": "Spellblades don’t choose between might and mystery. They treat magic like a second grip on the hilt: a way to cut through impossible angles, to turn raw intent into something elegant and final.",
-      "signals": [
-        "You act fast when you feel a clear opening.",
-        "You trust experimentation as much as tradition.",
-        "You prefer solutions that end the problem, not manage it."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -46,18 +41,19 @@
       "partyRole": "Arcane duelist / frontline finisher",
       "growthQuest": "Choose when to channel and when to commit steel.",
       "signatureItem": "Runic Longsword of the Split Current",
-      "battleHabit": "Break the line with a weave-step strike."
+      "battleHabit": "Break the line with a weave-step strike.",
+      "traits": [
+        "You act fast when you feel a clear opening.",
+        "You trust experimentation as much as tradition.",
+        "You prefer solutions that end the problem, not manage it."
+      ],
+      "classSprite": "spellblade.png"
     },
     {
       "id": "class_paladin",
       "title": "Paladin",
       "summary": "You stand as a vow made visible—protection powered by purpose.",
       "lore": "Paladins are not simply defenders. They are promises with shoulders. They hold the line not because it’s safe, but because someone must decide that the innocent will not be priced out of peace.",
-      "signals": [
-        "You take responsibility without asking for credit.",
-        "You endure longer than most people expect.",
-        "You protect what matters, even when it costs you."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -94,18 +90,19 @@
       "partyRole": "Defensive striker and guardian core",
       "growthQuest": "Trust allies to carry shared responsibility.",
       "signatureItem": "Sunward Oathshield",
-      "battleHabit": "Anchor first, then force a decisive counter."
+      "battleHabit": "Anchor first, then force a decisive counter.",
+      "traits": [
+        "You take responsibility without asking for credit.",
+        "You endure longer than most people expect.",
+        "You protect what matters, even when it costs you."
+      ],
+      "classSprite": "paladin.png"
     },
     {
       "id": "class_assassin",
       "title": "Assassin",
       "summary": "You move like a rumor—speed and cunning in perfect agreement.",
       "lore": "Assassins don’t chase chaos. They remove it. A clean cut, a silent exit, an outcome that looks like fate to everyone who wasn’t watching closely enough.",
-      "signals": [
-        "You notice openings others miss.",
-        "You prefer precision over spectacle.",
-        "You can be calm while moving fast."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -142,18 +139,19 @@
       "partyRole": "Elimination specialist",
       "growthQuest": "Coordinate earlier instead of solving alone.",
       "signatureItem": "Veilthread Dirks",
-      "battleHabit": "Create one clean opening and exit instantly."
+      "battleHabit": "Create one clean opening and exit instantly.",
+      "traits": [
+        "You notice openings others miss.",
+        "You prefer precision over spectacle.",
+        "You can be calm while moving fast."
+      ],
+      "classSprite": "assassin.png"
     },
     {
       "id": "class_bard",
       "title": "Bard",
       "summary": "You turn momentum into music—magic amplified by leadership and timing.",
       "lore": "Bards are not ‘just charming.’ They’re strategic storytellers who can change a room’s gravity. They can make fear lighter, make courage contagious, and make a team feel like a single instrument.",
-      "signals": [
-        "You lift morale without forcing it.",
-        "You read the room quickly.",
-        "You inspire action through meaning."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -190,18 +188,18 @@
       "partyRole": "Support conductor",
       "growthQuest": "Protect your own rhythm while lifting others.",
       "signatureItem": "Resonance Lute of Echoed Courage",
-      "battleHabit": "Stabilize morale before escalating force."
+      "battleHabit": "Stabilize morale before escalating force.",
+      "traits": [
+        "You lift morale without forcing it.",
+        "You read the room quickly.",
+        "You inspire action through meaning."
+      ]
     },
     {
       "id": "class_monk",
       "title": "Monk",
       "summary": "You are discipline in motion—speed controlled by intent.",
       "lore": "Monks don’t waste movement. They don’t waste emotion either. Their power is in restraint: striking only when the moment is true, leaving no extra damage behind them.",
-      "signals": [
-        "You stay sharp under pressure.",
-        "You prefer clean execution to drama.",
-        "You move fast, but not impulsively."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -238,18 +236,18 @@
       "partyRole": "Mobile disruptor",
       "growthQuest": "Convert restraint into decisive finishing windows.",
       "signatureItem": "Stormbead Prayer Wraps",
-      "battleHabit": "Counter at the exact edge of range."
+      "battleHabit": "Counter at the exact edge of range.",
+      "traits": [
+        "You stay sharp under pressure.",
+        "You prefer clean execution to drama.",
+        "You move fast, but not impulsively."
+      ]
     },
     {
       "id": "class_druid",
       "title": "Druid",
       "summary": "You heal and change—faith guided by wild magic and patient wisdom.",
       "lore": "Druids don’t control life—they cooperate with it. They read the weather of people, the seasons of a team, and they know when to restore and when to transform.",
-      "signals": [
-        "You care deeply, but you’re not naïve.",
-        "You’re drawn to patterns bigger than the moment.",
-        "You can restore strength without demanding dependence."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -286,18 +284,18 @@
       "partyRole": "Restorative controller",
       "growthQuest": "Accept tradeoffs without losing compassion.",
       "signatureItem": "Verdant Totem of Returning Tides",
-      "battleHabit": "Shift from restoration to control on one cue."
+      "battleHabit": "Shift from restoration to control on one cue.",
+      "traits": [
+        "You care deeply, but you’re not naïve.",
+        "You’re drawn to patterns bigger than the moment.",
+        "You can restore strength without demanding dependence."
+      ]
     },
     {
       "id": "class_artificer",
       "title": "Artificer",
       "summary": "You turn ideas into weapons—tactics fused with arcane engineering.",
       "lore": "Artificers don’t wait for miracles. They manufacture them. A careful plan, a clever tool, an elegant constraint—then suddenly the impossible becomes repeatable.",
-      "signals": [
-        "You build systems, not just solutions.",
-        "You like controlled experimentation.",
-        "You win by making problems smaller."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -334,18 +332,18 @@
       "partyRole": "Utility engineer",
       "growthQuest": "Ship practical answers faster in chaos.",
       "signatureItem": "Modular Aether Gauntlet",
-      "battleHabit": "Win by changing the rules of the room."
+      "battleHabit": "Win by changing the rules of the room.",
+      "traits": [
+        "You build systems, not just solutions.",
+        "You like controlled experimentation.",
+        "You win by making problems smaller."
+      ]
     },
     {
       "id": "class_captain",
       "title": "Captain",
       "summary": "You lead from the front—protection shaped into coordination.",
       "lore": "Captains aren’t loud by default. They’re steady by design. They keep people alive by turning panic into sequence: who moves, who holds, who follows, and when.",
-      "signals": [
-        "You naturally assign roles and stabilize chaos.",
-        "You protect others through structure.",
-        "You make teams feel safer and sharper."
-      ],
       "priority": 20,
       "conditions": [
         {
@@ -382,18 +380,18 @@
       "partyRole": "Field commander",
       "growthQuest": "Delegate initiative without losing direction.",
       "signatureItem": "Bannerblade of the First Call",
-      "battleHabit": "Assign lanes before the clash lands."
+      "battleHabit": "Assign lanes before the clash lands.",
+      "traits": [
+        "You naturally assign roles and stabilize chaos.",
+        "You protect others through structure.",
+        "You make teams feel safer and sharper."
+      ]
     },
     {
       "id": "class_berserker",
       "title": "Berserker",
       "summary": "You are impact—when you commit, the world must respond.",
       "lore": "Berserkers aren’t mindless. They’re decisive. They know the cost of hesitation, so they choose the moment, and they spend everything on it.",
-      "signals": [
-        "You prefer direct solutions.",
-        "You can tolerate risk when it ends uncertainty.",
-        "You become most alive under pressure."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -421,18 +419,18 @@
       "partyRole": "Shock initiator",
       "growthQuest": "Pace your power across longer engagements.",
       "signatureItem": "Ironmaw Greataxe",
-      "battleHabit": "Break stalemates with first-contact force."
+      "battleHabit": "Break stalemates with first-contact force.",
+      "traits": [
+        "You prefer direct solutions.",
+        "You can tolerate risk when it ends uncertainty.",
+        "You become most alive under pressure."
+      ]
     },
     {
       "id": "class_guardian",
       "title": "Guardian",
       "summary": "You are the shield—calm endurance that others rely on.",
       "lore": "Guardians don’t chase glory. They prevent tragedy. They stand where the damage lands, and their strength is measured in the number of people who make it home.",
-      "signals": [
-        "You stay composed in crisis.",
-        "You protect first, explain later.",
-        "You carry responsibility without flinching."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -460,18 +458,18 @@
       "partyRole": "Primary protector",
       "growthQuest": "Turn durability into coordinated team confidence.",
       "signatureItem": "Bastion Wardplate",
-      "battleHabit": "Absorb pressure to buy team execution time."
+      "battleHabit": "Absorb pressure to buy team execution time.",
+      "traits": [
+        "You stay composed in crisis.",
+        "You protect first, explain later.",
+        "You carry responsibility without flinching."
+      ]
     },
     {
       "id": "class_ranger",
       "title": "Ranger",
       "summary": "You are the first step—speed, awareness, and clean decisions.",
       "lore": "Rangers don’t look for fair fights. They look for true routes: the line that avoids waste, the movement that turns danger into distance, the shot that ends the chase.",
-      "signals": [
-        "You adapt quickly without panicking.",
-        "You like freedom of movement.",
-        "You prefer precision over brute force."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -499,18 +497,18 @@
       "partyRole": "Scout skirmisher",
       "growthQuest": "Surface information sooner for team tempo.",
       "signatureItem": "Whisperwind Longbow",
-      "battleHabit": "Reposition before opponents settle."
+      "battleHabit": "Reposition before opponents settle.",
+      "traits": [
+        "You adapt quickly without panicking.",
+        "You like freedom of movement.",
+        "You prefer precision over brute force."
+      ]
     },
     {
       "id": "class_tactician",
       "title": "Tactician",
       "summary": "You are control—winning by turning chaos into sequence.",
       "lore": "Tacticians don’t need the strongest sword. They need the right moment. They build advantage quietly until the outcome feels inevitable.",
-      "signals": [
-        "You hate wasted effort.",
-        "You plan for failure modes.",
-        "You prefer repeatable wins."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -538,18 +536,18 @@
       "partyRole": "Strategic coordinator",
       "growthQuest": "Trust informed instinct when plans fracture.",
       "signatureItem": "War Table Codex",
-      "battleHabit": "Create layered contingencies before engagement."
+      "battleHabit": "Create layered contingencies before engagement.",
+      "traits": [
+        "You hate wasted effort.",
+        "You plan for failure modes.",
+        "You prefer repeatable wins."
+      ]
     },
     {
       "id": "class_sorcerer",
       "title": "Sorcerer",
       "summary": "You are possibility—magic, curiosity, and fearless experimentation.",
       "lore": "Sorcerers treat reality like it’s negotiable. They reach for the strange option first, not to be different, but because they can feel hidden doors in the air.",
-      "signals": [
-        "You’re drawn to the unknown.",
-        "You learn by trying.",
-        "You make surprising connections."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -577,18 +575,18 @@
       "partyRole": "Burst caster",
       "growthQuest": "Pair experimentation with stronger guardrails.",
       "signatureItem": "Prismheart Catalyst",
-      "battleHabit": "Escalate through creative spell chaining."
+      "battleHabit": "Escalate through creative spell chaining.",
+      "traits": [
+        "You’re drawn to the unknown.",
+        "You learn by trying.",
+        "You make surprising connections."
+      ]
     },
     {
       "id": "class_cleric",
       "title": "Cleric",
       "summary": "You are restoration—purpose that makes people stronger than pain.",
       "lore": "Clerics don’t just heal wounds. They mend morale. They remind people what they’re fighting for, and they turn survival into something worth surviving for.",
-      "signals": [
-        "You care with consistency.",
-        "You steady others during stress.",
-        "You choose meaning over ego."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -616,18 +614,18 @@
       "partyRole": "Healer anchor",
       "growthQuest": "Protect your own reserves while sustaining others.",
       "signatureItem": "Sanctum Reliquary",
-      "battleHabit": "Reset the team before pushing momentum."
+      "battleHabit": "Reset the team before pushing momentum.",
+      "traits": [
+        "You care with consistency.",
+        "You steady others during stress.",
+        "You choose meaning over ego."
+      ]
     },
     {
       "id": "class_rogue",
       "title": "Rogue",
       "summary": "You are leverage—quiet advantage, sharp timing, and clean escapes.",
       "lore": "Rogues don’t fight the whole problem. They steal the problem’s power, then walk away. Their wins look like luck to people who don’t know where to look.",
-      "signals": [
-        "You notice opportunities fast.",
-        "You prefer subtle solutions.",
-        "You understand incentives and pressure points."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -655,18 +653,18 @@
       "partyRole": "Disruption specialist",
       "growthQuest": "Coordinate strikes with team windows.",
       "signatureItem": "Nightglass Stiletto",
-      "battleHabit": "Turn enemy certainty into misdirection."
+      "battleHabit": "Turn enemy certainty into misdirection.",
+      "traits": [
+        "You notice opportunities fast.",
+        "You prefer subtle solutions.",
+        "You understand incentives and pressure points."
+      ]
     },
     {
       "id": "class_warlord",
       "title": "Warlord",
       "summary": "You are direction—your presence organizes the fight.",
       "lore": "Warlords don’t need to be the strongest. They make everyone stronger. They turn individual talent into coordinated force, and chaos into a plan people can trust.",
-      "signals": [
-        "You naturally coordinate people.",
-        "You make decisions when others hesitate.",
-        "You create momentum with clarity."
-      ],
       "priority": 10,
       "conditions": [
         {
@@ -694,7 +692,12 @@
       "partyRole": "Offensive commander",
       "growthQuest": "Keep clarity while adapting mid-fight.",
       "signatureItem": "Command Pike of Ember Lines",
-      "battleHabit": "Issue one clear call and press advantage."
+      "battleHabit": "Issue one clear call and press advantage.",
+      "traits": [
+        "You naturally coordinate people.",
+        "You make decisions when others hesitate.",
+        "You create momentum with clarity."
+      ]
     }
   ]
 }

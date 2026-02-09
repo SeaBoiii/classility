@@ -54,10 +54,11 @@ export type Condition =
 export interface ResultDefinition {
   id: string
   title: string
+  classSprite?: string
   tagline: string
   summary: string
   lore: string
-  signals: string[]
+  traits: string[]
   priority: number
   conditions: Condition[]
   style: string

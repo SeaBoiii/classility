@@ -77,7 +77,7 @@ On GitHub Pages, these are accessed with hash URLs (example: `/#/result?seed=dem
   - 20 questions
   - each question has 4 options with weighted dimension deltas + `image` field
 - `data/results.json`
-  - 16 class definitions (`title`, `tagline`, `summary`, `lore`, `signals`, `style`, `risk`, `partyRole`, `growthQuest`, `signatureItem`, `battleHabit`, `priority`, `conditions`)
+  - 16 class definitions (`title`, optional `classSprite`, `tagline`, `summary`, `lore`, `traits`, `style`, `risk`, `partyRole`, `growthQuest`, `signatureItem`, `battleHabit`, `priority`, `conditions`)
 
 ## Scoring + Evaluator
 

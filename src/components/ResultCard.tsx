@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { dimensionLabelMap } from '../lib/data'
-import { dominantPair, summarizeScores } from '../lib/scoring'
+import { dominantPair } from '../lib/scoring'
 import type { DimensionDefinition, ResultDefinition, Scores } from '../types'
 import { StatBar } from './StatBar'
 import '../styles/result-card.css'
@@ -18,7 +18,6 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
   const [firstDim, secondDim] = dominantPair(scores, dimensionIds)
   const signatureItem = result.signatureItem ?? defaultSignatureItem(result.id, result.title)
   const battleHabit = result.battleHabit ?? defaultBattleHabit(result.id)
-  const summary = summarizeScores(scores, dimensionIds)
 
   return (
     <div
@@ -51,9 +50,19 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
 
         <section className="rc-parchment">
           <header className="rc-header">
-            <div className="rc-title-banner">
-              <h1>{result.title}</h1>
-            </div>
+            {result.classSprite ? (
+              <SpriteSlice
+                src={result.classSprite}
+                top={110}
+                bottom={430}
+                alt={`${result.title} class title`}
+                className="rc-title-art"
+              />
+            ) : (
+              <div className="rc-title-banner">
+                <h1>{result.title}</h1>
+              </div>
+            )}
             <p>{result.tagline}</p>
           </header>
 
@@ -61,33 +70,44 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
 
           <section className="rc-body">
             <div className="rc-left">
-              <h2>Summary</h2>
-              <p className="rc-copy">{result.summary}</p>
+              {result.classSprite && (
+                <SpriteSlice
+                  src={result.classSprite}
+                  top={450}
+                  bottom={1250}
+                  alt={`${result.title} class duo`}
+                  className="rc-duo-art"
+                />
+              )}
+              <p className="rc-copy rc-summary-copy">{result.summary}</p>
 
               <Flourish compact />
 
-              <h2>Lore</h2>
-              <p className="rc-copy">{result.lore}</p>
-
-              <Flourish compact />
-
-              <h2>Signals</h2>
-              <ul className="rc-signals">
-                {result.signals.map((signal) => (
-                  <li key={signal}>{signal}</li>
-                ))}
-              </ul>
+              <p className="rc-copy rc-lore-copy">{result.lore}</p>
             </div>
 
             <aside className="rc-right">
+              <h3 className="rc-traits-title">Traits</h3>
+              <ul className="rc-traits">
+                {result.traits.map((trait) => (
+                  <li key={trait}>{trait}</li>
+                ))}
+              </ul>
+
+              <Flourish compact />
+
               <section className="rc-stat-panel">
                 <div className="rc-stat-panel__header">
                   <h3>Your Stat Profile</h3>
-                  <p>-20&nbsp;&nbsp; -10&nbsp;&nbsp; 0&nbsp;&nbsp; +10&nbsp;&nbsp; +20</p>
                 </div>
                 <div className="rc-stat-list">
-                  {dimensions.map((dimension) => (
-                    <StatBar key={dimension.id} label={dimension.label} value={scores[dimension.id] ?? 0} />
+                  {dimensions.map((dimension, index) => (
+                    <StatBar
+                      key={dimension.id}
+                      label={dimension.label}
+                      value={scores[dimension.id] ?? 0}
+                      tone={resolveStatTone(dimension.id, index)}
+                    />
                   ))}
                 </div>
               </section>
@@ -96,7 +116,6 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
                 <MetaLine label="Dominant Pair" value={`${dimensionLabelMap[firstDim]} + ${dimensionLabelMap[secondDim]}`} />
                 <MetaLine label="Style" value={result.style} />
                 <MetaLine label="Risk" value={result.risk} />
-                <MetaLine label="Spread" value={`${summary.spread}`} />
               </div>
             </aside>
           </section>
@@ -191,4 +210,55 @@ function defaultBattleHabit(id: string): string {
     class_oracle: 'Read the field before committing power.',
   }
   return overrides[id] ?? 'Find the opening, then commit without hesitation.'
+}
+
+interface SpriteSliceProps {
+  src: string
+  top: number
+  bottom: number
+  alt: string
+  className?: string
+}
+
+const SPRITE_WIDTH = 1024
+const SPRITE_HEIGHT = 1536
+
+function SpriteSlice({ src, top, bottom, alt, className }: SpriteSliceProps) {
+  const safeTop = Math.max(0, Math.min(SPRITE_HEIGHT - 1, top))
+  const safeBottom = Math.max(safeTop + 1, Math.min(SPRITE_HEIGHT, bottom))
+  const sliceHeight = safeBottom - safeTop
+  const translateY = (safeTop / SPRITE_HEIGHT) * 100
+
+  return (
+    <div className={clsx('rc-sprite-slice', className)} style={{ aspectRatio: `${SPRITE_WIDTH} / ${sliceHeight}` }}>
+      <img src={src} alt={alt} loading="lazy" style={{ transform: `translateY(-${translateY}%)` }} />
+    </div>
+  )
+}
+
+interface StatTone {
+  positive: string
+  negative: string
+}
+
+const STAT_TONE_BY_ID: Record<string, StatTone> = {
+  power: { positive: '#c85c2f', negative: '#7f3b1f' },
+  guard: { positive: '#b58e46', negative: '#6f5829' },
+  swift: { positive: '#2f98c2', negative: '#1d5f78' },
+  tactic: { positive: '#5f71cc', negative: '#374383' },
+  arcana: { positive: '#944ad5', negative: '#562b7a' },
+  faith: { positive: '#7aac4a', negative: '#49672d' },
+  guile: { positive: '#3ea287', negative: '#235c4c' },
+  command: { positive: '#be5b76', negative: '#723546' },
+}
+
+const FALLBACK_STAT_TONES: StatTone[] = [
+  { positive: '#c85c2f', negative: '#7f3b1f' },
+  { positive: '#b58e46', negative: '#6f5829' },
+  { positive: '#2f98c2', negative: '#1d5f78' },
+  { positive: '#5f71cc', negative: '#374383' },
+]
+
+function resolveStatTone(dimensionId: string, index: number): StatTone {
+  return STAT_TONE_BY_ID[dimensionId] ?? FALLBACK_STAT_TONES[index % FALLBACK_STAT_TONES.length]
 }

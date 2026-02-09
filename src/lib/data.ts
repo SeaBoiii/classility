@@ -22,6 +22,11 @@ const textFixes: Array<[from: string, to: string]> = [
   ['Ã¯', 'ï'],
 ]
 
+const spriteModules = import.meta.glob('../assets/class_sprites/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
 function normalizeText(value: string): string {
   return textFixes.reduce((text, [from, to]) => text.split(from).join(to), value)
 }
@@ -43,6 +48,30 @@ function normalizeDeep<T>(value: T): T {
   return value
 }
 
+function resolveClassSprite(pathOrFilename?: string): string | undefined {
+  if (!pathOrFilename) {
+    return undefined
+  }
+
+  const normalized = pathOrFilename.replace(/\\/g, '/').replace(/^\.?\//, '')
+  const entries = Object.entries(spriteModules)
+
+  const exactMatch = entries.find(([modulePath]) => {
+    return modulePath.endsWith(`/${normalized}`) || modulePath.endsWith(normalized)
+  })
+  if (exactMatch) {
+    return exactMatch[1]
+  }
+
+  const filename = normalized.split('/').pop()
+  if (!filename) {
+    return undefined
+  }
+
+  const filenameMatch = entries.find(([modulePath]) => modulePath.endsWith(`/${filename}`))
+  return filenameMatch?.[1]
+}
+
 const dimensionFile = normalizeDeep(dimensionsRaw) as DimensionDataFile
 const questionFile = normalizeDeep(questionsRaw) as QuestionsOnlyDataFile
 const resultsFile = normalizeDeep(resultsRaw) as ResultsData
@@ -50,6 +79,7 @@ const resultsFile = normalizeDeep(resultsRaw) as ResultsData
 const hydratedResults = resultsFile.results.map<ResultDefinition>((result) => {
   return {
     ...result,
+    classSprite: resolveClassSprite(result.classSprite) ?? result.classSprite,
     showcaseScores: undefined,
   }
 })

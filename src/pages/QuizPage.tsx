@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TextureOverlay } from '../components/TextureOverlay'
 import { questionsData } from '../lib/data'
@@ -16,8 +16,6 @@ export function QuizPage() {
   const questionImage = question.image?.trim() ?? ''
   const selectedOption = answers[questionIndex]
   const progress = questionIndex + 1
-
-  const answeredCount = useMemo(() => answers.filter((value) => value >= 0).length, [answers])
 
   const commitAnswer = (optionIndex: number) => {
     const nextAnswers = [...answers]
@@ -52,15 +50,11 @@ export function QuizPage() {
         <div className="arcane-panel w-full animate-fade-slide rounded-2xl border border-[#9b7c49]/35 bg-[linear-gradient(160deg,rgba(31,24,35,0.95)_0%,rgba(17,13,21,0.94)_100%)] p-7 shadow-2xl sm:p-10">
           <div className="flex items-center justify-between gap-4">
             <p className="font-title text-xs tracking-[0.2em] text-[#d8b978] uppercase">RPG Class Aptitude</p>
-            <p className="font-body text-sm text-[#d8cab0]">
-              Answered {answeredCount}/{totalQuestions}
-            </p>
           </div>
 
           <div className="mt-4">
             <div className="mb-2 flex items-center justify-between text-sm text-[#e5d5b6]">
               <span className="font-title tracking-[0.18em] uppercase">Question {progress}/{totalQuestions}</span>
-              <span className="font-body text-xs text-[#cab88f]">Tap or click an option</span>
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-[#3a2a26]">
               <div
