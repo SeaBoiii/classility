@@ -1,90 +1,122 @@
-import type { SampleResult } from '../data/sampleResult'
-import { StatBars } from './StatBars'
+import clsx from 'clsx'
+import { dimensionLabelMap } from '../lib/data'
+import { dominantPair, summarizeScores } from '../lib/scoring'
+import type { DimensionDefinition, ResultDefinition, Scores } from '../types'
+import { StatBar } from './StatBar'
+import '../styles/result-card.css'
 
 interface ResultCardProps {
-  result: SampleResult
+  result: ResultDefinition
+  scores: Scores
+  dimensions: DimensionDefinition[]
+  className?: string
   exportMode?: boolean
 }
 
-export function ResultCard({ result, exportMode = false }: ResultCardProps) {
+export function ResultCard({ result, scores, dimensions, className, exportMode = false }: ResultCardProps) {
+  const dimensionIds = dimensions.map((dim) => dim.id)
+  const [firstDim, secondDim] = dominantPair(scores, dimensionIds)
+  const signatureItem = result.signatureItem ?? defaultSignatureItem(result.id, result.title)
+  const battleHabit = result.battleHabit ?? defaultBattleHabit(result.id)
+  const summary = summarizeScores(scores, dimensionIds)
+
   return (
-    <article className={`result-card ${exportMode ? 'export-mode' : ''}`} data-card-export="true">
-      <div className="result-card__foil" />
+    <div
+      className={clsx('rc-shell', className)}
+      data-card-export="true"
+      style={{
+        width: 900,
+        height: 1400,
+      }}
+    >
+      <article className={clsx('rc-card', exportMode && 'rc-card--export')}>
+        <div className="rc-card__foil" />
+        <svg className="rc-card__frame-lines" aria-hidden="true" viewBox="0 0 900 1400" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="rcFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#dfbf7f" stopOpacity="0.98" />
+              <stop offset="50%" stopColor="#7f5931" stopOpacity="0.75" />
+              <stop offset="100%" stopColor="#f1d7a1" stopOpacity="0.98" />
+            </linearGradient>
+          </defs>
+          <rect x="10" y="10" width="880" height="1380" rx="34" fill="none" stroke="url(#rcFrame)" strokeWidth="2.5" />
+          <rect x="22" y="22" width="856" height="1356" rx="28" fill="none" stroke="#543b23" strokeWidth="1.6" strokeOpacity="0.88" />
+          <rect x="36" y="36" width="828" height="1328" rx="22" fill="none" stroke="#d9bb84" strokeWidth="1.3" strokeOpacity="0.7" />
+        </svg>
 
-      <svg aria-hidden="true" className="result-card__frame-lines" viewBox="0 0 900 1400" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="frameGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#d8b572" stopOpacity="0.95" />
-            <stop offset="48%" stopColor="#805c33" stopOpacity="0.72" />
-            <stop offset="100%" stopColor="#ecd39d" stopOpacity="0.94" />
-          </linearGradient>
-        </defs>
-        <rect x="10" y="10" width="880" height="1380" rx="34" fill="none" stroke="url(#frameGlow)" strokeWidth="2.5" />
-        <rect x="22" y="22" width="856" height="1356" rx="28" fill="none" stroke="#4f3820" strokeOpacity="0.85" strokeWidth="1.6" />
-        <rect x="37" y="37" width="826" height="1326" rx="20" fill="none" stroke="#d9bb84" strokeOpacity="0.7" strokeWidth="1.4" />
-      </svg>
+        <div className="rc-corner tl" />
+        <div className="rc-corner tr" />
+        <div className="rc-corner bl" />
+        <div className="rc-corner br" />
 
-      <div className="result-card__corner tl" />
-      <div className="result-card__corner tr" />
-      <div className="result-card__corner bl" />
-      <div className="result-card__corner br" />
-
-      <section className="result-card__parchment">
-        <header className="result-card__header">
-          <div className="result-card__title-banner">
-            <h1>{result.title}</h1>
-          </div>
-          <p>{result.tagline}</p>
-        </header>
-
-        <Flourish />
-
-        <section className="result-card__body">
-          <div className="result-card__left">
-            <h2>Summary</h2>
-            <p className="result-card__summary">{result.summary}</p>
-
-            <Flourish compact />
-
-            <h2>Lore</h2>
-            <p className="result-card__lore">{result.lore}</p>
-
-            <Flourish compact />
-
-            <h2>Signals</h2>
-            <ul className="result-card__signals">
-              {result.signals.map((signal) => (
-                <li key={signal}>{signal}</li>
-              ))}
-            </ul>
-          </div>
-
-          <aside className="result-card__right">
-            <StatBars stats={result.stats} />
-
-            <div className="result-card__meta-stack">
-              <MetaLine label="Dominant Pair" value={result.dominantPair} />
-              <MetaLine label="Style" value={result.style} />
-              <MetaLine label="Risk" value={result.risk} />
+        <section className="rc-parchment">
+          <header className="rc-header">
+            <div className="rc-title-banner">
+              <h1>{result.title}</h1>
             </div>
-          </aside>
+            <p>{result.tagline}</p>
+          </header>
+
+          <Flourish />
+
+          <section className="rc-body">
+            <div className="rc-left">
+              <h2>Summary</h2>
+              <p className="rc-copy">{result.summary}</p>
+
+              <Flourish compact />
+
+              <h2>Lore</h2>
+              <p className="rc-copy">{result.lore}</p>
+
+              <Flourish compact />
+
+              <h2>Signals</h2>
+              <ul className="rc-signals">
+                {result.signals.map((signal) => (
+                  <li key={signal}>{signal}</li>
+                ))}
+              </ul>
+            </div>
+
+            <aside className="rc-right">
+              <section className="rc-stat-panel">
+                <div className="rc-stat-panel__header">
+                  <h3>Your Stat Profile</h3>
+                  <p>-20&nbsp;&nbsp; -10&nbsp;&nbsp; 0&nbsp;&nbsp; +10&nbsp;&nbsp; +20</p>
+                </div>
+                <div className="rc-stat-list">
+                  {dimensions.map((dimension) => (
+                    <StatBar key={dimension.id} label={dimension.label} value={scores[dimension.id] ?? 0} />
+                  ))}
+                </div>
+              </section>
+
+              <div className="rc-meta-lines">
+                <MetaLine label="Dominant Pair" value={`${dimensionLabelMap[firstDim]} + ${dimensionLabelMap[secondDim]}`} />
+                <MetaLine label="Style" value={result.style} />
+                <MetaLine label="Risk" value={result.risk} />
+                <MetaLine label="Spread" value={`${summary.spread}`} />
+              </div>
+            </aside>
+          </section>
+
+          <Flourish />
+
+          <footer className="rc-footer">
+            <MetaPanel label="Party Role" value={result.partyRole} />
+            <MetaPanel label="Growth Quest" value={result.growthQuest} />
+            <MetaPanel
+              label="Bonus Flavor"
+              value={[
+                `Signature Item: ${signatureItem}`,
+                `Battle Habit: ${battleHabit}`,
+              ]}
+            />
+          </footer>
         </section>
-
-        <Flourish />
-
-        <footer className="result-card__footer">
-          <MetaPanel title="Party Role" content={result.partyRole} />
-          <MetaPanel title="Growth Quest" content={result.growthQuest} />
-          <MetaPanel
-            title="Bonus Flavor"
-            content={[
-              `Signature Item: ${result.signatureItem}`,
-              `Battle Habit: ${result.battleHabit}`,
-            ]}
-          />
-        </footer>
-      </section>
-    </article>
+      </article>
+    </div>
   )
 }
 
@@ -95,7 +127,7 @@ interface MetaLineProps {
 
 function MetaLine({ label, value }: MetaLineProps) {
   return (
-    <p className="result-card__meta-line">
+    <p className="rc-meta-line">
       <span>{label}</span>
       <strong>{value}</strong>
     </p>
@@ -103,22 +135,22 @@ function MetaLine({ label, value }: MetaLineProps) {
 }
 
 interface MetaPanelProps {
-  title: string
-  content: string | string[]
+  label: string
+  value: string | string[]
 }
 
-function MetaPanel({ title, content }: MetaPanelProps) {
+function MetaPanel({ label, value }: MetaPanelProps) {
   return (
-    <section className="result-card__meta-panel">
-      <h3>{title}</h3>
-      {Array.isArray(content) ? (
-        <div className="result-card__meta-list">
-          {content.map((line) => (
+    <section className="rc-meta-panel">
+      <h3>{label}</h3>
+      {Array.isArray(value) ? (
+        <div className="rc-meta-panel__list">
+          {value.map((line) => (
             <p key={line}>{line}</p>
           ))}
         </div>
       ) : (
-        <p>{content}</p>
+        <p>{value}</p>
       )}
     </section>
   )
@@ -126,7 +158,7 @@ function MetaPanel({ title, content }: MetaPanelProps) {
 
 function Flourish({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`result-card__flourish ${compact ? 'compact' : ''}`} aria-hidden="true">
+    <div className={clsx('rc-flourish', compact && 'compact')} aria-hidden="true">
       <svg viewBox="0 0 240 22" preserveAspectRatio="none">
         <path d="M5 11h76m78 0h76" stroke="currentColor" strokeOpacity="0.7" strokeWidth="1.3" />
         <path
@@ -139,4 +171,24 @@ function Flourish({ compact = false }: { compact?: boolean }) {
       </svg>
     </div>
   )
+}
+
+function defaultSignatureItem(id: string, title: string): string {
+  const overrides: Record<string, string> = {
+    class_spellblade: 'Runic Longsword of the Split Current',
+    class_archmage: 'Ninefold Prism Grimoire',
+    class_shadow: 'Veilthread Dirk',
+    class_templar: 'Sunward Bastion Blade',
+  }
+  return overrides[id] ?? `${title} Crest Relic`
+}
+
+function defaultBattleHabit(id: string): string {
+  const overrides: Record<string, string> = {
+    class_spellblade: 'Break the line with a weave-step strike.',
+    class_berserker: 'Open every clash by forcing tempo.',
+    class_ranger: 'Take angles before revealing position.',
+    class_oracle: 'Read the field before committing power.',
+  }
+  return overrides[id] ?? 'Find the opening, then commit without hesitation.'
 }

@@ -1,11 +1,15 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { CardPreview } from './pages/CardPreview'
+import { CardPage } from './pages/CardPage'
+import { QuizPage } from './pages/QuizPage'
+import { ResultPage } from './pages/ResultPage'
 
 function App() {
   return (
     <Routes>
-      <Route path="/card" element={<CardPreview />} />
-      <Route path="*" element={<Navigate replace to="/card" />} />
+      <Route path="/" element={<QuizPage />} />
+      <Route path="/result" element={<ResultPage />} />
+      <Route path="/card/:id" element={<CardPage />} />
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   )
 }

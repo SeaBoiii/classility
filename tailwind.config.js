@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         title: ['Cinzel', 'serif'],
-        body: ['EB Garamond', 'serif'],
+        body: ['Crimson Pro', 'serif'],
       },
       colors: {
         night: '#0d0f14',

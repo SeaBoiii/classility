@@ -1,16 +1,49 @@
-import { mkdir } from 'node:fs/promises'
+import { mkdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright'
 import { createServer } from 'vite'
 
+interface ResultsList {
+  results: Array<{ id: string }>
+}
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const rootDir = path.resolve(__dirname, '..')
 const outDir = path.resolve(rootDir, 'out')
-const outputPath = path.resolve(outDir, 'card.png')
+
+function parseArg(flag: string): string | null {
+  const index = process.argv.indexOf(flag)
+  if (index === -1) {
+    return null
+  }
+  return process.argv[index + 1] ?? null
+}
+
+async function getResultIds(): Promise<string[]> {
+  const raw = await readFile(path.resolve(rootDir, 'data/results.json'), 'utf-8')
+  const parsed = JSON.parse(raw) as ResultsList
+  return parsed.results.map((item) => item.id)
+}
 
 async function run() {
+  const specificId = parseArg('--id')
+  const exportAll = process.argv.includes('--all')
+
+  if (!specificId && !exportAll) {
+    throw new Error('Usage: npm run export -- --id class_spellblade OR npm run export:all')
+  }
+
+  const knownIds = await getResultIds()
+  const targetIds = exportAll ? knownIds : [specificId as string]
+
+  targetIds.forEach((id) => {
+    if (!knownIds.includes(id)) {
+      throw new Error(`Unknown result id "${id}"`)
+    }
+  })
+
   await mkdir(outDir, { recursive: true })
 
   const viteServer = await createServer({
@@ -23,12 +56,11 @@ async function run() {
     },
   })
   await viteServer.listen()
-
-  const address = viteServer.httpServer?.address()
-  if (!address || typeof address === 'string') {
-    throw new Error('Could not determine Vite server address.')
+  const addressInfo = viteServer.httpServer?.address()
+  if (!addressInfo || typeof addressInfo === 'string') {
+    throw new Error('Unable to determine local Vite server address for export.')
   }
-  const baseUrl = `http://127.0.0.1:${address.port}`
+  const baseUrl = `http://127.0.0.1:${addressInfo.port}`
 
   const browser = await chromium.launch({ headless: true })
   const context = await browser.newContext({
@@ -37,27 +69,36 @@ async function run() {
   })
 
   try {
-    const page = await context.newPage()
-    await page.goto(`${baseUrl}/card?export=1`, { waitUntil: 'networkidle' })
-    await page.waitForSelector('[data-card-export="true"]')
+    for (const id of targetIds) {
+      const page = await context.newPage()
+      await page.goto(`${baseUrl}/#/card/${id}?export=1`, {
+        waitUntil: 'networkidle',
+      })
+      await page.waitForSelector('[data-card-export="true"]')
+      await page.evaluate(async () => {
+        if ('fonts' in document) {
+          await document.fonts.ready
+        }
+      })
 
-    const card = page.locator('[data-card-export="true"]')
-    const box = await card.boundingBox()
-    if (!box) {
-      throw new Error('Card was not rendered.')
+      const card = page.locator('[data-card-export="true"]')
+      const box = await card.boundingBox()
+      if (!box) {
+        throw new Error(`Card not rendered for id "${id}"`)
+      }
+
+      if (Math.round(box.width) !== 900 || Math.round(box.height) !== 1400) {
+        throw new Error(`Card has wrong size for "${id}": ${Math.round(box.width)}x${Math.round(box.height)}`)
+      }
+
+      const outputPath = path.resolve(outDir, `${id}.png`)
+      await page.screenshot({
+        path: outputPath,
+        omitBackground: true,
+      })
+      await page.close()
+      console.log(`Exported ${outputPath}`)
     }
-
-    if (Math.round(box.width) !== 900 || Math.round(box.height) !== 1400) {
-      throw new Error(`Card must be 900x1400, got ${Math.round(box.width)}x${Math.round(box.height)}.`)
-    }
-
-    await page.screenshot({
-      path: outputPath,
-      type: 'png',
-      omitBackground: true,
-    })
-
-    console.log(`Exported ${outputPath}`)
   } finally {
     await context.close()
     await browser.close()
