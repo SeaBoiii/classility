@@ -13,7 +13,8 @@
     "tune:reachability": "tsx scripts/tune-reachability.ts --target-reachability 1 --timeout-ms 3600000 --workers 0",
     "tune:reachability:apply": "tsx scripts/tune-reachability.ts --target-reachability 1 --timeout-ms 3600000 --workers 0 --write",
     "tune:balance": "tsx scripts/tune-reachability.ts --target-reachability 1 --optimize-probability --probability-samples 40000 --probability-tolerance 1 --timeout-ms 3600000 --workers 0",
-    "tune:balance:apply": "tsx scripts/tune-reachability.ts --target-reachability 1 --optimize-probability --probability-samples 40000 --probability-tolerance 1 --timeout-ms 3600000 --workers 0 --write"
+    "tune:balance:apply": "tsx scripts/tune-reachability.ts --target-reachability 1 --optimize-probability --probability-samples 40000 --probability-tolerance 1 --timeout-ms 3600000 --workers 0 --write",
+    "tune:balance:apply-best": "tsx scripts/tune-reachability.ts --target-reachability 1 --optimize-probability --probability-samples 40000 --probability-tolerance 1 --timeout-ms 3600000 --workers 0 --write --write-best"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.2.8",

@@ -53,6 +53,7 @@ export type Condition =
 
 export interface ResultDefinition {
   id: string
+  isFallback?: boolean
   title: string
   classSprite?: string
   tagline: string

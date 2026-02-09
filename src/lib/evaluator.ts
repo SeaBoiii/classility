@@ -14,6 +14,12 @@ interface ConditionContext {
   dimensions: DimensionId[]
 }
 
+interface RankedResult {
+  result: ResultDefinition
+  debug: ResultDebug
+  index: number
+}
+
 export interface EvaluationOutput {
   winner: ResultDefinition
   summary: ScoringSummary
@@ -111,6 +117,69 @@ function evaluateResult(result: ResultDefinition, context: ConditionContext): Re
   }
 }
 
+function compareEligible(left: RankedResult, right: RankedResult): number {
+  const priorityDiff = right.result.priority - left.result.priority
+  if (priorityDiff !== 0) {
+    return priorityDiff
+  }
+  return left.index - right.index
+}
+
+function compareNearMatch(left: RankedResult, right: RankedResult): number {
+  const leftPassCount = left.debug.checks.reduce((sum, check) => sum + (check.passed ? 1 : 0), 0)
+  const rightPassCount = right.debug.checks.reduce((sum, check) => sum + (check.passed ? 1 : 0), 0)
+  if (rightPassCount !== leftPassCount) {
+    return rightPassCount - leftPassCount
+  }
+
+  const leftFailedCount = left.debug.checks.length - leftPassCount
+  const rightFailedCount = right.debug.checks.length - rightPassCount
+  if (leftFailedCount !== rightFailedCount) {
+    return leftFailedCount - rightFailedCount
+  }
+
+  const priorityDiff = right.result.priority - left.result.priority
+  if (priorityDiff !== 0) {
+    return priorityDiff
+  }
+  return left.index - right.index
+}
+
+function pickWinner(entries: RankedResult[]): ResultDefinition {
+  const fallbackEntry = entries.find(({ result }) => result.isFallback)
+  const standardEntries = entries.filter(({ result }) => !result.isFallback)
+
+  const eligible = standardEntries.filter(({ debug }) => debug.passed).sort(compareEligible)
+  if (eligible.length > 0) {
+    return eligible[0].result
+  }
+
+  const nearMatch = [...standardEntries].sort(compareNearMatch)[0]
+  if (nearMatch) {
+    const nearMatchPassCount = nearMatch.debug.checks.reduce(
+      (sum, check) => sum + (check.passed ? 1 : 0),
+      0,
+    )
+    if (nearMatchPassCount > 0) {
+      return nearMatch.result
+    }
+  }
+
+  if (fallbackEntry) {
+    return fallbackEntry.result
+  }
+
+  if (nearMatch) {
+    return nearMatch.result
+  }
+
+  if (entries.length > 0) {
+    return entries[0].result
+  }
+
+  throw new Error('Cannot evaluate results: no class definitions provided.')
+}
+
 export function evaluateResults(
   scores: Scores,
   dimensions: DimensionId[],
@@ -123,18 +192,12 @@ export function evaluateResults(
   }
 
   const debug = results.map((result) => evaluateResult(result, context))
-  const eligible = debug
-    .map((entry, index) => ({ entry, index }))
-    .filter(({ entry }) => entry.passed)
-    .sort((a, b) => {
-      const priorityDiff = b.entry.result.priority - a.entry.result.priority
-      if (priorityDiff !== 0) {
-        return priorityDiff
-      }
-      return a.index - b.index
-    })
-
-  const winner = eligible[0]?.entry.result ?? results[0]
+  const rankedEntries = debug.map<RankedResult>((entry, index) => ({
+    result: entry.result,
+    debug: entry,
+    index,
+  }))
+  const winner = pickWinner(rankedEntries)
 
   return {
     winner,

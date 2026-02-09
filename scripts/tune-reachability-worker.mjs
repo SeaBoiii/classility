@@ -173,22 +173,58 @@ function evaluateResults(summary, results) {
     }
   })
 
-  let winnerIndex = 0
-  let bestPriority = Number.NEGATIVE_INFINITY
+  const standardEntries = checks
+    .map((check, index) => ({ check, index, result: results[index] }))
+    .filter(({ result }) => !result.isFallback)
+  const fallbackEntry = checks
+    .map((check, index) => ({ check, index, result: results[index] }))
+    .find(({ result }) => result.isFallback)
 
-  checks.forEach((check, index) => {
-    if (!check.passed) {
-      return
+  const eligible = standardEntries
+    .filter(({ check }) => check.passed)
+    .sort((left, right) => {
+      const priorityDiff = right.result.priority - left.result.priority
+      if (priorityDiff !== 0) {
+        return priorityDiff
+      }
+      return left.index - right.index
+    })
+
+  if (eligible.length > 0) {
+    return { checks, winnerIndex: eligible[0].index }
+  }
+
+  const nearMatch = [...standardEntries].sort((left, right) => {
+    if (right.check.passCount !== left.check.passCount) {
+      return right.check.passCount - left.check.passCount
     }
 
-    const priority = results[index].priority
-    if (priority > bestPriority) {
-      bestPriority = priority
-      winnerIndex = index
+    const leftFailedCount = left.check.totalCount - left.check.passCount
+    const rightFailedCount = right.check.totalCount - right.check.passCount
+    if (leftFailedCount !== rightFailedCount) {
+      return leftFailedCount - rightFailedCount
     }
-  })
 
-  return { checks, winnerIndex }
+    if (left.check.totalGap !== right.check.totalGap) {
+      return left.check.totalGap - right.check.totalGap
+    }
+
+    const priorityDiff = right.result.priority - left.result.priority
+    if (priorityDiff !== 0) {
+      return priorityDiff
+    }
+    return left.index - right.index
+  })[0]
+
+  if (nearMatch && nearMatch.check.passCount > 0) {
+    return { checks, winnerIndex: nearMatch.index }
+  }
+
+  if (fallbackEntry) {
+    return { checks, winnerIndex: fallbackEntry.index }
+  }
+
+  return { checks, winnerIndex: nearMatch?.index ?? 0 }
 }
 
 function outranks(candidateIndex, targetIndex, results) {
@@ -210,6 +246,9 @@ function objectiveForTarget(targetIndex, winnerIndex, checks, results) {
 
   for (let index = 0; index < checks.length; index += 1) {
     if (index === targetIndex) {
+      continue
+    }
+    if (results[index].isFallback) {
       continue
     }
     if (!checks[index].passed) {
@@ -345,4 +384,3 @@ parentPort.on('message', (task) => {
     })
   }
 })
-

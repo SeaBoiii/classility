@@ -46,6 +46,7 @@ type RawCondition =
 interface ResultFileEntry {
   id: string
   priority: number
+  isFallback?: boolean
   conditions: RawCondition[]
 }
 
@@ -73,6 +74,7 @@ type NormalizedCondition =
 interface NormalizedResult {
   id: string
   priority: number
+  isFallback: boolean
   conditions: NormalizedCondition[]
 }
 
@@ -141,6 +143,10 @@ interface ProbabilityResult {
   counts: number[]
   probabilities: number[]
   targetProbabilities: number[]
+  noEligibleCount: number
+  noEligibleRate: number
+  outsideTargetCount: number
+  outsideTargetRate: number
   mae: number
   rmse: number
   maxAbs: number
@@ -171,6 +177,7 @@ interface CliOptions {
   weightLimit: number
   maxAttempts: number
   write: boolean
+  writeBest: boolean
   seed: number
   dimensionsPath: string
   questionsPath: string
@@ -343,7 +350,7 @@ function conditionGap(condition: NormalizedCondition, summary: Summary): number 
 function evaluateResults(
   summary: Summary,
   results: NormalizedResult[],
-): { checks: ResultCheck[]; winnerIndex: number } {
+): { checks: ResultCheck[]; winnerIndex: number; nonFallbackEligibleCount: number } {
   const checks = results.map<ResultCheck>((result) => {
     let passCount = 0
     let totalGap = 0
@@ -364,22 +371,75 @@ function evaluateResults(
     }
   })
 
-  let winnerIndex = 0
-  let bestPriority = Number.NEGATIVE_INFINITY
+  const standardEntries = checks
+    .map((check, index) => ({ check, index, result: results[index] }))
+    .filter(({ result }) => !result.isFallback)
+  const fallbackEntry = checks
+    .map((check, index) => ({ check, index, result: results[index] }))
+    .find(({ result }) => result.isFallback)
 
-  checks.forEach((check, index) => {
-    if (!check.passed) {
-      return
+  const eligible = standardEntries
+    .filter(({ check }) => check.passed)
+    .sort((left, right) => {
+      const priorityDiff = right.result.priority - left.result.priority
+      if (priorityDiff !== 0) {
+        return priorityDiff
+      }
+      return left.index - right.index
+    })
+
+  const nonFallbackEligibleCount = eligible.length
+  if (eligible.length > 0) {
+    return {
+      checks,
+      winnerIndex: eligible[0].index,
+      nonFallbackEligibleCount,
+    }
+  }
+
+  const nearMatch = [...standardEntries].sort((left, right) => {
+    if (right.check.passCount !== left.check.passCount) {
+      return right.check.passCount - left.check.passCount
     }
 
-    const priority = results[index].priority
-    if (priority > bestPriority) {
-      bestPriority = priority
-      winnerIndex = index
+    const leftFailedCount = left.check.totalCount - left.check.passCount
+    const rightFailedCount = right.check.totalCount - right.check.passCount
+    if (leftFailedCount !== rightFailedCount) {
+      return leftFailedCount - rightFailedCount
     }
-  })
 
-  return { checks, winnerIndex }
+    if (left.check.totalGap !== right.check.totalGap) {
+      return left.check.totalGap - right.check.totalGap
+    }
+
+    const priorityDiff = right.result.priority - left.result.priority
+    if (priorityDiff !== 0) {
+      return priorityDiff
+    }
+    return left.index - right.index
+  })[0]
+
+  if (nearMatch && nearMatch.check.passCount > 0) {
+    return {
+      checks,
+      winnerIndex: nearMatch.index,
+      nonFallbackEligibleCount,
+    }
+  }
+
+  if (fallbackEntry) {
+    return {
+      checks,
+      winnerIndex: fallbackEntry.index,
+      nonFallbackEligibleCount,
+    }
+  }
+
+  return {
+    checks,
+    winnerIndex: nearMatch?.index ?? 0,
+    nonFallbackEligibleCount,
+  }
 }
 
 class WorkerPool {
@@ -576,6 +636,7 @@ function buildCliOptions(argv: string[]): CliOptions {
     weightLimit: Math.max(1, Math.floor(getNumberArg(args, 'weight-limit', 20))),
     maxAttempts,
     write: getBooleanArg(args, 'write', false),
+    writeBest: getBooleanArg(args, 'write-best', false),
     seed: Math.floor(getNumberArg(args, 'seed', Date.now() ^ hashString(String(process.pid)))),
     dimensionsPath: path.resolve(rootDir, getStringArg(args, 'dimensions', 'data/dimensions.json')),
     questionsPath: path.resolve(rootDir, getStringArg(args, 'questions', 'data/questions.json')),
@@ -747,6 +808,7 @@ async function loadData(options: CliOptions): Promise<LoadedData> {
   const normalizedResults = resultsFile.results.map<NormalizedResult>((result) => ({
     id: result.id,
     priority: result.priority,
+    isFallback: result.isFallback === true,
     conditions: result.conditions.map((condition) =>
       normalizeCondition(condition, dimIndexById),
     ),
@@ -759,6 +821,13 @@ async function loadData(options: CliOptions): Promise<LoadedData> {
     questionsMatrix,
     results: normalizedResults,
   }
+}
+
+function getTargetResultIndices(results: NormalizedResult[]): number[] {
+  return results
+    .map((result, index) => ({ result, index }))
+    .filter(({ result }) => !result.isFallback)
+    .map(({ index }) => index)
 }
 
 function buildTargetProbabilities(
@@ -825,22 +894,34 @@ function estimateProbabilities(
   matrix: QuestionsMatrix,
   dimensionsCount: number,
   results: NormalizedResult[],
+  targetResultIndices: number[],
   sampleCount: number,
   seed: number,
   targetProbabilities: number[],
   probabilityWeight: number,
 ): ProbabilityResult {
   const random = mulberry32(seed)
-  const counts = Array.from({ length: results.length }, () => 0)
+  const counts = Array.from({ length: targetResultIndices.length }, () => 0)
+  const targetPositionByResultIndex = new Map(
+    targetResultIndices.map((resultIndex, position) => [resultIndex, position]),
+  )
+  let noEligibleCount = 0
 
   for (let sampleIndex = 0; sampleIndex < sampleCount; sampleIndex += 1) {
     const answers = createRandomAnswers(matrix, random)
     const summary = summarizeScores(scoreAnswers(dimensionsCount, matrix, answers))
-    const { winnerIndex } = evaluateResults(summary, results)
-    counts[winnerIndex] += 1
+    const { winnerIndex, nonFallbackEligibleCount } = evaluateResults(summary, results)
+    if (nonFallbackEligibleCount === 0) {
+      noEligibleCount += 1
+    }
+    const targetPosition = targetPositionByResultIndex.get(winnerIndex)
+    if (targetPosition !== undefined) {
+      counts[targetPosition] += 1
+    }
   }
 
   const probabilities = counts.map((count) => count / sampleCount)
+  const outsideTargetCount = sampleCount - counts.reduce((sum, count) => sum + count, 0)
   const absDiffs = probabilities.map((probability, index) =>
     Math.abs(probability - targetProbabilities[index]),
   )
@@ -861,6 +942,10 @@ function estimateProbabilities(
     counts,
     probabilities,
     targetProbabilities,
+    noEligibleCount,
+    noEligibleRate: noEligibleCount / sampleCount,
+    outsideTargetCount,
+    outsideTargetRate: outsideTargetCount / sampleCount,
     mae,
     rmse,
     maxAbs,
@@ -899,10 +984,11 @@ function compareCandidateEvaluations(
 async function evaluateReachability(
   matrix: QuestionsMatrix,
   results: NormalizedResult[],
+  targetResultIndices: number[],
   pool: WorkerPool,
   seedBase: number,
 ): Promise<ReachabilityResult> {
-  const tasks = results.map((_, targetIndex) =>
+  const tasks = targetResultIndices.map((targetIndex) =>
     pool.runTask({
       matrix,
       targetIndex,
@@ -917,18 +1003,19 @@ async function evaluateReachability(
   const missingIds: string[] = []
   let utility = 0
 
-  classResults.forEach((result, index) => {
+  classResults.forEach((result) => {
+    const resultId = results[result.targetIndex]?.id ?? `index:${result.targetIndex}`
     if (result.found) {
-      foundIds.push(results[index].id)
+      foundIds.push(resultId)
       utility += REACHABILITY_SCALE
       return
     }
-    missingIds.push(results[index].id)
+    missingIds.push(resultId)
     utility += result.bestScore
   })
 
   const foundCount = foundIds.length
-  const totalCount = results.length
+  const totalCount = targetResultIndices.length
 
   return {
     foundCount,
@@ -944,6 +1031,7 @@ async function evaluateReachability(
 async function evaluateCandidate(
   matrix: QuestionsMatrix,
   loaded: LoadedData,
+  targetResultIndices: number[],
   pool: WorkerPool,
   seedBase: number,
   options: CliOptions,
@@ -952,6 +1040,7 @@ async function evaluateCandidate(
   const reachability = await evaluateReachability(
     matrix,
     loaded.results,
+    targetResultIndices,
     pool,
     seedBase,
   )
@@ -963,6 +1052,7 @@ async function evaluateCandidate(
           matrix,
           loaded.dimensions.length,
           loaded.results,
+          targetResultIndices,
           options.probabilitySamples,
           seedBase ^ 0x9e3779b9,
           targetProbabilities,
@@ -970,10 +1060,11 @@ async function evaluateCandidate(
         )
 
   // Composite score for annealing acceptance and tie-breaker.
+  // Keep reachability as primary, but make probability dominant once reachability is saturated.
   const score =
-    reachability.foundCount * 1_000_000_000_000 +
-    reachability.utility * 10_000 -
-    (probability?.penalty ?? 0) * 1_000_000
+    reachability.foundCount * 1_000_000_000_000 -
+    (probability?.penalty ?? 0) * 1_000_000_000 +
+    reachability.utility
 
   return {
     reachability,
@@ -1008,7 +1099,7 @@ function printSummary(prefix: string, result: CandidateEvaluation): void {
   }
   if (result.probability) {
     console.log(
-      `Distribution error: MAE=${formatPercent(result.probability.mae)} | RMSE=${formatPercent(result.probability.rmse)} | MaxAbs=${formatPercent(result.probability.maxAbs)} | samples=${result.probability.sampleCount}`,
+      `Distribution error: MAE=${formatPercent(result.probability.mae)} | RMSE=${formatPercent(result.probability.rmse)} | MaxAbs=${formatPercent(result.probability.maxAbs)} | noEligible=${formatPercent(result.probability.noEligibleRate)} | outsideTarget=${formatPercent(result.probability.outsideTargetRate)} | samples=${result.probability.sampleCount}`,
     )
   }
 }
@@ -1016,7 +1107,14 @@ function printSummary(prefix: string, result: CandidateEvaluation): void {
 async function runMain(): Promise<void> {
   const options = buildCliOptions(process.argv.slice(2))
   const loaded = await loadData(options)
-  const resultIds = loaded.results.map((result) => result.id)
+  const targetResultIndices = getTargetResultIndices(loaded.results)
+  const resultIds = targetResultIndices.map((index) => loaded.results[index].id)
+  const fallbackIds = loaded.results
+    .filter((result) => result.isFallback)
+    .map((result) => result.id)
+  if (resultIds.length === 0) {
+    throw new Error('No non-fallback results found. Add at least one class without isFallback.')
+  }
   const targetProbabilities = buildTargetProbabilities(options, resultIds)
   const searchConfig: SearchConfig = {
     searchIterations: options.searchIterations,
@@ -1037,6 +1135,7 @@ async function runMain(): Promise<void> {
       `optimizeProbability=${String(options.optimizeProbability)}`,
       `probabilitySamples=${options.probabilitySamples}`,
       `probabilityTolerance=${formatPercent(options.probabilityTolerance)}`,
+      `writeBest=${String(options.writeBest)}`,
       `write=${String(options.write)}`,
     ].join(' | '),
   )
@@ -1044,6 +1143,9 @@ async function runMain(): Promise<void> {
   if (targetProbabilities) {
     const targetPct = targetProbabilities.map((value) => Number((value * 100).toFixed(2)))
     console.log(`Target class probabilities (%): ${targetPct.join(', ')}`)
+  }
+  if (fallbackIds.length > 0) {
+    console.log(`Excluded fallback classes from tuning targets: ${fallbackIds.join(', ')}`)
   }
 
   const pool = new WorkerPool(options.workerCount, {
@@ -1062,6 +1164,7 @@ async function runMain(): Promise<void> {
     let currentResult = await evaluateCandidate(
       currentMatrix,
       loaded,
+      targetResultIndices,
       pool,
       options.seed,
       options,
@@ -1092,6 +1195,7 @@ async function runMain(): Promise<void> {
       const candidateResult = await evaluateCandidate(
         candidate,
         loaded,
+        targetResultIndices,
         pool,
         options.seed + attempt * 97,
         options,
@@ -1131,9 +1235,13 @@ async function runMain(): Promise<void> {
       return
     }
 
-    if (!reachedTarget) {
-      console.log('Target was not reached before timeout. No file was written.')
+    if (!reachedTarget && !options.writeBest) {
+      console.log('Target was not reached before timeout. No file was written. Use --write-best to save best-so-far.')
       return
+    }
+
+    if (!reachedTarget && options.writeBest) {
+      console.log('Target was not reached; writing best-so-far candidate because --write-best was set.')
     }
 
     const backupPath = `${options.questionsPath}.bak-${Date.now()}`

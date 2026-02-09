@@ -711,6 +711,27 @@
         "You create momentum with clarity."
       ],
       "classSprite": "warlord.png"
+    },
+    {
+      "id": "class_fallback",
+      "isFallback": true,
+      "title": "Wayfarer",
+      "summary": "You carry sparks from many paths, but no single banner claims you yet.",
+      "lore": "Wayfarers are in-between by design. You adapt, test, and learn before committing to one doctrine. This result should be rare and usually signals a broad, mixed profile rather than a fixed combat identity.",
+      "priority": -1000,
+      "conditions": [],
+      "tagline": "Between Paths, By Choice",
+      "style": "Adaptive and exploratory",
+      "risk": "Delayed specialization",
+      "partyRole": "Flexible wildcard",
+      "growthQuest": "Pick one edge to sharpen while keeping your range.",
+      "signatureItem": "Compass of Unfinished Roads",
+      "battleHabit": "Probe first, then commit where resistance bends.",
+      "traits": [
+        "You stay flexible when situations change quickly.",
+        "You are still calibrating what role fits you best.",
+        "You value optionality over strict specialization."
+      ]
     }
   ]
 }

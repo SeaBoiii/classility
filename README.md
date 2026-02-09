@@ -1,6 +1,6 @@
 # Classility: RPG Classes Personality Test
 
-Fantasy-themed interactive personality quiz with deterministic 16-class evaluation and collectible PNG card export.
+Fantasy-themed interactive personality quiz with deterministic class evaluation and collectible PNG card export.
 
 ## Stack
 
@@ -30,7 +30,7 @@ Single class card:
 npm run export -- --id class_spellblade
 ```
 
-Export all 16 class cards:
+Export all class cards:
 
 ```bash
 npm run export:all
@@ -70,6 +70,12 @@ Apply balanced tuning result:
 npm run tune:balance:apply
 ```
 
+Apply best balanced candidate even if strict target is not met:
+
+```bash
+npm run tune:balance:apply-best
+```
+
 Useful flags:
 
 - `--target-reachability 1` (or `100`) for 100% goal
@@ -82,6 +88,8 @@ Useful flags:
 - `--target-probabilities class_a=8,class_b=5,...` for per-class targets by id
 - `--probability-samples 40000` for Monte Carlo distribution estimates
 - `--probability-tolerance 1` acceptable max deviation from target (percent or ratio)
+- `--write-best` writes the best candidate even if target is not fully reached
+- fallback classes (`isFallback: true`) are excluded from tuning targets by default
 
 ## GitHub Pages Deployment
 
@@ -117,7 +125,8 @@ On GitHub Pages, these are accessed with hash URLs (example: `/#/result?seed=dem
   - 20 questions
   - each question has 4 options with weighted dimension deltas + `image` field
 - `data/results.json`
-  - 16 class definitions (`title`, optional `classSprite`, `tagline`, `summary`, `lore`, `traits`, `style`, `risk`, `partyRole`, `growthQuest`, `signatureItem`, `battleHabit`, `priority`, `conditions`)
+  - class definitions (`title`, optional `classSprite`, `tagline`, `summary`, `lore`, `traits`, `style`, `risk`, `partyRole`, `growthQuest`, `signatureItem`, `battleHabit`, `priority`, `conditions`)
+  - optional `isFallback: true` for a rare fallback class
 
 ## Scoring + Evaluator
 
@@ -137,7 +146,8 @@ On GitHub Pages, these are accessed with hash URLs (example: `/#/result?seed=dem
     - `sum_min`, `sum_max`
     - `spread_between`
   - requires every condition in a result to pass (AND)
-  - selects winner by `priority` descending; ties by file order in `results.json`
+  - selects passed non-fallback results by `priority` descending; ties by file order
+  - if none pass, chooses nearest non-fallback match; fallback class is only used as last resort
 - `src/lib/data.ts`
   - ensures `showcaseScores` is not pre-defined in result data
 
