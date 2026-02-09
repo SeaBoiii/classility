@@ -4,6 +4,9 @@ export type Scores = Record<DimensionId, number>
 export interface DimensionDefinition {
   id: DimensionId
   label: string
+  left?: string
+  right?: string
+  description?: string
 }
 
 export interface QuestionOption {
@@ -20,6 +23,14 @@ export interface QuestionDefinition {
 
 export interface QuestionsData {
   dimensions: DimensionDefinition[]
+  questions: QuestionDefinition[]
+}
+
+export interface DimensionDataFile {
+  dimensions: DimensionDefinition[]
+}
+
+export interface QuestionsOnlyDataFile {
   questions: QuestionDefinition[]
 }
 

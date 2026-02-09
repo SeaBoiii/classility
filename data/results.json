@@ -1,559 +1,700 @@
 {
   "results": [
     {
-      "id": "class_berserker",
-      "title": "Berserker",
-      "tagline": "Storm-Heart Vanguard",
-      "summary": "You turn pressure into momentum and break stalemates by force.",
-      "lore": "The Berserker enters the fray where lines buckle and fear hardens. Their will is not calm, but volcanic. They carry victories that others call impossible and scars they rarely name.",
-      "signals": [
-        "Prefers decisive action over prolonged planning.",
-        "Performs best when stakes are high and immediate.",
-        "Uses instinct and pressure to overwhelm opponents."
-      ],
-      "priority": 160,
-      "style": "Relentless frontline aggression",
-      "risk": "Overcommitment and tunnel vision",
-      "partyRole": "Shock initiator",
-      "growthQuest": "Learn when to hold power in reserve.",
-      "showcaseScores": {
-        "might": 16,
-        "finesse": 3,
-        "arcana": -8,
-        "spirit": -2,
-        "guile": 1,
-        "resolve": 6,
-        "empathy": -10,
-        "instinct": 12
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "might" },
-        { "type": "min", "dim": "might", "value": 10 },
-        { "type": "rank_is", "dim": "instinct", "rank": 2 },
-        { "type": "max_le", "dim": "empathy", "value": 2 },
-        { "type": "top_diff_gte", "value": 2 },
-        { "type": "spread_between", "min": 12, "max": 40 }
-      ]
-    },
-    {
-      "id": "class_guardian",
-      "title": "Guardian",
-      "tagline": "Oathbound Bulwark",
-      "summary": "You protect first, absorb chaos, and create safe ground for others.",
-      "lore": "Guardians are the unbroken wall in moments of collapse. Their strength is measured by who makes it home. They hold the line even when no song will celebrate it.",
-      "signals": [
-        "Keeps composure while others panic.",
-        "Prioritizes team survival over personal glory.",
-        "Builds trust through consistency and sacrifice."
-      ],
-      "priority": 154,
-      "style": "Disciplined defense and control",
-      "risk": "Carrying too much alone",
-      "partyRole": "Anchor and protector",
-      "growthQuest": "Delegate trust instead of absorbing every burden.",
-      "showcaseScores": {
-        "might": 9,
-        "finesse": -1,
-        "arcana": -4,
-        "spirit": 5,
-        "guile": -3,
-        "resolve": 16,
-        "empathy": 9,
-        "instinct": 2
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "resolve" },
-        { "type": "min", "dim": "resolve", "value": 10 },
-        { "type": "sum_min", "dims": ["resolve", "empathy", "might"], "value": 20 },
-        { "type": "total_min", "value": 8 },
-        { "type": "top_diff_lte", "value": 10 }
-      ]
-    },
-    {
-      "id": "class_warlord",
-      "title": "Warlord",
-      "tagline": "Iron Command Strategist",
-      "summary": "You unify force and structure, turning chaotic fights into directed victories.",
-      "lore": "Warlords shape the battlefield before steel meets steel. Their commands are sharp, practical, and costly when ignored. They are remembered for campaigns, not duels.",
-      "signals": [
-        "Balances offense with battlefield discipline.",
-        "Reads tempo and shifts formations quickly.",
-        "Leads from the front without losing command focus."
-      ],
-      "priority": 151,
-      "style": "Command-driven offense",
-      "risk": "Can become rigid under uncertainty",
-      "partyRole": "Tactical commander",
-      "growthQuest": "Listen more to unconventional allies.",
-      "showcaseScores": {
-        "might": 14,
-        "finesse": 2,
-        "arcana": -2,
-        "spirit": 3,
-        "guile": 1,
-        "resolve": 12,
-        "empathy": 4,
-        "instinct": 6
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "might" },
-        { "type": "rank_is", "dim": "resolve", "rank": 2 },
-        { "type": "min", "dim": "might", "value": 11 },
-        { "type": "min", "dim": "resolve", "value": 8 },
-        { "type": "diff_greater", "a": "might", "b": "empathy", "value": 4 },
-        { "type": "total_min", "value": 10 }
-      ]
-    },
-    {
-      "id": "class_blade_dancer",
-      "title": "Blade Dancer",
-      "tagline": "Tempest of Precision",
-      "summary": "You win by rhythm, spacing, and exact movement under pressure.",
-      "lore": "Blade Dancers learn to hear openings before they appear. Their style is equal parts grace and danger, each step cutting a path between risk and art.",
-      "signals": [
-        "Relies on timing over brute force.",
-        "Thrives in dynamic, fast-changing engagements.",
-        "Finds elegant solutions in tight spaces."
-      ],
-      "priority": 148,
-      "style": "High-mobility precision combat",
-      "risk": "Thin margin for mistakes",
-      "partyRole": "Skirmish specialist",
-      "growthQuest": "Add resilience to match your speed.",
-      "showcaseScores": {
-        "might": 2,
-        "finesse": 15,
-        "arcana": 4,
-        "spirit": 1,
-        "guile": 5,
-        "resolve": 4,
-        "empathy": 3,
-        "instinct": 13
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "finesse" },
-        { "type": "rank_is", "dim": "instinct", "rank": 2 },
-        { "type": "min", "dim": "finesse", "value": 10 },
-        { "type": "diff_abs_lte", "a": "finesse", "b": "instinct", "value": 4 },
-        { "type": "max_ge", "dim": "instinct", "value": 8 },
-        { "type": "spread_between", "min": 8, "max": 28 }
-      ]
-    },
-    {
-      "id": "class_ranger",
-      "title": "Ranger",
-      "tagline": "Pathfinder of Wild Frontiers",
-      "summary": "You track, adapt, and strike from positions others fail to notice.",
-      "lore": "Rangers read land, weather, and silence as if they were maps. They avoid wasted motion and leave no camp vulnerable. Their victories often go unseen until dawn.",
-      "signals": [
-        "Combines awareness with patient execution.",
-        "Excels at pursuit, scouting, and ambush control.",
-        "Protects others through preparation."
-      ],
-      "priority": 145,
-      "style": "Adaptive field tactics",
-      "risk": "May become overly solitary",
-      "partyRole": "Scout and skirmisher",
-      "growthQuest": "Share your field reads earlier with the team.",
-      "showcaseScores": {
-        "might": 4,
-        "finesse": 12,
-        "arcana": 1,
-        "spirit": 3,
-        "guile": 4,
-        "resolve": 6,
-        "empathy": 8,
-        "instinct": 14
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "instinct" },
-        { "type": "rank_is", "dim": "finesse", "rank": 2 },
-        { "type": "min", "dim": "instinct", "value": 10 },
-        { "type": "sum_min", "dims": ["instinct", "finesse", "empathy"], "value": 26 },
-        { "type": "top_diff_lte", "value": 6 },
-        { "type": "max_le", "dim": "arcana", "value": 10 }
-      ]
-    },
-    {
       "id": "class_spellblade",
       "title": "Spellblade",
-      "tagline": "Arcsteel Duelist",
-      "summary": "You fuse bladecraft and sorcery into one continuous combat language.",
-      "lore": "Spellblades do not switch between sword and spell; they weave both in a single breath. They are scholars of pressure, distance, and channeling discipline under fire.",
+      "summary": "You fuse steel and spell—decisive force guided by arcane intuition.",
+      "lore": "Spellblades don’t choose between might and mystery. They treat magic like a second grip on the hilt: a way to cut through impossible angles, to turn raw intent into something elegant and final.",
       "signals": [
-        "Maintains offense while managing magical focus.",
-        "Prefers versatile loadouts over specialization.",
-        "Turns hybrid tools into tactical advantages."
+        "You act fast when you feel a clear opening.",
+        "You trust experimentation as much as tradition.",
+        "You prefer solutions that end the problem, not manage it."
       ],
-      "priority": 142,
-      "style": "Hybrid martial arcana",
-      "risk": "Resource strain from dual focus",
-      "partyRole": "Flexible duelist",
-      "growthQuest": "Master economy so your peak lasts longer.",
-      "showcaseScores": {
-        "might": 7,
-        "finesse": 12,
-        "arcana": 14,
-        "spirit": 2,
-        "guile": 3,
-        "resolve": 5,
-        "empathy": 1,
-        "instinct": 6
-      },
+      "priority": 20,
       "conditions": [
-        { "type": "top_is", "dim": "arcana" },
-        { "type": "rank_is", "dim": "finesse", "rank": 2 },
-        { "type": "min", "dim": "arcana", "value": 11 },
-        { "type": "min", "dim": "finesse", "value": 9 },
-        { "type": "diff_abs_lte", "a": "arcana", "b": "finesse", "value": 4 },
-        { "type": "sum_min", "dims": ["arcana", "finesse", "might"], "value": 28 },
-        { "type": "not_top_is", "dim": "spirit" }
-      ]
+        {
+          "type": "rank_is",
+          "dim": "power",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "arcana",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "power",
+            "arcana"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
+      ],
+      "tagline": "Steel and Spell, One Tempo",
+      "style": "Adaptive burst dueling",
+      "risk": "Resource drain from dual focus",
+      "partyRole": "Arcane duelist / frontline finisher",
+      "growthQuest": "Choose when to channel and when to commit steel.",
+      "signatureItem": "Runic Longsword of the Split Current",
+      "battleHabit": "Break the line with a weave-step strike."
     },
     {
-      "id": "class_archmage",
-      "title": "Archmage",
-      "tagline": "Sovereign of Deep Runes",
-      "summary": "You bend complex systems and win through superior arcane mastery.",
-      "lore": "Archmages are patient architects of impossible outcomes. They prepare layers of intent, then trigger them with absolute timing. Their power is less explosive than inevitable.",
+      "id": "class_paladin",
+      "title": "Paladin",
+      "summary": "You stand as a vow made visible—protection powered by purpose.",
+      "lore": "Paladins are not simply defenders. They are promises with shoulders. They hold the line not because it’s safe, but because someone must decide that the innocent will not be priced out of peace.",
       "signals": [
-        "Sees patterns in chaos others miss.",
-        "Builds contingency plans before conflict begins.",
-        "Prefers precision and control over spectacle."
+        "You take responsibility without asking for credit.",
+        "You endure longer than most people expect.",
+        "You protect what matters, even when it costs you."
       ],
-      "priority": 139,
-      "style": "High-control spell strategy",
-      "risk": "Can underestimate immediate threats",
-      "partyRole": "Arcane control core",
-      "growthQuest": "Practice faster decisions under pressure.",
-      "showcaseScores": {
-        "might": -6,
-        "finesse": 3,
-        "arcana": 18,
-        "spirit": 9,
-        "guile": 2,
-        "resolve": 4,
-        "empathy": 0,
-        "instinct": 1
-      },
+      "priority": 20,
       "conditions": [
-        { "type": "top_is", "dim": "arcana" },
-        { "type": "min", "dim": "arcana", "value": 14 },
-        { "type": "top_diff_gte", "value": 5 },
-        { "type": "max_le", "dim": "might", "value": 4 },
-        { "type": "sum_min", "dims": ["arcana", "spirit"], "value": 20 }
-      ]
+        {
+          "type": "rank_is",
+          "dim": "guard",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "faith",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "guard",
+            "faith"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
+      ],
+      "tagline": "A Vow Given Form",
+      "style": "Protective pressure play",
+      "risk": "Overcommitting to every burden",
+      "partyRole": "Defensive striker and guardian core",
+      "growthQuest": "Trust allies to carry shared responsibility.",
+      "signatureItem": "Sunward Oathshield",
+      "battleHabit": "Anchor first, then force a decisive counter."
     },
     {
-      "id": "class_templar",
-      "title": "Templar",
-      "tagline": "Radiant Oathkeeper",
-      "summary": "You channel conviction into protection, discipline, and righteous impact.",
-      "lore": "Templars bind their strength to sacred vows that outlast campaigns. They stand where corruption gathers and refuse compromise where lives are on the line.",
+      "id": "class_assassin",
+      "title": "Assassin",
+      "summary": "You move like a rumor—speed and cunning in perfect agreement.",
+      "lore": "Assassins don’t chase chaos. They remove it. A clean cut, a silent exit, an outcome that looks like fate to everyone who wasn’t watching closely enough.",
       "signals": [
-        "Acts from principle even in uncertain terrain.",
-        "Combines protection with decisive counterattacks.",
-        "Earns trust through integrity under strain."
+        "You notice openings others miss.",
+        "You prefer precision over spectacle.",
+        "You can be calm while moving fast."
       ],
-      "priority": 136,
-      "style": "Holy vanguard discipline",
-      "risk": "Moral rigidity in gray conflicts",
-      "partyRole": "Defensive striker",
-      "growthQuest": "Learn mercy without surrendering standards.",
-      "showcaseScores": {
-        "might": 8,
-        "finesse": 1,
-        "arcana": 4,
-        "spirit": 16,
-        "guile": -4,
-        "resolve": 13,
-        "empathy": 7,
-        "instinct": 2
-      },
+      "priority": 20,
       "conditions": [
-        { "type": "top_is", "dim": "spirit" },
-        { "type": "rank_is", "dim": "resolve", "rank": 2 },
-        { "type": "min", "dim": "spirit", "value": 12 },
-        { "type": "min", "dim": "resolve", "value": 9 },
-        { "type": "diff_greater", "a": "spirit", "b": "guile", "value": 8 },
-        { "type": "sum_min", "dims": ["spirit", "resolve", "empathy"], "value": 30 }
-      ]
-    },
-    {
-      "id": "class_oracle",
-      "title": "Oracle",
-      "tagline": "Voice Between Worlds",
-      "summary": "You perceive hidden currents and guide outcomes before conflict peaks.",
-      "lore": "Oracles listen where most only react. Their warnings arrive early and often, but never lightly. In battle, foresight is their first weapon and compassion their second.",
-      "signals": [
-        "Connects intuition with careful interpretation.",
-        "Notices relational and spiritual fault lines.",
-        "Prefers prevention to recovery."
+        {
+          "type": "rank_is",
+          "dim": "swift",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "guile",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "swift",
+            "guile"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
       ],
-      "priority": 133,
-      "style": "Foresight and guidance",
-      "risk": "Can hesitate while weighing possibilities",
-      "partyRole": "Supportive predictor",
-      "growthQuest": "Trust clear action when signs align.",
-      "showcaseScores": {
-        "might": -4,
-        "finesse": 2,
-        "arcana": 8,
-        "spirit": 15,
-        "guile": 1,
-        "resolve": 6,
-        "empathy": 12,
-        "instinct": 4
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "spirit" },
-        { "type": "rank_is", "dim": "empathy", "rank": 2 },
-        { "type": "min", "dim": "spirit", "value": 10 },
-        { "type": "min", "dim": "empathy", "value": 8 },
-        { "type": "max_le", "dim": "guile", "value": 8 },
-        { "type": "total_max", "value": 45 },
-        { "type": "top_diff_lte", "value": 6 }
-      ]
-    },
-    {
-      "id": "class_druid",
-      "title": "Druid",
-      "tagline": "Warden of Living Cycles",
-      "summary": "You synchronize with natural systems and fight as part of an ecosystem.",
-      "lore": "Druids do not dominate nature; they negotiate with it. Their magic is rooted in seasons, migration, and renewal. They are fierce where balance is threatened.",
-      "signals": [
-        "Interprets change as part of a larger pattern.",
-        "Balances compassion with practical survival.",
-        "Creates resilient, sustainable solutions."
-      ],
-      "priority": 130,
-      "style": "Nature-bound adaptability",
-      "risk": "Can overextend to preserve everything",
-      "partyRole": "Sustained support and control",
-      "growthQuest": "Accept that some losses are part of renewal.",
-      "showcaseScores": {
-        "might": 1,
-        "finesse": 4,
-        "arcana": 5,
-        "spirit": 13,
-        "guile": 2,
-        "resolve": 5,
-        "empathy": 16,
-        "instinct": 11
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "empathy" },
-        { "type": "rank_is", "dim": "spirit", "rank": 2 },
-        { "type": "min", "dim": "empathy", "value": 12 },
-        { "type": "sum_min", "dims": ["empathy", "spirit", "instinct"], "value": 34 },
-        { "type": "diff_abs_lte", "a": "empathy", "b": "spirit", "value": 6 },
-        { "type": "spread_between", "min": 8, "max": 26 }
-      ]
-    },
-    {
-      "id": "class_shadow",
-      "title": "Shadow",
-      "tagline": "Silent Veil Operative",
-      "summary": "You operate from angles others ignore and win before alarms sound.",
-      "lore": "Shadows build leverage in silence and spend it at perfect moments. They are feared less for violence than for inevitability. Every door has a seam if you know where to press.",
-      "signals": [
-        "Uses discretion and misdirection with intent.",
-        "Prioritizes precision over spectacle.",
-        "Extracts value from imperfect information."
-      ],
-      "priority": 127,
-      "style": "Stealth infiltration",
-      "risk": "Isolation and trust deficits",
-      "partyRole": "Recon and disruption",
-      "growthQuest": "Invest in allies before crisis moments.",
-      "showcaseScores": {
-        "might": 3,
-        "finesse": 10,
-        "arcana": 2,
-        "spirit": -2,
-        "guile": 16,
-        "resolve": 1,
-        "empathy": -8,
-        "instinct": 9
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "guile" },
-        { "type": "min", "dim": "guile", "value": 12 },
-        { "type": "max_le", "dim": "empathy", "value": 1 },
-        { "type": "rank_is", "dim": "finesse", "rank": 2 },
-        { "type": "diff_greater", "a": "guile", "b": "resolve", "value": 6 }
-      ]
-    },
-    {
-      "id": "class_trickster",
-      "title": "Trickster",
-      "tagline": "Chaos-Lit Gambiteer",
-      "summary": "You destabilize expectations and create openings through controlled mischief.",
-      "lore": "Tricksters are underestimated until the board is already tilted. They manipulate tempo, attention, and confidence like instruments. Their victories look accidental to everyone else.",
-      "signals": [
-        "Finds creative value in uncertainty.",
-        "Uses feints and reversals to control tempo.",
-        "Turns social reads into tactical edges."
-      ],
-      "priority": 124,
-      "style": "Improvisational disruption",
-      "risk": "Can chase flair over closure",
-      "partyRole": "Tempo breaker",
-      "growthQuest": "Finish plans with the same care you start them.",
-      "showcaseScores": {
-        "might": -1,
-        "finesse": 8,
-        "arcana": 4,
-        "spirit": 0,
-        "guile": 15,
-        "resolve": 2,
-        "empathy": 5,
-        "instinct": 12
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "guile" },
-        { "type": "rank_is", "dim": "instinct", "rank": 2 },
-        { "type": "min", "dim": "guile", "value": 10 },
-        { "type": "min", "dim": "instinct", "value": 8 },
-        { "type": "top_diff_lte", "value": 5 },
-        { "type": "sum_min", "dims": ["guile", "instinct", "finesse"], "value": 30 }
-      ]
-    },
-    {
-      "id": "class_artificer",
-      "title": "Artificer",
-      "tagline": "Forgebound Systems Engineer",
-      "summary": "You solve danger through crafted tools, planning, and reliable execution.",
-      "lore": "Artificers treat every conflict as a solvable mechanism. Their inventions are practical, precise, and rarely flashy. When plans hold, it is usually because they built the hidden scaffolding.",
-      "signals": [
-        "Optimizes systems under real constraints.",
-        "Builds repeatable processes for volatile missions.",
-        "Converts abstract ideas into useful gear."
-      ],
-      "priority": 121,
-      "style": "Prepared technical support",
-      "risk": "Analysis delay under urgent pressure",
-      "partyRole": "Utility specialist",
-      "growthQuest": "Trust field improvisation when plans break.",
-      "showcaseScores": {
-        "might": 3,
-        "finesse": 4,
-        "arcana": 11,
-        "spirit": 2,
-        "guile": 8,
-        "resolve": 14,
-        "empathy": 1,
-        "instinct": 3
-      },
-      "conditions": [
-        { "type": "top_is", "dim": "resolve" },
-        { "type": "rank_is", "dim": "arcana", "rank": 2 },
-        { "type": "min", "dim": "resolve", "value": 11 },
-        { "type": "min", "dim": "arcana", "value": 8 },
-        { "type": "sum_min", "dims": ["resolve", "arcana", "guile"], "value": 31 },
-        { "type": "total_min", "value": 20 }
-      ]
+      "tagline": "Silence Before Impact",
+      "style": "High-precision infiltration",
+      "risk": "Isolation from team tempo",
+      "partyRole": "Elimination specialist",
+      "growthQuest": "Coordinate earlier instead of solving alone.",
+      "signatureItem": "Veilthread Dirks",
+      "battleHabit": "Create one clean opening and exit instantly."
     },
     {
       "id": "class_bard",
       "title": "Bard",
-      "tagline": "Resonant Heartsinger",
-      "summary": "You shape morale and momentum through connection, narrative, and timing.",
-      "lore": "Bards carry memory across generations and make groups stronger than their parts. Their craft is not noise, but influence. They can turn despair into disciplined courage.",
+      "summary": "You turn momentum into music—magic amplified by leadership and timing.",
+      "lore": "Bards are not ‘just charming.’ They’re strategic storytellers who can change a room’s gravity. They can make fear lighter, make courage contagious, and make a team feel like a single instrument.",
       "signals": [
-        "Reads group mood and adjusts in real time.",
-        "Strengthens allies through language and presence.",
-        "Bridges conflict with creativity and tact."
+        "You lift morale without forcing it.",
+        "You read the room quickly.",
+        "You inspire action through meaning."
       ],
-      "priority": 118,
-      "style": "Morale and support orchestration",
-      "risk": "Emotional overextension",
-      "partyRole": "Buffer and connector",
-      "growthQuest": "Protect your own center while lifting others.",
-      "showcaseScores": {
-        "might": 0,
-        "finesse": 6,
-        "arcana": 3,
-        "spirit": 9,
-        "guile": 11,
-        "resolve": 3,
-        "empathy": 14,
-        "instinct": 5
-      },
+      "priority": 20,
       "conditions": [
-        { "type": "top_is", "dim": "empathy" },
-        { "type": "rank_is", "dim": "guile", "rank": 2 },
-        { "type": "min", "dim": "empathy", "value": 11 },
-        { "type": "min", "dim": "guile", "value": 8 },
-        { "type": "sum_min", "dims": ["empathy", "guile", "spirit"], "value": 30 },
-        { "type": "top_diff_lte", "value": 5 }
-      ]
+        {
+          "type": "rank_is",
+          "dim": "command",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "arcana",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "command",
+            "arcana"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
+      ],
+      "tagline": "Momentum Through Meaning",
+      "style": "Morale and tempo control",
+      "risk": "Spreading attention too wide",
+      "partyRole": "Support conductor",
+      "growthQuest": "Protect your own rhythm while lifting others.",
+      "signatureItem": "Resonance Lute of Echoed Courage",
+      "battleHabit": "Stabilize morale before escalating force."
     },
     {
-      "id": "class_alchemist",
-      "title": "Alchemist",
-      "tagline": "Catalyst of Volatile Insight",
-      "summary": "You experiment at the edge, converting instability into strategic advantage.",
-      "lore": "Alchemists respect risk but are not ruled by it. They test, refine, and deploy solutions others would never attempt. Every breakthrough comes with a measured cost.",
+      "id": "class_monk",
+      "title": "Monk",
+      "summary": "You are discipline in motion—speed controlled by intent.",
+      "lore": "Monks don’t waste movement. They don’t waste emotion either. Their power is in restraint: striking only when the moment is true, leaving no extra damage behind them.",
       "signals": [
-        "Balances curiosity with practical containment.",
-        "Turns mixed ingredients into precise outcomes.",
-        "Adapts quickly when variables shift."
+        "You stay sharp under pressure.",
+        "You prefer clean execution to drama.",
+        "You move fast, but not impulsively."
       ],
-      "priority": 115,
-      "style": "Experimental tactical chemistry",
-      "risk": "Collateral consequences from bold tests",
-      "partyRole": "Burst utility and control",
-      "growthQuest": "Build stronger safety rails for your brilliance.",
-      "showcaseScores": {
-        "might": -2,
-        "finesse": 5,
-        "arcana": 13,
-        "spirit": 4,
-        "guile": 12,
-        "resolve": 4,
-        "empathy": 2,
-        "instinct": 6
-      },
+      "priority": 20,
       "conditions": [
-        { "type": "top_is", "dim": "arcana" },
-        { "type": "rank_is", "dim": "guile", "rank": 2 },
-        { "type": "min", "dim": "arcana", "value": 10 },
-        { "type": "min", "dim": "guile", "value": 9 },
-        { "type": "diff_abs_lte", "a": "arcana", "b": "guile", "value": 3 },
-        { "type": "sum_max", "dims": ["might", "resolve"], "value": 8 },
-        { "type": "total_max", "value": 40 }
-      ]
+        {
+          "type": "rank_is",
+          "dim": "swift",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "tactic",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "swift",
+            "tactic"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
+      ],
+      "tagline": "Discipline in Motion",
+      "style": "Measured speed and control",
+      "risk": "Holding back too long",
+      "partyRole": "Mobile disruptor",
+      "growthQuest": "Convert restraint into decisive finishing windows.",
+      "signatureItem": "Stormbead Prayer Wraps",
+      "battleHabit": "Counter at the exact edge of range."
     },
     {
-      "id": "class_wayfarer",
-      "title": "Wayfarer",
-      "tagline": "Unbound Adventurer",
-      "summary": "You are balanced and versatile, ready to grow in many directions.",
-      "lore": "Wayfarers are not unfinished; they are open-ended. Their path is defined by choices still ahead. When rigid archetypes fail, adaptability becomes power.",
+      "id": "class_druid",
+      "title": "Druid",
+      "summary": "You heal and change—faith guided by wild magic and patient wisdom.",
+      "lore": "Druids don’t control life—they cooperate with it. They read the weather of people, the seasons of a team, and they know when to restore and when to transform.",
       "signals": [
-        "Shows broad competence across many situations.",
-        "Learns quickly from new environments.",
-        "Prefers flexible identities over fixed labels."
+        "You care deeply, but you’re not naïve.",
+        "You’re drawn to patterns bigger than the moment.",
+        "You can restore strength without demanding dependence."
       ],
-      "priority": 1,
-      "style": "Generalist adaptability",
-      "risk": "Delayed specialization",
-      "partyRole": "Wildcard support",
-      "growthQuest": "Choose one discipline to master first.",
-      "showcaseScores": {
-        "might": 4,
-        "finesse": 4,
-        "arcana": 4,
-        "spirit": 4,
-        "guile": 4,
-        "resolve": 4,
-        "empathy": 4,
-        "instinct": 4
-      },
+      "priority": 20,
       "conditions": [
-        { "type": "total_min", "value": -160 }
-      ]
+        {
+          "type": "rank_is",
+          "dim": "faith",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "arcana",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "faith",
+            "arcana"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
+      ],
+      "tagline": "Wild Balance, Human Care",
+      "style": "Sustained adaptive support",
+      "risk": "Overextending to save everything",
+      "partyRole": "Restorative controller",
+      "growthQuest": "Accept tradeoffs without losing compassion.",
+      "signatureItem": "Verdant Totem of Returning Tides",
+      "battleHabit": "Shift from restoration to control on one cue."
+    },
+    {
+      "id": "class_artificer",
+      "title": "Artificer",
+      "summary": "You turn ideas into weapons—tactics fused with arcane engineering.",
+      "lore": "Artificers don’t wait for miracles. They manufacture them. A careful plan, a clever tool, an elegant constraint—then suddenly the impossible becomes repeatable.",
+      "signals": [
+        "You build systems, not just solutions.",
+        "You like controlled experimentation.",
+        "You win by making problems smaller."
+      ],
+      "priority": 20,
+      "conditions": [
+        {
+          "type": "rank_is",
+          "dim": "tactic",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "arcana",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "tactic",
+            "arcana"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
+      ],
+      "tagline": "Prepared Brilliance",
+      "style": "Tool-driven tactical play",
+      "risk": "Analysis delay under urgency",
+      "partyRole": "Utility engineer",
+      "growthQuest": "Ship practical answers faster in chaos.",
+      "signatureItem": "Modular Aether Gauntlet",
+      "battleHabit": "Win by changing the rules of the room."
+    },
+    {
+      "id": "class_captain",
+      "title": "Captain",
+      "summary": "You lead from the front—protection shaped into coordination.",
+      "lore": "Captains aren’t loud by default. They’re steady by design. They keep people alive by turning panic into sequence: who moves, who holds, who follows, and when.",
+      "signals": [
+        "You naturally assign roles and stabilize chaos.",
+        "You protect others through structure.",
+        "You make teams feel safer and sharper."
+      ],
+      "priority": 20,
+      "conditions": [
+        {
+          "type": "rank_is",
+          "dim": "command",
+          "rank": 1
+        },
+        {
+          "type": "rank_is",
+          "dim": "guard",
+          "rank": 2
+        },
+        {
+          "type": "sum_min",
+          "dims": [
+            "command",
+            "guard"
+          ],
+          "value": 26
+        },
+        {
+          "type": "top_diff_lte",
+          "value": 4
+        },
+        {
+          "type": "spread_between",
+          "min": 0,
+          "max": 14
+        }
+      ],
+      "tagline": "Order Under Fire",
+      "style": "Command-and-cover sequencing",
+      "risk": "Assuming every decision must be yours",
+      "partyRole": "Field commander",
+      "growthQuest": "Delegate initiative without losing direction.",
+      "signatureItem": "Bannerblade of the First Call",
+      "battleHabit": "Assign lanes before the clash lands."
+    },
+    {
+      "id": "class_berserker",
+      "title": "Berserker",
+      "summary": "You are impact—when you commit, the world must respond.",
+      "lore": "Berserkers aren’t mindless. They’re decisive. They know the cost of hesitation, so they choose the moment, and they spend everything on it.",
+      "signals": [
+        "You prefer direct solutions.",
+        "You can tolerate risk when it ends uncertainty.",
+        "You become most alive under pressure."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "power"
+        },
+        {
+          "type": "min",
+          "dim": "power",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "Impact Without Hesitation",
+      "style": "Explosive frontline pressure",
+      "risk": "Tunnel vision in extended fights",
+      "partyRole": "Shock initiator",
+      "growthQuest": "Pace your power across longer engagements.",
+      "signatureItem": "Ironmaw Greataxe",
+      "battleHabit": "Break stalemates with first-contact force."
+    },
+    {
+      "id": "class_guardian",
+      "title": "Guardian",
+      "summary": "You are the shield—calm endurance that others rely on.",
+      "lore": "Guardians don’t chase glory. They prevent tragedy. They stand where the damage lands, and their strength is measured in the number of people who make it home.",
+      "signals": [
+        "You stay composed in crisis.",
+        "You protect first, explain later.",
+        "You carry responsibility without flinching."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "guard"
+        },
+        {
+          "type": "min",
+          "dim": "guard",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "The Last Wall Standing",
+      "style": "Endurance-first defense",
+      "risk": "Carrying damage that should be shared",
+      "partyRole": "Primary protector",
+      "growthQuest": "Turn durability into coordinated team confidence.",
+      "signatureItem": "Bastion Wardplate",
+      "battleHabit": "Absorb pressure to buy team execution time."
+    },
+    {
+      "id": "class_ranger",
+      "title": "Ranger",
+      "summary": "You are the first step—speed, awareness, and clean decisions.",
+      "lore": "Rangers don’t look for fair fights. They look for true routes: the line that avoids waste, the movement that turns danger into distance, the shot that ends the chase.",
+      "signals": [
+        "You adapt quickly without panicking.",
+        "You like freedom of movement.",
+        "You prefer precision over brute force."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "swift"
+        },
+        {
+          "type": "min",
+          "dim": "swift",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "Pathfinder of Pressure",
+      "style": "Mobility and angle control",
+      "risk": "Operating too far from support",
+      "partyRole": "Scout skirmisher",
+      "growthQuest": "Surface information sooner for team tempo.",
+      "signatureItem": "Whisperwind Longbow",
+      "battleHabit": "Reposition before opponents settle."
+    },
+    {
+      "id": "class_tactician",
+      "title": "Tactician",
+      "summary": "You are control—winning by turning chaos into sequence.",
+      "lore": "Tacticians don’t need the strongest sword. They need the right moment. They build advantage quietly until the outcome feels inevitable.",
+      "signals": [
+        "You hate wasted effort.",
+        "You plan for failure modes.",
+        "You prefer repeatable wins."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "tactic"
+        },
+        {
+          "type": "min",
+          "dim": "tactic",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "Win Before Steel Meets Steel",
+      "style": "Scenario planning and control",
+      "risk": "Overplanning when speed is required",
+      "partyRole": "Strategic coordinator",
+      "growthQuest": "Trust informed instinct when plans fracture.",
+      "signatureItem": "War Table Codex",
+      "battleHabit": "Create layered contingencies before engagement."
+    },
+    {
+      "id": "class_sorcerer",
+      "title": "Sorcerer",
+      "summary": "You are possibility—magic, curiosity, and fearless experimentation.",
+      "lore": "Sorcerers treat reality like it’s negotiable. They reach for the strange option first, not to be different, but because they can feel hidden doors in the air.",
+      "signals": [
+        "You’re drawn to the unknown.",
+        "You learn by trying.",
+        "You make surprising connections."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "arcana"
+        },
+        {
+          "type": "min",
+          "dim": "arcana",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "Possibility Made Dangerous",
+      "style": "High-variance arcane offense",
+      "risk": "Collateral from unchecked output",
+      "partyRole": "Burst caster",
+      "growthQuest": "Pair experimentation with stronger guardrails.",
+      "signatureItem": "Prismheart Catalyst",
+      "battleHabit": "Escalate through creative spell chaining."
+    },
+    {
+      "id": "class_cleric",
+      "title": "Cleric",
+      "summary": "You are restoration—purpose that makes people stronger than pain.",
+      "lore": "Clerics don’t just heal wounds. They mend morale. They remind people what they’re fighting for, and they turn survival into something worth surviving for.",
+      "signals": [
+        "You care with consistency.",
+        "You steady others during stress.",
+        "You choose meaning over ego."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "faith"
+        },
+        {
+          "type": "min",
+          "dim": "faith",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "Purpose That Restores",
+      "style": "Steady support and recovery",
+      "risk": "Self-neglect in prolonged attrition",
+      "partyRole": "Healer anchor",
+      "growthQuest": "Protect your own reserves while sustaining others.",
+      "signatureItem": "Sanctum Reliquary",
+      "battleHabit": "Reset the team before pushing momentum."
+    },
+    {
+      "id": "class_rogue",
+      "title": "Rogue",
+      "summary": "You are leverage—quiet advantage, sharp timing, and clean escapes.",
+      "lore": "Rogues don’t fight the whole problem. They steal the problem’s power, then walk away. Their wins look like luck to people who don’t know where to look.",
+      "signals": [
+        "You notice opportunities fast.",
+        "You prefer subtle solutions.",
+        "You understand incentives and pressure points."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "guile"
+        },
+        {
+          "type": "min",
+          "dim": "guile",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "Leverage in the Shadows",
+      "style": "Subtle disruption and extraction",
+      "risk": "Overreliance on solo plays",
+      "partyRole": "Disruption specialist",
+      "growthQuest": "Coordinate strikes with team windows.",
+      "signatureItem": "Nightglass Stiletto",
+      "battleHabit": "Turn enemy certainty into misdirection."
+    },
+    {
+      "id": "class_warlord",
+      "title": "Warlord",
+      "summary": "You are direction—your presence organizes the fight.",
+      "lore": "Warlords don’t need to be the strongest. They make everyone stronger. They turn individual talent into coordinated force, and chaos into a plan people can trust.",
+      "signals": [
+        "You naturally coordinate people.",
+        "You make decisions when others hesitate.",
+        "You create momentum with clarity."
+      ],
+      "priority": 10,
+      "conditions": [
+        {
+          "type": "top_is",
+          "dim": "command"
+        },
+        {
+          "type": "min",
+          "dim": "command",
+          "value": 14
+        },
+        {
+          "type": "top_diff_gte",
+          "value": 6
+        },
+        {
+          "type": "spread_between",
+          "min": 12,
+          "max": 40
+        }
+      ],
+      "tagline": "Direction With Consequence",
+      "style": "Aggressive command tempo",
+      "risk": "Rigid calls in fluid situations",
+      "partyRole": "Offensive commander",
+      "growthQuest": "Keep clarity while adapting mid-fight.",
+      "signatureItem": "Command Pike of Ember Lines",
+      "battleHabit": "Issue one clear call and press advantage."
     }
   ]
 }

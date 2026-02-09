@@ -60,7 +60,9 @@ Enable once in repository settings:
 
 ## Routes
 
-- `/` quiz UI (20 questions)
+- `/` landing page with `Start Adventure` door animation
+- `/dimensions` explanation of all 8 dimensions and their low/high trait scales
+- `/quiz` quiz UI (20 questions, each supports optional image)
 - `/result` result from latest attempt
 - `/result?seed=demo` deterministic debug seed run
 - `/card/:id` standalone 900x1400 card renderer (used by export script)
@@ -69,14 +71,13 @@ On GitHub Pages, these are accessed with hash URLs (example: `/#/result?seed=dem
 
 ## Data
 
+- `data/dimensions.json`
+  - source of dimension labels, descriptions, and low/high trait terms
 - `data/questions.json`
-  - 8 dimensions
   - 20 questions
-  - each question has 4 options with weighted dimension deltas
+  - each question has 4 options with weighted dimension deltas + `image` field
 - `data/results.json`
-  - 16 classes
-  - each result includes `priority` + AND-ed `conditions`
-  - includes flavor metadata used in the collectible card
+  - 16 class definitions (`title`, `tagline`, `summary`, `lore`, `signals`, `style`, `risk`, `partyRole`, `growthQuest`, `signatureItem`, `battleHabit`, `priority`, `conditions`)
 
 ## Scoring + Evaluator
 
@@ -97,6 +98,8 @@ On GitHub Pages, these are accessed with hash URLs (example: `/#/result?seed=dem
     - `spread_between`
   - requires every condition in a result to pass (AND)
   - selects winner by `priority` descending; ties by file order in `results.json`
+- `src/lib/data.ts`
+  - ensures `showcaseScores` is not pre-defined in result data
 
 ## UI Components
 

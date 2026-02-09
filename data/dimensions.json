@@ -1,0 +1,60 @@
+{
+  "dimensions": [
+    {
+      "id": "power",
+      "label": "Power",
+      "left": "Measured",
+      "right": "Impactful",
+      "description": "How you apply force, pressure, and decisive action"
+    },
+    {
+      "id": "guard",
+      "label": "Guard",
+      "left": "Open",
+      "right": "Shielded",
+      "description": "How you protect, endure, and take responsibility"
+    },
+    {
+      "id": "swift",
+      "label": "Swiftness",
+      "left": "Deliberate",
+      "right": "Quick",
+      "description": "How fast you adapt, move, and commit"
+    },
+    {
+      "id": "tactic",
+      "label": "Tactics",
+      "left": "Instinctive",
+      "right": "Calculated",
+      "description": "How you plan, control outcomes, and manage resources"
+    },
+    {
+      "id": "arcana",
+      "label": "Arcana",
+      "left": "Sensible",
+      "right": "Arcane",
+      "description": "How strongly you lean toward magic, experimentation, and the unknown"
+    },
+    {
+      "id": "faith",
+      "label": "Faith",
+      "left": "Pragmatic",
+      "right": "Devoted",
+      "description": "How much you act from purpose, care, and restorative strength"
+    },
+    {
+      "id": "guile",
+      "label": "Guile",
+      "left": "Direct",
+      "right": "Cunning",
+      "description": "How you navigate subtly: stealth, persuasion, misdirection"
+    },
+    {
+      "id": "command",
+      "label": "Command",
+      "left": "Solo",
+      "right": "Leading",
+      "description": "How you coordinate people, set direction, and shape momentum"
+    }
+  ]
+}

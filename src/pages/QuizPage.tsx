@@ -13,6 +13,7 @@ export function QuizPage() {
 
   const totalQuestions = questionsData.questions.length
   const question = questionsData.questions[questionIndex]
+  const questionImage = question.image?.trim() ?? ''
   const selectedOption = answers[questionIndex]
   const progress = questionIndex + 1
 
@@ -58,7 +59,7 @@ export function QuizPage() {
 
           <div className="mt-4">
             <div className="mb-2 flex items-center justify-between text-sm text-[#e5d5b6]">
-              <span className="font-title tracking-[0.18em] uppercase">Question {progress}/20</span>
+              <span className="font-title tracking-[0.18em] uppercase">Question {progress}/{totalQuestions}</span>
               <span className="font-body text-xs text-[#cab88f]">Tap or click an option</span>
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-[#3a2a26]">
@@ -71,6 +72,22 @@ export function QuizPage() {
 
           <div key={question.id} className="mt-7 animate-fade-slide">
             <h1 className="font-body text-[1.72rem] leading-tight text-[#f3e9d3] sm:text-[2rem]">{question.prompt}</h1>
+
+            {questionImage && (
+              <div className="mt-5 overflow-hidden rounded-xl border border-[#6e5434] bg-[#120f15]">
+                <div className="aspect-[16/9] w-full">
+                  <img
+                    src={questionImage}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none'
+                    }}
+                  />
+                </div>
+              </div>
+            )}
 
             <div className="mt-7 grid gap-3 sm:gap-4">
               {question.options.map((option, index) => {
