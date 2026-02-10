@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import type { CSSProperties } from 'react'
 import growthQuestArt from '../assets/growth_quest.png'
 import { dimensionLabelMap } from '../lib/data'
 import { dominantPair } from '../lib/scoring'
@@ -21,6 +22,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
   const signatureItem = result.signatureItem ?? defaultSignatureItem(result.id, result.title)
   const battleHabit = result.battleHabit ?? defaultBattleHabit(result.id)
   const growthQuestDifficulty = clampGrowthQuestDifficulty(result.growthQuestDifficulty)
+  const titleMotion = getTitleMotionProfile(result.id)
 
   return (
     <div
@@ -52,7 +54,10 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
         <div className="rc-corner br" />
 
         <section className="rc-parchment">
-          <header className="rc-header">
+          <header
+            className={clsx('rc-header', !exportMode && 'rc-header--animated', !exportMode && `rc-header--title-v${titleMotion.variant}`)}
+            style={!exportMode ? titleMotion.style : undefined}
+          >
             {result.classSprite ? (
               <SpriteSlice
                 src={result.classSprite}
@@ -432,6 +437,61 @@ function defaultBattleHabit(id: string): string {
     class_oracle: 'Read the field before committing power.',
   }
   return overrides[id] ?? 'Find the opening, then commit without hesitation.'
+}
+
+type TitleMotionVariant = 1 | 2 | 3 | 4 | 5
+
+interface TitleMotionProfile {
+  variant: TitleMotionVariant
+  style: CSSProperties
+}
+
+function getTitleMotionProfile(id: string): TitleMotionProfile {
+  const hash = hashString(id)
+  const variant = ((hash % 5) + 1) as TitleMotionVariant
+
+  const n0 = ((hash >>> 0) & 0xff) / 255
+  const n1 = ((hash >>> 8) & 0xff) / 255
+  const n2 = ((hash >>> 16) & 0xff) / 255
+  const n3 = ((hash >>> 24) & 0xff) / 255
+
+  const floatDuration = `${(6.4 + n0 * 2.6).toFixed(2)}s`
+  const pulseDuration = `${(8.8 + n1 * 3.4).toFixed(2)}s`
+  const sheenDuration = `${(11.2 + n2 * 4.1).toFixed(2)}s`
+  const phaseDelay = `${(-n3 * 3.8).toFixed(2)}s`
+  const floatX = `${(0.6 + n1 * 1.5).toFixed(2)}px`
+  const floatY = `${(2.3 + n0 * 2.4).toFixed(2)}px`
+  const tilt = `${(0.24 + n2 * 0.64).toFixed(3)}deg`
+  const scale = (1.006 + n3 * 0.014).toFixed(3)
+  const glowStrength = (0.18 + n0 * 0.18).toFixed(2)
+  const hueShift = `${Math.round(-13 + n2 * 26)}deg`
+
+  return {
+    variant,
+    style: {
+      '--rc-title-float-duration': floatDuration,
+      '--rc-title-pulse-duration': pulseDuration,
+      '--rc-title-sheen-duration': sheenDuration,
+      '--rc-title-phase-delay': phaseDelay,
+      '--rc-title-float-x': floatX,
+      '--rc-title-float-y': floatY,
+      '--rc-title-tilt': tilt,
+      '--rc-title-scale': scale,
+      '--rc-title-glow-strength': glowStrength,
+      '--rc-title-hue-shift': hueShift,
+    } as CSSProperties,
+  }
+}
+
+function hashString(value: string): number {
+  let hash = 2166136261
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index)
+    hash = Math.imul(hash, 16777619)
+  }
+
+  return hash >>> 0
 }
 
 function clampGrowthQuestDifficulty(value?: number): number {
