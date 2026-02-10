@@ -15,6 +15,42 @@ interface ResultLocationState {
   answers?: number[]
 }
 
+function waitForImageReady(image: HTMLImageElement): Promise<void> {
+  if (image.complete) {
+    return Promise.resolve()
+  }
+
+  return new Promise((resolve) => {
+    const cleanup = () => {
+      image.removeEventListener('load', onDone)
+      image.removeEventListener('error', onDone)
+      window.clearTimeout(timeoutId)
+    }
+
+    const onDone = () => {
+      cleanup()
+      resolve()
+    }
+
+    const timeoutId = window.setTimeout(onDone, 3500)
+    image.addEventListener('load', onDone, { once: true })
+    image.addEventListener('error', onDone, { once: true })
+  })
+}
+
+async function waitForCardAssets(node: HTMLElement): Promise<void> {
+  if ('fonts' in document) {
+    await document.fonts.ready
+  }
+
+  const images = Array.from(node.querySelectorAll('img'))
+  await Promise.all(images.map((image) => waitForImageReady(image)))
+
+  await new Promise<void>((resolve) => {
+    window.requestAnimationFrame(() => resolve())
+  })
+}
+
 function useCardScale() {
   const [scale, setScale] = useState(1)
 
@@ -78,6 +114,7 @@ export function ResultPage() {
 
     setIsDownloading(true)
     try {
+      await waitForCardAssets(node)
       const dataUrl = await toPng(node, {
         cacheBust: true,
         pixelRatio: 1,
@@ -261,7 +298,7 @@ export function ResultPage() {
       )}
 
       <div ref={hiddenCaptureRef} className="pointer-events-none fixed left-[-10000px] top-0 opacity-0">
-        <ResultCard result={evaluation.winner} scores={evaluation.summary.scores} dimensions={questionsData.dimensions} />
+        <ResultCard result={evaluation.winner} scores={evaluation.summary.scores} dimensions={questionsData.dimensions} exportMode />
       </div>
 
       {isDev && (

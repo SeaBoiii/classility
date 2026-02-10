@@ -16,6 +16,8 @@ interface ResultCardProps {
   exportMode?: boolean
 }
 
+type ImageLoadingMode = 'lazy' | 'eager'
+
 export function ResultCard({ result, scores, dimensions, className, exportMode = false }: ResultCardProps) {
   const dimensionIds = dimensions.map((dim) => dim.id)
   const [firstDim, secondDim] = dominantPair(scores, dimensionIds)
@@ -23,6 +25,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
   const battleHabit = result.battleHabit ?? defaultBattleHabit(result.id)
   const growthQuestDifficulty = clampGrowthQuestDifficulty(result.growthQuestDifficulty)
   const titleMotion = getTitleMotionProfile(result.id)
+  const imageLoading: ImageLoadingMode = exportMode ? 'eager' : 'lazy'
 
   return (
     <div
@@ -65,6 +68,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
                 bottom={430}
                 alt={`${result.title} class title`}
                 className="rc-title-art"
+                loading={imageLoading}
               />
             ) : (
               <div className="rc-title-banner">
@@ -85,6 +89,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
                   bottom={1250}
                   alt={`${result.title} class duo`}
                   className="rc-duo-art"
+                  loading={imageLoading}
                 />
               )}
               <p className="rc-copy rc-summary-copy">{result.summary}</p>
@@ -141,6 +146,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
               artAlt={`${result.title} party crest`}
               artClassName="rc-meta-panel__art--party-role"
               panelClassName="rc-meta-panel--party-role"
+              imageLoading={imageLoading}
             />
             <GrowthQuestPanel
               label="Growth Quest"
@@ -149,6 +155,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
               icon="wand"
               artSrc={growthQuestArt}
               artAlt="Growth quest illustration"
+              imageLoading={imageLoading}
             />
             <BonusFlavorPanel
               label="Bonus Flavor"
@@ -157,6 +164,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
               equipmentSrc={result.signatureEquipment}
               equipmentAlt={`${result.title} signature equipment`}
               icon="bow"
+              imageLoading={imageLoading}
             />
           </footer>
         </section>
@@ -188,6 +196,7 @@ interface MetaPanelProps {
   artAlt?: string
   artClassName?: string
   panelClassName?: string
+  imageLoading?: ImageLoadingMode
 }
 
 function MetaPanel({
@@ -199,6 +208,7 @@ function MetaPanel({
   artAlt = '',
   artClassName,
   panelClassName,
+  imageLoading = 'lazy',
 }: MetaPanelProps) {
   return (
     <section className={clsx('rc-meta-panel', artSrc && 'rc-meta-panel--with-art', panelClassName)}>
@@ -219,7 +229,7 @@ function MetaPanel({
         )}
         {artSrc ? (
           <div className={clsx('rc-meta-panel__art', artClassName)}>
-            <img src={artSrc} alt={artAlt} loading="lazy" />
+            <img src={artSrc} alt={artAlt} loading={imageLoading} />
           </div>
         ) : null}
       </div>
@@ -234,6 +244,7 @@ interface BonusFlavorPanelProps {
   equipmentSrc?: string
   equipmentAlt?: string
   icon: PanelTitleIconKind
+  imageLoading?: ImageLoadingMode
 }
 
 function BonusFlavorPanel({
@@ -243,6 +254,7 @@ function BonusFlavorPanel({
   equipmentSrc,
   equipmentAlt = '',
   icon,
+  imageLoading = 'lazy',
 }: BonusFlavorPanelProps) {
   return (
     <section className={clsx('rc-meta-panel', equipmentSrc && 'rc-meta-panel--with-art')}>
@@ -259,7 +271,7 @@ function BonusFlavorPanel({
           <div className="rc-meta-panel__equipment-frame">
             <EquipmentOrnament />
             <div className="rc-meta-panel__art rc-meta-panel__art--equipment">
-              <img src={equipmentSrc} alt={equipmentAlt} loading="lazy" />
+              <img src={equipmentSrc} alt={equipmentAlt} loading={imageLoading} />
             </div>
             <EquipmentOrnament mirrored />
           </div>
@@ -281,9 +293,10 @@ interface GrowthQuestPanelProps {
   icon: PanelTitleIconKind
   artSrc: string
   artAlt: string
+  imageLoading?: ImageLoadingMode
 }
 
-function GrowthQuestPanel({ label, value, difficulty, icon, artSrc, artAlt }: GrowthQuestPanelProps) {
+function GrowthQuestPanel({ label, value, difficulty, icon, artSrc, artAlt, imageLoading = 'lazy' }: GrowthQuestPanelProps) {
   const normalizedDifficulty = clampGrowthQuestDifficulty(difficulty)
 
   return (
@@ -312,7 +325,7 @@ function GrowthQuestPanel({ label, value, difficulty, icon, artSrc, artAlt }: Gr
         </div>
 
         <div className="rc-meta-panel__art rc-meta-panel__art--growth-quest">
-          <img src={artSrc} alt={artAlt} loading="lazy" />
+          <img src={artSrc} alt={artAlt} loading={imageLoading} />
         </div>
       </div>
     </section>
@@ -508,12 +521,13 @@ interface SpriteSliceProps {
   bottom: number
   alt: string
   className?: string
+  loading?: ImageLoadingMode
 }
 
 const SPRITE_WIDTH = 1024
 const SPRITE_HEIGHT = 1536
 
-function SpriteSlice({ src, top, bottom, alt, className }: SpriteSliceProps) {
+function SpriteSlice({ src, top, bottom, alt, className, loading = 'lazy' }: SpriteSliceProps) {
   const safeTop = Math.max(0, Math.min(SPRITE_HEIGHT - 1, top))
   const safeBottom = Math.max(safeTop + 1, Math.min(SPRITE_HEIGHT, bottom))
   const sliceHeight = safeBottom - safeTop
@@ -521,7 +535,7 @@ function SpriteSlice({ src, top, bottom, alt, className }: SpriteSliceProps) {
 
   return (
     <div className={clsx('rc-sprite-slice', className)} style={{ aspectRatio: `${SPRITE_WIDTH} / ${sliceHeight}` }}>
-      <img src={src} alt={alt} loading="lazy" style={{ transform: `translateY(-${translateY}%)` }} />
+      <img src={src} alt={alt} loading={loading} style={{ transform: `translateY(-${translateY}%)` }} />
     </div>
   )
 }
