@@ -234,7 +234,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q4.png"
     },
     {
       "id": "q5",
@@ -293,7 +293,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q5.png"
     },
     {
       "id": "q6",
@@ -352,7 +352,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q6.png"
     },
     {
       "id": "q7",
@@ -411,7 +411,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q7.png"
     },
     {
       "id": "q8",
@@ -470,7 +470,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q8.png"
     },
     {
       "id": "q9",
@@ -529,7 +529,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q9.png"
     },
     {
       "id": "q10",
@@ -588,7 +588,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q10.png"
     },
     {
       "id": "q11",
@@ -647,7 +647,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q11.png"
     },
     {
       "id": "q12",
@@ -706,7 +706,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q12.png"
     },
     {
       "id": "q13",
@@ -765,7 +765,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q13.png"
     },
     {
       "id": "q14",
@@ -824,7 +824,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q14.png"
     },
     {
       "id": "q15",
@@ -883,7 +883,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q15.png"
     },
     {
       "id": "q16",
@@ -942,7 +942,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q16.png"
     },
     {
       "id": "q17",
@@ -1001,7 +1001,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q17.png"
     },
     {
       "id": "q18",
@@ -1060,7 +1060,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q18.png"
     },
     {
       "id": "q19",
@@ -1119,14 +1119,14 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q19.png"
     },
     {
       "id": "q20",
-      "prompt": "When you\u2019re at your best, you feel like\u2026",
+      "prompt": "Final chamber: the dungeon overlord rises over the quest relic. You finish the run by\u2026",
       "options": [
         {
-          "text": "A clean decisive moment\u2014no doubt, just impact.",
+          "text": "Bursting through the chaos with pure speed and a clean, anti-magic finish.",
           "weights": {
             "power": -2,
             "guard": -3,
@@ -1139,7 +1139,7 @@
           }
         },
         {
-          "text": "A steady wall\u2014calm, present, unbreakable.",
+          "text": "Going solo on a calculated flank, baiting the boss into a precise trap.",
           "weights": {
             "power": -6,
             "guard": 2,
@@ -1152,7 +1152,7 @@
           }
         },
         {
-          "text": "A perfectly timed play\u2014precision becomes victory.",
+          "text": "Layering wards, prayer, and misdirection until the overlord falls into your setup.",
           "weights": {
             "power": -9,
             "guard": 4,
@@ -1165,7 +1165,7 @@
           }
         },
         {
-          "text": "A chorus of voices moving as one\u2014your call, their trust.",
+          "text": "Calling a direct battle plan and channeling arcane force with the party at your back.",
           "weights": {
             "power": -6,
             "guard": 0,
@@ -1178,7 +1178,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q20.png"
     }
   ]
 }
