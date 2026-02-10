@@ -27,6 +27,11 @@ const spriteModules = import.meta.glob('../assets/class_sprites/*.{png,jpg,jpeg,
   import: 'default',
 }) as Record<string, string>
 
+const sceneModules = import.meta.glob('../assets/scenes/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
 function normalizeText(value: string): string {
   return textFixes.reduce((text, [from, to]) => text.split(from).join(to), value)
 }
@@ -48,13 +53,13 @@ function normalizeDeep<T>(value: T): T {
   return value
 }
 
-function resolveClassSprite(pathOrFilename?: string): string | undefined {
+function resolveAsset(pathOrFilename: string | undefined, modules: Record<string, string>): string | undefined {
   if (!pathOrFilename) {
     return undefined
   }
 
   const normalized = pathOrFilename.replace(/\\/g, '/').replace(/^\.?\//, '')
-  const entries = Object.entries(spriteModules)
+  const entries = Object.entries(modules)
 
   const exactMatch = entries.find(([modulePath]) => {
     return modulePath.endsWith(`/${normalized}`) || modulePath.endsWith(normalized)
@@ -70,6 +75,14 @@ function resolveClassSprite(pathOrFilename?: string): string | undefined {
 
   const filenameMatch = entries.find(([modulePath]) => modulePath.endsWith(`/${filename}`))
   return filenameMatch?.[1]
+}
+
+function resolveClassSprite(pathOrFilename?: string): string | undefined {
+  return resolveAsset(pathOrFilename, spriteModules)
+}
+
+function resolveQuestionScene(pathOrFilename?: string): string | undefined {
+  return resolveAsset(pathOrFilename, sceneModules)
 }
 
 const dimensionFile = normalizeDeep(dimensionsRaw) as DimensionDataFile
@@ -88,7 +101,7 @@ export const questionsData: QuestionsData = {
   dimensions: dimensionFile.dimensions,
   questions: questionFile.questions.map<QuestionDefinition>((question) => ({
     ...question,
-    image: question.image ?? '',
+    image: resolveQuestionScene(question.image) ?? question.image ?? '',
   })),
 }
 

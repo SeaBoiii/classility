@@ -57,7 +57,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q1.png"
     },
     {
       "id": "q2",
@@ -116,7 +116,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q2.png"
     },
     {
       "id": "q3",
@@ -175,7 +175,7 @@
           }
         }
       ],
-      "image": ""
+      "image": "scenes/q3.png"
     },
     {
       "id": "q4",

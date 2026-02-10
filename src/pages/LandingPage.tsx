@@ -12,7 +12,7 @@ export function LandingPage() {
 
     setOpening(true)
     window.setTimeout(() => {
-      navigate('/dimensions')
+      navigate('/quiz')
     }, 900)
   }
 
@@ -29,7 +29,13 @@ export function LandingPage() {
           </p>
         </div>
 
-        <div className="relative aspect-[16/10] w-full max-w-3xl overflow-hidden rounded-2xl border border-[#7f6136] bg-[radial-gradient(circle_at_center,#2f2220_0%,#201615_72%,#110d0c_100%)] shadow-[0_30px_80px_rgba(0,0,0,0.55)]">
+        <button
+          type="button"
+          onClick={onStartAdventure}
+          disabled={opening}
+          className="relative aspect-[16/10] w-full max-w-3xl overflow-hidden rounded-2xl border border-[#7f6136] bg-[radial-gradient(circle_at_center,#2f2220_0%,#201615_72%,#110d0c_100%)] text-left shadow-[0_30px_80px_rgba(0,0,0,0.55)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffe0a5]"
+          aria-label={opening ? 'Opening door' : 'Open door and start adventure'}
+        >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(90,114,177,0.34)_0%,rgba(90,114,177,0)_58%)]" />
 
           <div
@@ -50,20 +56,13 @@ export function LandingPage() {
           </div>
 
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="rounded-xl border border-[#caa66a]/40 bg-[#130f11]/68 px-6 py-4 text-center backdrop-blur-[1px]">
-              <p className="font-title text-sm tracking-[0.2em] text-[#efcf93] uppercase">Begin The Trial</p>
-              <p className="mt-1 font-body text-base text-[#e2d2b2]">Your class awaits behind these doors.</p>
+            <div className="rounded-xl border border-[#caa66a]/40 bg-[#130f11]/68 px-4 py-3 text-center backdrop-blur-[1px] sm:px-6 sm:py-4">
+              <p className="font-title text-[0.62rem] tracking-[0.14em] text-[#efcf93] uppercase sm:text-sm sm:tracking-[0.2em]">
+                {opening ? 'Opening...' : 'Click The Door To Begin'}
+              </p>
+              <p className="mt-1 font-body text-xs text-[#e2d2b2] sm:text-base">Your class awaits behind these doors.</p>
             </div>
           </div>
-        </div>
-
-        <button
-          type="button"
-          onClick={onStartAdventure}
-          disabled={opening}
-          className="rounded-md border border-[#d5b06a] bg-[linear-gradient(140deg,#6f4b22_0%,#8e6531_100%)] px-7 py-3 font-title text-sm tracking-[0.18em] uppercase text-[#fff0cd] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffe0a5]"
-        >
-          {opening ? 'Opening...' : 'Start Adventure'}
         </button>
       </section>
     </main>
