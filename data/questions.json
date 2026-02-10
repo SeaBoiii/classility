@@ -7,53 +7,53 @@
         {
           "text": "Step forward and end it fast.",
           "weights": {
-            "power": 5,
-            "guard": 0,
+            "power": 9,
+            "guard": -1,
             "swift": 1,
-            "tactic": -1,
-            "arcana": 3,
-            "faith": 0,
-            "guile": -1,
-            "command": 5
+            "tactic": -6,
+            "arcana": 0,
+            "faith": 2,
+            "guile": -8,
+            "command": 11
           }
         },
         {
           "text": "Hold position and protect the group.",
           "weights": {
-            "power": 1,
-            "guard": 4,
-            "swift": 2,
-            "tactic": 6,
-            "arcana": 0,
-            "faith": -1,
+            "power": 2,
+            "guard": -4,
+            "swift": 6,
+            "tactic": 10,
+            "arcana": 3,
+            "faith": -5,
             "guile": 0,
-            "command": -3
+            "command": -2
           }
         },
         {
           "text": "Create a plan with angles and timing.",
           "weights": {
-            "power": 0,
+            "power": 1,
             "guard": 3,
-            "swift": 0,
-            "tactic": 4,
-            "arcana": 2,
-            "faith": -4,
-            "guile": 0,
-            "command": -1
+            "swift": 4,
+            "tactic": 11,
+            "arcana": 7,
+            "faith": -7,
+            "guile": -8,
+            "command": -2
           }
         },
         {
           "text": "Talk them down while your hand stays near a dagger.",
           "weights": {
-            "power": 1,
+            "power": 2,
             "guard": 0,
-            "swift": 0,
-            "tactic": -1,
+            "swift": -4,
+            "tactic": 0,
             "arcana": 3,
-            "faith": 0,
-            "guile": 4,
-            "command": -3
+            "faith": -3,
+            "guile": -2,
+            "command": -5
           }
         }
       ],
@@ -66,53 +66,53 @@
         {
           "text": "A rune that responds to curiosity.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": 0,
-            "tactic": -3,
-            "arcana": 6,
-            "faith": 3,
-            "guile": -3,
-            "command": 2
+            "power": -4,
+            "guard": -3,
+            "swift": 3,
+            "tactic": -9,
+            "arcana": 7,
+            "faith": 6,
+            "guile": -2,
+            "command": -6
           }
         },
         {
           "text": "A prayer you trust when things turn strange.",
           "weights": {
-            "power": 0,
-            "guard": 1,
+            "power": -6,
+            "guard": -8,
             "swift": 1,
-            "tactic": 1,
-            "arcana": 0,
-            "faith": 4,
-            "guile": -6,
-            "command": -4
+            "tactic": 8,
+            "arcana": -5,
+            "faith": -1,
+            "guile": -15,
+            "command": -2
           }
         },
         {
           "text": "A map of the shelves and the safest routes.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": 0,
+            "power": -2,
+            "guard": 2,
+            "swift": 12,
             "tactic": 4,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 1,
-            "command": -2
+            "arcana": -1,
+            "faith": 2,
+            "guile": -10,
+            "command": -5
           }
         },
         {
           "text": "A quiet step between shadows and stacks.",
           "weights": {
-            "power": -3,
-            "guard": 2,
-            "swift": 1,
-            "tactic": 0,
+            "power": -2,
+            "guard": 5,
+            "swift": 6,
+            "tactic": -7,
             "arcana": 0,
-            "faith": 3,
-            "guile": 3,
-            "command": 6
+            "faith": 4,
+            "guile": 10,
+            "command": 8
           }
         }
       ],
@@ -125,53 +125,53 @@
         {
           "text": "A heavier strike that changes the fight.",
           "weights": {
-            "power": 4,
-            "guard": -2,
-            "swift": -1,
-            "tactic": 0,
+            "power": 7,
+            "guard": 3,
+            "swift": 0,
+            "tactic": 1,
             "arcana": 0,
-            "faith": -2,
-            "guile": -1,
-            "command": 1
+            "faith": -14,
+            "guile": 7,
+            "command": 7
           }
         },
         {
           "text": "Footwork\u2014hit first, vanish, repeat.",
           "weights": {
-            "power": 0,
-            "guard": -3,
-            "swift": 8,
-            "tactic": 2,
-            "arcana": 3,
-            "faith": -3,
-            "guile": 0,
-            "command": -1
+            "power": 4,
+            "guard": -5,
+            "swift": 11,
+            "tactic": 1,
+            "arcana": 1,
+            "faith": -2,
+            "guile": -4,
+            "command": -5
           }
         },
         {
           "text": "Reading them and countering perfectly.",
           "weights": {
-            "power": 0,
-            "guard": 3,
+            "power": -7,
+            "guard": 6,
             "swift": -2,
-            "tactic": 7,
-            "arcana": 1,
-            "faith": 0,
-            "guile": 0,
-            "command": -1
+            "tactic": 5,
+            "arcana": -5,
+            "faith": -3,
+            "guile": 7,
+            "command": 2
           }
         },
         {
           "text": "A feint that turns their confidence into a mistake.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": 2,
-            "tactic": -1,
-            "arcana": -2,
-            "faith": 0,
-            "guile": 0,
-            "command": -2
+            "power": 2,
+            "guard": -2,
+            "swift": 6,
+            "tactic": -4,
+            "arcana": -3,
+            "faith": -2,
+            "guile": -9,
+            "command": 2
           }
         }
       ],
@@ -185,52 +185,52 @@
           "text": "Guard the weak and rebuild defenses.",
           "weights": {
             "power": -1,
-            "guard": 4,
-            "swift": -4,
+            "guard": 5,
+            "swift": 4,
             "tactic": 1,
-            "arcana": 0,
-            "faith": 5,
-            "guile": 0,
-            "command": -2
+            "arcana": -2,
+            "faith": 7,
+            "guile": -3,
+            "command": -6
           }
         },
         {
           "text": "Hunt the raiders immediately.",
           "weights": {
-            "power": 2,
-            "guard": -5,
-            "swift": 2,
+            "power": 3,
+            "guard": -11,
+            "swift": 1,
             "tactic": 2,
-            "arcana": 0,
-            "faith": -3,
-            "guile": 0,
-            "command": 2
+            "arcana": -3,
+            "faith": -10,
+            "guile": 5,
+            "command": 3
           }
         },
         {
           "text": "Organize everyone into roles and recovery.",
           "weights": {
-            "power": 0,
+            "power": 4,
             "guard": 1,
             "swift": 0,
-            "tactic": -1,
-            "arcana": -6,
-            "faith": -3,
-            "guile": 2,
-            "command": 7
+            "tactic": -7,
+            "arcana": -4,
+            "faith": -9,
+            "guile": 6,
+            "command": 20
           }
         },
         {
           "text": "Tend wounds and keep hope alive.",
           "weights": {
-            "power": -3,
-            "guard": 0,
-            "swift": -2,
-            "tactic": 2,
-            "arcana": -3,
-            "faith": 4,
+            "power": 1,
+            "guard": 2,
+            "swift": -4,
+            "tactic": 9,
+            "arcana": -1,
+            "faith": -2,
             "guile": -1,
-            "command": 1
+            "command": 9
           }
         }
       ],
@@ -243,53 +243,53 @@
         {
           "text": "Take point and tank the risk for others.",
           "weights": {
-            "power": -2,
-            "guard": 6,
-            "swift": 0,
-            "tactic": 0,
-            "arcana": 1,
+            "power": -11,
+            "guard": 5,
+            "swift": 3,
+            "tactic": -6,
+            "arcana": -5,
             "faith": 0,
-            "guile": 1,
-            "command": 0
+            "guile": 8,
+            "command": 2
           }
         },
         {
           "text": "Disarm it with careful timing and tools.",
           "weights": {
-            "power": 2,
-            "guard": 0,
-            "swift": -2,
-            "tactic": 7,
-            "arcana": 0,
-            "faith": -2,
-            "guile": 1,
-            "command": 0
+            "power": 5,
+            "guard": -8,
+            "swift": -7,
+            "tactic": 13,
+            "arcana": 2,
+            "faith": -7,
+            "guile": 0,
+            "command": -8
           }
         },
         {
           "text": "Slip through like it was never there.",
           "weights": {
-            "power": -2,
-            "guard": 1,
+            "power": -7,
+            "guard": 2,
             "swift": 3,
-            "tactic": 0,
-            "arcana": -3,
-            "faith": -3,
+            "tactic": -5,
+            "arcana": -5,
+            "faith": 7,
             "guile": 4,
-            "command": -2
+            "command": -1
           }
         },
         {
           "text": "Study the pattern\u2014there\u2019s a hidden rule.",
           "weights": {
-            "power": 3,
-            "guard": 0,
-            "swift": 0,
-            "tactic": -1,
-            "arcana": 2,
-            "faith": 0,
-            "guile": -2,
-            "command": 0
+            "power": 1,
+            "guard": 2,
+            "swift": -6,
+            "tactic": -10,
+            "arcana": -5,
+            "faith": -2,
+            "guile": 1,
+            "command": -1
           }
         }
       ],
@@ -302,53 +302,53 @@
         {
           "text": "Take it. Knowledge is meant to be held.",
           "weights": {
-            "power": 3,
+            "power": 6,
             "guard": 1,
-            "swift": 0,
-            "tactic": -1,
-            "arcana": 9,
-            "faith": -1,
+            "swift": 2,
+            "tactic": -6,
+            "arcana": 11,
+            "faith": -2,
             "guile": -1,
-            "command": 0
+            "command": 2
           }
         },
         {
           "text": "Refuse. Some doors shouldn\u2019t open.",
           "weights": {
-            "power": -3,
-            "guard": -1,
-            "swift": 0,
-            "tactic": -3,
+            "power": -1,
+            "guard": 3,
+            "swift": -4,
+            "tactic": -5,
             "arcana": -1,
             "faith": 5,
-            "guile": -2,
+            "guile": -5,
             "command": 2
           }
         },
         {
           "text": "Negotiate terms and safeguards first.",
           "weights": {
-            "power": 2,
-            "guard": 1,
-            "swift": -3,
+            "power": 8,
+            "guard": -7,
+            "swift": -7,
             "tactic": 2,
-            "arcana": 3,
-            "faith": -3,
-            "guile": 1,
-            "command": 3
+            "arcana": 4,
+            "faith": -9,
+            "guile": -1,
+            "command": -13
           }
         },
         {
           "text": "Smile, distract, and learn what they\u2019re really after.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": 1,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 4,
-            "command": 2
+            "power": 3,
+            "guard": -5,
+            "swift": 0,
+            "tactic": 2,
+            "arcana": -3,
+            "faith": -1,
+            "guile": 5,
+            "command": 4
           }
         }
       ],
@@ -361,53 +361,53 @@
         {
           "text": "The finisher\u2014decisive, feared.",
           "weights": {
-            "power": 1,
-            "guard": 0,
-            "swift": 3,
-            "tactic": -1,
-            "arcana": -3,
-            "faith": 0,
-            "guile": 0,
-            "command": -2
+            "power": -4,
+            "guard": 2,
+            "swift": -1,
+            "tactic": 0,
+            "arcana": -5,
+            "faith": 5,
+            "guile": 2,
+            "command": -5
           }
         },
         {
           "text": "The bulwark\u2014no one falls behind you.",
           "weights": {
-            "power": -2,
-            "guard": 5,
-            "swift": -2,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": -1,
-            "guile": -1,
-            "command": 0
+            "power": -1,
+            "guard": 4,
+            "swift": -3,
+            "tactic": 2,
+            "arcana": 4,
+            "faith": 0,
+            "guile": -3,
+            "command": -4
           }
         },
         {
           "text": "The mind\u2014winning before the match starts.",
           "weights": {
-            "power": 2,
-            "guard": 0,
-            "swift": 0,
-            "tactic": 4,
-            "arcana": 1,
-            "faith": 0,
-            "guile": 0,
-            "command": -3
+            "power": 7,
+            "guard": 3,
+            "swift": -7,
+            "tactic": 10,
+            "arcana": -5,
+            "faith": -2,
+            "guile": 4,
+            "command": -13
           }
         },
         {
           "text": "The shadow\u2014clean, quiet victories.",
           "weights": {
-            "power": 0,
-            "guard": 2,
-            "swift": 3,
-            "tactic": 0,
-            "arcana": 1,
-            "faith": 0,
-            "guile": 4,
-            "command": -1
+            "power": 4,
+            "guard": 6,
+            "swift": 5,
+            "tactic": -2,
+            "arcana": -1,
+            "faith": 1,
+            "guile": -3,
+            "command": 2
           }
         }
       ],
@@ -421,52 +421,52 @@
           "text": "Step in front and hold the line.",
           "weights": {
             "power": 3,
-            "guard": 4,
-            "swift": 0,
-            "tactic": 0,
+            "guard": -2,
+            "swift": 2,
+            "tactic": -2,
             "arcana": 1,
-            "faith": 0,
-            "guile": 7,
-            "command": 1
+            "faith": 7,
+            "guile": 20,
+            "command": 3
           }
         },
         {
           "text": "Patch them up fast and keep them breathing.",
           "weights": {
-            "power": -1,
-            "guard": 1,
-            "swift": 0,
-            "tactic": -2,
-            "arcana": 0,
-            "faith": 4,
-            "guile": 0,
-            "command": 0
+            "power": -2,
+            "guard": -4,
+            "swift": 3,
+            "tactic": -3,
+            "arcana": -1,
+            "faith": 9,
+            "guile": 5,
+            "command": 1
           }
         },
         {
           "text": "Call instructions\u2014everyone rotates with you.",
           "weights": {
-            "power": -2,
-            "guard": -2,
+            "power": 4,
+            "guard": -1,
             "swift": 0,
             "tactic": 1,
-            "arcana": 0,
-            "faith": -2,
-            "guile": 2,
-            "command": 4
+            "arcana": 2,
+            "faith": -8,
+            "guile": 5,
+            "command": 7
           }
         },
         {
           "text": "Create an opening so the enemy can\u2019t capitalize.",
           "weights": {
-            "power": 3,
-            "guard": 0,
-            "swift": 5,
-            "tactic": 1,
-            "arcana": -1,
-            "faith": -3,
-            "guile": -1,
-            "command": -1
+            "power": 7,
+            "guard": -2,
+            "swift": 6,
+            "tactic": -1,
+            "arcana": -8,
+            "faith": -7,
+            "guile": 1,
+            "command": -2
           }
         }
       ],
@@ -479,53 +479,53 @@
         {
           "text": "Hit it with everything before it lands.",
           "weights": {
-            "power": 2,
-            "guard": 1,
-            "swift": 2,
-            "tactic": -1,
+            "power": -4,
+            "guard": -4,
+            "swift": 4,
+            "tactic": -4,
             "arcana": 0,
-            "faith": 0,
-            "guile": 0,
-            "command": 0
+            "faith": -8,
+            "guile": -1,
+            "command": -3
           }
         },
         {
           "text": "Fortify and wait for the right moment.",
           "weights": {
-            "power": 0,
-            "guard": 4,
-            "swift": -2,
-            "tactic": 1,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 0,
-            "command": -1
+            "power": 9,
+            "guard": 5,
+            "swift": -3,
+            "tactic": -2,
+            "arcana": -1,
+            "faith": 3,
+            "guile": 5,
+            "command": 3
           }
         },
         {
           "text": "Exploit its pattern\u2014wings, wind, and timing.",
           "weights": {
-            "power": 3,
-            "guard": 0,
+            "power": -5,
+            "guard": 3,
             "swift": 0,
-            "tactic": 4,
-            "arcana": 3,
-            "faith": -2,
-            "guile": 0,
-            "command": -1
+            "tactic": 10,
+            "arcana": -1,
+            "faith": 1,
+            "guile": 2,
+            "command": -10
           }
         },
         {
           "text": "Use terrain and misdirection to survive.",
           "weights": {
-            "power": 0,
+            "power": -5,
             "guard": 2,
-            "swift": 1,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": -2,
-            "guile": 4,
-            "command": -3
+            "swift": -12,
+            "tactic": 6,
+            "arcana": 4,
+            "faith": -9,
+            "guile": 9,
+            "command": -1
           }
         }
       ],
@@ -538,53 +538,53 @@
         {
           "text": "Resolve through devotion and care.",
           "weights": {
-            "power": -2,
-            "guard": 0,
-            "swift": -3,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 4,
-            "guile": 0,
-            "command": -1
+            "power": -5,
+            "guard": -4,
+            "swift": 1,
+            "tactic": 2,
+            "arcana": 2,
+            "faith": 5,
+            "guile": 6,
+            "command": -3
           }
         },
         {
           "text": "Curiosity that refuses to be small.",
           "weights": {
-            "power": 0,
-            "guard": 1,
-            "swift": 0,
-            "tactic": -2,
-            "arcana": 6,
-            "faith": -1,
-            "guile": 0,
-            "command": 4
+            "power": -2,
+            "guard": 3,
+            "swift": -1,
+            "tactic": 2,
+            "arcana": 8,
+            "faith": 7,
+            "guile": -3,
+            "command": 13
           }
         },
         {
           "text": "Authority that makes people move together.",
           "weights": {
-            "power": -1,
-            "guard": -1,
-            "swift": 0,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 0,
-            "command": 2
+            "power": -2,
+            "guard": -4,
+            "swift": 8,
+            "tactic": 4,
+            "arcana": -8,
+            "faith": -2,
+            "guile": -3,
+            "command": -4
           }
         },
         {
           "text": "A sharp read and a sharper lie.",
           "weights": {
-            "power": 3,
-            "guard": -3,
-            "swift": 0,
-            "tactic": -4,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 4,
-            "command": 0
+            "power": 6,
+            "guard": -9,
+            "swift": 2,
+            "tactic": -10,
+            "arcana": -1,
+            "faith": -1,
+            "guile": 17,
+            "command": 2
           }
         }
       ],
@@ -597,53 +597,53 @@
         {
           "text": "Stay. Even if it hurts.",
           "weights": {
-            "power": 1,
-            "guard": 4,
-            "swift": -1,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 2,
-            "guile": 0,
-            "command": 0
+            "power": 0,
+            "guard": 1,
+            "swift": 2,
+            "tactic": 3,
+            "arcana": 9,
+            "faith": -1,
+            "guile": -6,
+            "command": -3
           }
         },
         {
           "text": "Charge\u2014make them fear you.",
           "weights": {
-            "power": 7,
-            "guard": 0,
-            "swift": 3,
-            "tactic": 0,
+            "power": 10,
+            "guard": 2,
+            "swift": 4,
+            "tactic": 3,
             "arcana": 1,
-            "faith": 0,
+            "faith": -5,
             "guile": 0,
-            "command": 5
+            "command": 4
           }
         },
         {
           "text": "Set a controlled retreat with chokepoints.",
           "weights": {
-            "power": 0,
+            "power": -2,
             "guard": 1,
-            "swift": 3,
-            "tactic": 4,
-            "arcana": 0,
-            "faith": 2,
-            "guile": 1,
-            "command": 2
+            "swift": 2,
+            "tactic": 2,
+            "arcana": -8,
+            "faith": 6,
+            "guile": 4,
+            "command": 3
           }
         },
         {
           "text": "Disappear, reappear, cut their momentum.",
           "weights": {
-            "power": -3,
-            "guard": -2,
-            "swift": 3,
-            "tactic": 0,
-            "arcana": 0,
+            "power": -5,
+            "guard": -3,
+            "swift": -1,
+            "tactic": -1,
+            "arcana": -7,
             "faith": 0,
-            "guile": 5,
-            "command": -4
+            "guile": 4,
+            "command": -10
           }
         }
       ],
@@ -656,53 +656,53 @@
         {
           "text": "Fundamentals and repetition\u2014mastery first.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": -3,
-            "tactic": 3,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 0,
-            "command": -3
+            "power": -1,
+            "guard": 2,
+            "swift": -8,
+            "tactic": 2,
+            "arcana": 5,
+            "faith": -3,
+            "guile": -1,
+            "command": -5
           }
         },
         {
           "text": "Confidence\u2014make them brave enough to try.",
           "weights": {
-            "power": 4,
-            "guard": -3,
-            "swift": 1,
+            "power": -2,
+            "guard": -10,
+            "swift": -1,
             "tactic": -1,
-            "arcana": 3,
-            "faith": 0,
-            "guile": 1,
-            "command": 5
+            "arcana": 9,
+            "faith": -6,
+            "guile": 2,
+            "command": 4
           }
         },
         {
           "text": "Safety\u2014how to survive mistakes.",
           "weights": {
-            "power": -6,
-            "guard": 4,
-            "swift": 4,
-            "tactic": -2,
-            "arcana": 0,
-            "faith": -1,
-            "guile": 4,
-            "command": 6
+            "power": -9,
+            "guard": 5,
+            "swift": -3,
+            "tactic": 9,
+            "arcana": -3,
+            "faith": 1,
+            "guile": 9,
+            "command": 14
           }
         },
         {
           "text": "Creativity\u2014let them find their own style.",
           "weights": {
-            "power": 2,
-            "guard": 0,
-            "swift": 2,
-            "tactic": -3,
-            "arcana": 2,
-            "faith": 0,
-            "guile": -2,
-            "command": -1
+            "power": 1,
+            "guard": 3,
+            "swift": 9,
+            "tactic": 3,
+            "arcana": 0,
+            "faith": 3,
+            "guile": -8,
+            "command": 1
           }
         }
       ],
@@ -715,52 +715,52 @@
         {
           "text": "Speed and clean momentum.",
           "weights": {
-            "power": -2,
+            "power": -8,
             "guard": 0,
-            "swift": 7,
-            "tactic": -2,
+            "swift": 9,
+            "tactic": -1,
             "arcana": 0,
-            "faith": 0,
+            "faith": 6,
             "guile": 0,
-            "command": 2
+            "command": -1
           }
         },
         {
           "text": "Knowing the route better than they do.",
           "weights": {
-            "power": 3,
+            "power": 2,
             "guard": 0,
-            "swift": 1,
-            "tactic": 4,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 0,
-            "command": -2
+            "swift": 3,
+            "tactic": 7,
+            "arcana": -9,
+            "faith": -3,
+            "guile": 5,
+            "command": -6
           }
         },
         {
           "text": "A shortcut no one else dares.",
           "weights": {
-            "power": 1,
-            "guard": -2,
+            "power": 5,
+            "guard": -1,
             "swift": 3,
-            "tactic": 3,
-            "arcana": -1,
-            "faith": 0,
-            "guile": 2,
-            "command": -2
+            "tactic": 9,
+            "arcana": -2,
+            "faith": -4,
+            "guile": -5,
+            "command": 1
           }
         },
         {
           "text": "A charm that bends doors and distances.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": 1,
+            "power": -5,
+            "guard": -9,
+            "swift": -6,
             "tactic": 0,
-            "arcana": 1,
-            "faith": -2,
-            "guile": 0,
+            "arcana": 5,
+            "faith": 3,
+            "guile": 2,
             "command": -4
           }
         }
@@ -774,53 +774,53 @@
         {
           "text": "Set a clear call and move forward.",
           "weights": {
-            "power": -2,
-            "guard": 0,
-            "swift": 3,
-            "tactic": -1,
-            "arcana": 0,
-            "faith": -3,
-            "guile": -1,
-            "command": 4
+            "power": -9,
+            "guard": 2,
+            "swift": 9,
+            "tactic": 5,
+            "arcana": 4,
+            "faith": -7,
+            "guile": 5,
+            "command": 6
           }
         },
         {
           "text": "Lower the temperature and refocus on care.",
           "weights": {
-            "power": 5,
-            "guard": 1,
-            "swift": -3,
-            "tactic": -2,
-            "arcana": 0,
-            "faith": 5,
-            "guile": -2,
-            "command": 0
+            "power": 3,
+            "guard": 5,
+            "swift": 0,
+            "tactic": -4,
+            "arcana": 2,
+            "faith": 4,
+            "guile": 0,
+            "command": -5
           }
         },
         {
           "text": "Reframe the problem so both sides can win.",
           "weights": {
-            "power": 2,
-            "guard": 0,
+            "power": 4,
+            "guard": -1,
             "swift": 0,
-            "tactic": 0,
-            "arcana": -2,
-            "faith": 0,
-            "guile": 0,
+            "tactic": 4,
+            "arcana": 3,
+            "faith": -7,
+            "guile": -2,
             "command": 2
           }
         },
         {
           "text": "Let them talk, then redirect with a precise nudge.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": 0,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 1,
-            "guile": 3,
-            "command": -3
+            "power": 3,
+            "guard": 2,
+            "swift": 1,
+            "tactic": -1,
+            "arcana": 1,
+            "faith": -2,
+            "guile": 2,
+            "command": -7
           }
         }
       ],
@@ -834,52 +834,52 @@
           "text": "Payout and leverage\u2014make it worth it.",
           "weights": {
             "power": 1,
-            "guard": 0,
-            "swift": -3,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 4,
-            "command": -1
+            "guard": 1,
+            "swift": -5,
+            "tactic": -5,
+            "arcana": -7,
+            "faith": -4,
+            "guile": 1,
+            "command": 7
           }
         },
         {
           "text": "Protection and contingencies.",
           "weights": {
-            "power": -3,
-            "guard": 7,
-            "swift": 1,
-            "tactic": 1,
-            "arcana": 0,
-            "faith": -3,
-            "guile": 0,
-            "command": 0
+            "power": -6,
+            "guard": 5,
+            "swift": 8,
+            "tactic": 3,
+            "arcana": 2,
+            "faith": 0,
+            "guile": 2,
+            "command": -1
           }
         },
         {
           "text": "Control\u2014what happens if things go wrong.",
           "weights": {
-            "power": 1,
-            "guard": 0,
+            "power": -2,
+            "guard": -4,
             "swift": 0,
-            "tactic": 1,
-            "arcana": -1,
-            "faith": 0,
-            "guile": 0,
-            "command": 6
+            "tactic": -10,
+            "arcana": -10,
+            "faith": 7,
+            "guile": 7,
+            "command": 10
           }
         },
         {
           "text": "Authority\u2014who answers to your call.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": -2,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 4,
-            "guile": 0,
-            "command": 4
+            "power": 2,
+            "guard": 6,
+            "swift": -4,
+            "tactic": -5,
+            "arcana": -3,
+            "faith": 5,
+            "guile": 3,
+            "command": -6
           }
         }
       ],
@@ -892,53 +892,53 @@
         {
           "text": "Heal\u2014people first.",
           "weights": {
-            "power": 0,
-            "guard": 0,
-            "swift": -2,
-            "tactic": 0,
-            "arcana": -2,
-            "faith": 4,
-            "guile": -4,
-            "command": -2
+            "power": -12,
+            "guard": -1,
+            "swift": -13,
+            "tactic": -4,
+            "arcana": -6,
+            "faith": -3,
+            "guile": -15,
+            "command": -10
           }
         },
         {
           "text": "Empower\u2014more force ends future fights.",
           "weights": {
-            "power": 4,
-            "guard": 2,
-            "swift": 0,
+            "power": 8,
+            "guard": -6,
+            "swift": 8,
             "tactic": 0,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 0,
-            "command": -2
+            "arcana": 2,
+            "faith": -4,
+            "guile": 5,
+            "command": 2
           }
         },
         {
           "text": "Blend it into a controlled ritual.",
           "weights": {
-            "power": 1,
-            "guard": -3,
-            "swift": -1,
-            "tactic": 2,
-            "arcana": 4,
-            "faith": -1,
-            "guile": 0,
-            "command": -3
+            "power": 2,
+            "guard": -2,
+            "swift": -2,
+            "tactic": 5,
+            "arcana": 16,
+            "faith": -8,
+            "guile": -1,
+            "command": -10
           }
         },
         {
           "text": "Bottle it quietly. You\u2019ll decide later.",
           "weights": {
-            "power": 1,
-            "guard": 1,
-            "swift": 0,
-            "tactic": 2,
-            "arcana": 1,
-            "faith": 1,
-            "guile": 3,
-            "command": 0
+            "power": -2,
+            "guard": -3,
+            "swift": 4,
+            "tactic": 5,
+            "arcana": 2,
+            "faith": 7,
+            "guile": -2,
+            "command": -1
           }
         }
       ],
@@ -951,53 +951,53 @@
         {
           "text": "A decisive strike that changes the room.",
           "weights": {
-            "power": 4,
-            "guard": 1,
-            "swift": 3,
+            "power": 1,
+            "guard": 0,
+            "swift": -2,
             "tactic": -4,
             "arcana": 3,
-            "faith": 0,
-            "guile": 0,
-            "command": 4
+            "faith": -8,
+            "guile": -1,
+            "command": 5
           }
         },
         {
           "text": "A shield-step that keeps everyone alive.",
           "weights": {
-            "power": 1,
-            "guard": 6,
+            "power": 3,
+            "guard": 10,
             "swift": 0,
-            "tactic": 0,
-            "arcana": -2,
-            "faith": 1,
-            "guile": 3,
-            "command": -2
+            "tactic": 1,
+            "arcana": -3,
+            "faith": -5,
+            "guile": 4,
+            "command": -11
           }
         },
         {
           "text": "A rapid pivot\u2014turning danger into distance.",
           "weights": {
-            "power": -2,
-            "guard": 0,
-            "swift": 4,
-            "tactic": 1,
-            "arcana": 0,
-            "faith": -2,
-            "guile": 4,
-            "command": 2
+            "power": -5,
+            "guard": 2,
+            "swift": 10,
+            "tactic": 4,
+            "arcana": -1,
+            "faith": -7,
+            "guile": 8,
+            "command": 12
           }
         },
         {
           "text": "A command that snaps everyone into alignment.",
           "weights": {
-            "power": -3,
-            "guard": -1,
-            "swift": 0,
-            "tactic": 0,
-            "arcana": 2,
-            "faith": -3,
-            "guile": 2,
-            "command": 3
+            "power": -12,
+            "guard": -9,
+            "swift": -3,
+            "tactic": 2,
+            "arcana": -2,
+            "faith": -5,
+            "guile": -4,
+            "command": -6
           }
         }
       ],
@@ -1010,53 +1010,53 @@
         {
           "text": "Tools and notes\u2014solutions beat luck.",
           "weights": {
-            "power": 2,
-            "guard": -3,
-            "swift": 0,
-            "tactic": 7,
-            "arcana": -4,
-            "faith": 0,
-            "guile": -1,
+            "power": 8,
+            "guard": -10,
+            "swift": -6,
+            "tactic": 20,
+            "arcana": -8,
+            "faith": -8,
+            "guile": 0,
             "command": 2
           }
         },
         {
           "text": "Components and catalysts\u2014anything might be useful.",
           "weights": {
-            "power": -2,
-            "guard": -4,
-            "swift": -2,
-            "tactic": -2,
-            "arcana": 1,
-            "faith": 1,
+            "power": -1,
+            "guard": -6,
+            "swift": 0,
+            "tactic": -8,
+            "arcana": -6,
+            "faith": -3,
             "guile": 1,
-            "command": -3
+            "command": 0
           }
         },
         {
           "text": "Bandages and tinctures\u2014someone will need them.",
           "weights": {
-            "power": 0,
-            "guard": 7,
-            "swift": 0,
-            "tactic": 0,
-            "arcana": 3,
-            "faith": 1,
-            "guile": 0,
-            "command": 0
+            "power": 2,
+            "guard": 11,
+            "swift": 2,
+            "tactic": -2,
+            "arcana": 7,
+            "faith": 4,
+            "guile": 3,
+            "command": -5
           }
         },
         {
           "text": "A second identity\u2014never travel as yourself.",
           "weights": {
             "power": 0,
-            "guard": 2,
-            "swift": 1,
-            "tactic": 1,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 4,
-            "command": -1
+            "guard": 1,
+            "swift": -5,
+            "tactic": -8,
+            "arcana": 3,
+            "faith": 2,
+            "guile": -6,
+            "command": -8
           }
         }
       ],
@@ -1069,52 +1069,52 @@
         {
           "text": "Strike while everything is confused.",
           "weights": {
-            "power": 0,
-            "guard": 0,
+            "power": -7,
+            "guard": 4,
             "swift": 2,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 0,
-            "guile": -3,
-            "command": 0
+            "tactic": -5,
+            "arcana": 4,
+            "faith": 3,
+            "guile": -1,
+            "command": -1
           }
         },
         {
           "text": "Anchor your team and prevent chaos.",
           "weights": {
-            "power": 4,
-            "guard": 3,
-            "swift": 0,
-            "tactic": 1,
-            "arcana": 0,
-            "faith": 1,
-            "guile": 0,
-            "command": 1
+            "power": 9,
+            "guard": 1,
+            "swift": -13,
+            "tactic": -5,
+            "arcana": 7,
+            "faith": 0,
+            "guile": -5,
+            "command": -7
           }
         },
         {
           "text": "Test the rules\u2014learn how it works.",
           "weights": {
-            "power": 4,
-            "guard": -2,
+            "power": 11,
+            "guard": 4,
             "swift": 3,
-            "tactic": -1,
-            "arcana": 3,
-            "faith": 0,
-            "guile": 3,
-            "command": -1
+            "tactic": -5,
+            "arcana": 1,
+            "faith": 8,
+            "guile": 7,
+            "command": 9
           }
         },
         {
           "text": "Slip through it unseen and take what matters.",
           "weights": {
-            "power": 2,
-            "guard": 0,
-            "swift": 2,
-            "tactic": 0,
-            "arcana": 0,
-            "faith": 0,
-            "guile": 2,
+            "power": 7,
+            "guard": -5,
+            "swift": 1,
+            "tactic": -4,
+            "arcana": 1,
+            "faith": 1,
+            "guile": 9,
             "command": -1
           }
         }
@@ -1128,53 +1128,53 @@
         {
           "text": "A clean decisive moment\u2014no doubt, just impact.",
           "weights": {
-            "power": 4,
-            "guard": 0,
-            "swift": 2,
-            "tactic": 0,
-            "arcana": -4,
-            "faith": 3,
+            "power": -2,
+            "guard": -3,
+            "swift": 13,
+            "tactic": -3,
+            "arcana": -10,
+            "faith": 4,
             "guile": 1,
-            "command": 1
+            "command": 2
           }
         },
         {
           "text": "A steady wall\u2014calm, present, unbreakable.",
           "weights": {
-            "power": 0,
-            "guard": 4,
-            "swift": 0,
-            "tactic": 2,
+            "power": -6,
+            "guard": 2,
+            "swift": 6,
+            "tactic": 9,
             "arcana": 0,
-            "faith": 1,
-            "guile": 3,
-            "command": -5
+            "faith": 4,
+            "guile": 8,
+            "command": -11
           }
         },
         {
           "text": "A perfectly timed play\u2014precision becomes victory.",
           "weights": {
-            "power": 0,
-            "guard": -1,
-            "swift": 0,
-            "tactic": 4,
-            "arcana": 2,
-            "faith": 4,
-            "guile": 8,
-            "command": 2
+            "power": -9,
+            "guard": 4,
+            "swift": 4,
+            "tactic": -1,
+            "arcana": 9,
+            "faith": 5,
+            "guile": 10,
+            "command": 3
           }
         },
         {
           "text": "A chorus of voices moving as one\u2014your call, their trust.",
           "weights": {
-            "power": 0,
-            "guard": -2,
+            "power": -6,
+            "guard": 0,
             "swift": 0,
-            "tactic": 1,
-            "arcana": 2,
-            "faith": 0,
-            "guile": -4,
-            "command": 4
+            "tactic": -1,
+            "arcana": 8,
+            "faith": 3,
+            "guile": -6,
+            "command": 5
           }
         }
       ],
