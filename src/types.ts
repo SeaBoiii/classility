@@ -59,6 +59,7 @@ export interface ResultDefinition {
   tagline: string
   summary: string
   lore: string
+  lore2?: string
   traits: string[]
   priority: number
   conditions: Condition[]

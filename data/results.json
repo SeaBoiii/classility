@@ -38,7 +38,7 @@
       "tagline": "Steel and Spell, One Tempo",
       "style": "Adaptive burst dueling",
       "risk": "Resource drain from dual focus",
-      "partyRole": "Arcane Duelist / Frontline Finisher",
+      "partyRole": "Arcane Duelist",
       "growthQuest": "Choose when to channel and when to commit steel.",
       "signatureItem": "Runic Longsword of the Split Current",
       "battleHabit": "Break the line with a weave-step strike.",
@@ -47,7 +47,8 @@
         "You trust experimentation as much as tradition.",
         "You prefer solutions that end the problem, not manage it."
       ],
-      "classSprite": "spellblade.png"
+      "classSprite": "spellblade.png",
+      "lore2": "In any company, you are the bridge between scholars and soldiers, proving mastery is not choosing one language of power but translating both in real time."
     },
     {
       "id": "class_paladin",
@@ -87,7 +88,7 @@
       "tagline": "A Vow Given Form",
       "style": "Protective pressure play",
       "risk": "Overcommitting to every burden",
-      "partyRole": "Defensive Striker and Guardian Core",
+      "partyRole": "Defensive Striker",
       "growthQuest": "Trust allies to carry shared responsibility.",
       "signatureItem": "Sunward Oathshield",
       "battleHabit": "Anchor first, then force a decisive counter.",
@@ -96,7 +97,8 @@
         "You endure longer than most people expect.",
         "You protect what matters, even when it costs you."
       ],
-      "classSprite": "paladin.png"
+      "classSprite": "paladin.png",
+      "lore2": "Your oath hardens when doubt appears. You remind allies that courage is a discipline, not a mood, and that mercy can still carry a blade."
     },
     {
       "id": "class_assassin",
@@ -145,7 +147,8 @@
         "You prefer precision over spectacle.",
         "You can be calm while moving fast."
       ],
-      "classSprite": "assassin.png"
+      "classSprite": "assassin.png",
+      "lore2": "You study habit, timing, and noise like scripture. When the strike comes, it is less violence than verdict: exact, brief, and irreversible."
     },
     {
       "id": "class_bard",
@@ -194,7 +197,8 @@
         "You read the room quickly.",
         "You inspire action through meaning."
       ],
-      "classSprite": "bard.png"
+      "classSprite": "bard.png",
+      "lore2": "You curate the emotional weather of a squad. A well-timed chord, warning, or joke can save as surely as armor when morale starts to crack."
     },
     {
       "id": "class_monk",
@@ -243,7 +247,8 @@
         "You prefer clean execution to drama.",
         "You move fast, but not impulsively."
       ],
-      "classSprite": "monk.png"
+      "classSprite": "monk.png",
+      "lore2": "Your focus turns motion into mathematics. Every breath is an adjustment, every step a refusal to waste force on ego."
     },
     {
       "id": "class_druid",
@@ -292,7 +297,8 @@
         "You’re drawn to patterns bigger than the moment.",
         "You can restore strength without demanding dependence."
       ],
-      "classSprite": "druid.png"
+      "classSprite": "druid.png",
+      "lore2": "You see conflict as an ecosystem, not a duel. Healing, restraint, and ferocity are all natural tools when balance is threatened."
     },
     {
       "id": "class_artificer",
@@ -341,7 +347,8 @@
         "You like controlled experimentation.",
         "You win by making problems smaller."
       ],
-      "classSprite": "artificer.png"
+      "classSprite": "artificer.png",
+      "lore2": "You trust craftsmanship over luck. Under pressure, your mind assembles options from scraps, runes, and leverage until the battlefield obeys design."
     },
     {
       "id": "class_captain",
@@ -390,7 +397,8 @@
         "You protect others through structure.",
         "You make teams feel safer and sharper."
       ],
-      "classSprite": "captain.png"
+      "classSprite": "captain.png",
+      "lore2": "People look to you when plans break. You convert fear into assignments, then assignments into momentum that keeps everyone moving together."
     },
     {
       "id": "class_berserker",
@@ -430,7 +438,8 @@
         "You can tolerate risk when it ends uncertainty.",
         "You become most alive under pressure."
       ],
-      "classSprite": "berserker.png"
+      "classSprite": "berserker.png",
+      "lore2": "Your fury is selective, not blind. You strike like a siege engine at a single fault line until the entire front collapses."
     },
     {
       "id": "class_guardian",
@@ -470,7 +479,8 @@
         "You protect first, explain later.",
         "You carry responsibility without flinching."
       ],
-      "classSprite": "guardian.png"
+      "classSprite": "guardian.png",
+      "lore2": "You measure victory by who survives. The burden you carry becomes a shelter others can fight from with confidence."
     },
     {
       "id": "class_ranger",
@@ -510,7 +520,8 @@
         "You like freedom of movement.",
         "You prefer precision over brute force."
       ],
-      "classSprite": "ranger.png"
+      "classSprite": "ranger.png",
+      "lore2": "Distance is your language. You read terrain, wind, and intent, then choose the one route that turns pursuit into advantage."
     },
     {
       "id": "class_tactician",
@@ -550,7 +561,8 @@
         "You plan for failure modes.",
         "You prefer repeatable wins."
       ],
-      "classSprite": "tactician.png"
+      "classSprite": "tactician.png",
+      "lore2": "You collect small edges before anyone notices. By the time the clash begins, your answer has already been staged across the board."
     },
     {
       "id": "class_sorcerer",
@@ -590,7 +602,8 @@
         "You learn by trying.",
         "You make surprising connections."
       ],
-      "classSprite": "sorcerer.png"
+      "classSprite": "sorcerer.png",
+      "lore2": "Power answers you in unpredictable shapes. You thrive where others hesitate, improvising wonders that can either rescue the party or scorch the plan."
     },
     {
       "id": "class_cleric",
@@ -630,7 +643,8 @@
         "You steady others during stress.",
         "You choose meaning over ego."
       ],
-      "classSprite": "cleric.png"
+      "classSprite": "cleric.png",
+      "lore2": "Faith for you is active labor. You restore bodies, steady spirits, and keep hope operational when exhaustion starts rewriting priorities."
     },
     {
       "id": "class_rogue",
@@ -670,7 +684,8 @@
         "You prefer subtle solutions.",
         "You understand incentives and pressure points."
       ],
-      "classSprite": "rogue.png"
+      "classSprite": "rogue.png",
+      "lore2": "You excel at asymmetry. Locks, lies, and blind spots become tools that let your team win without paying full price in blood."
     },
     {
       "id": "class_warlord",
@@ -710,7 +725,8 @@
         "You make decisions when others hesitate.",
         "You create momentum with clarity."
       ],
-      "classSprite": "warlord.png"
+      "classSprite": "warlord.png",
+      "lore2": "Your authority is earned in motion. You read the whole line, call the pivot, and make scattered fighters behave like one weapon."
     },
     {
       "id": "class_fallback",
@@ -723,7 +739,7 @@
       "tagline": "Between Paths, By Choice",
       "style": "Adaptive and exploratory",
       "risk": "Delayed specialization",
-      "partyRole": "Flexible wildcard",
+      "partyRole": "Flexible Wildcard",
       "growthQuest": "Pick one edge to sharpen while keeping your range.",
       "signatureItem": "Compass of Unfinished Roads",
       "battleHabit": "Probe first, then commit where resistance bends.",
@@ -732,7 +748,8 @@
         "You are still calibrating what role fits you best.",
         "You value optionality over strict specialization."
       ],
-      "classSprite": "wayfarer.png"
+      "classSprite": "wayfarer.png",
+      "lore2": "Your path is still forming, but that range is real strength. With intent and repetition, your mixed toolkit can mature into a distinct doctrine."
     }
   ]
 }

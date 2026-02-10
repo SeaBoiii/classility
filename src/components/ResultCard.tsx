@@ -85,6 +85,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
               <Flourish compact />
 
               <p className="rc-copy rc-lore-copy">{result.lore}</p>
+              {result.lore2 ? <p className="rc-copy rc-lore-copy rc-lore-copy--secondary">{result.lore2}</p> : null}
             </div>
 
             <aside className="rc-right">
@@ -124,14 +125,15 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
           <Flourish />
 
           <footer className="rc-footer">
-            <MetaPanel label="Party Role" value={result.partyRole} />
-            <MetaPanel label="Growth Quest" value={result.growthQuest} />
+            <MetaPanel label="Party Role" value={result.partyRole} icon="blades" valueAlign="center" />
+            <MetaPanel label="Growth Quest" value={result.growthQuest} icon="wand" />
             <MetaPanel
               label="Bonus Flavor"
               value={[
-                `Signature Item: ${signatureItem}`,
-                `Battle Habit: ${battleHabit}`,
+                { label: 'Signature Item', text: signatureItem },
+                { label: 'Battle Habit', text: battleHabit },
               ]}
+              icon="bow"
             />
           </footer>
         </section>
@@ -156,23 +158,94 @@ function MetaLine({ label, value }: MetaLineProps) {
 
 interface MetaPanelProps {
   label: string
-  value: string | string[]
+  value: string | Array<string | MetaPanelLine>
+  icon: PanelTitleIconKind
+  valueAlign?: 'left' | 'center'
 }
 
-function MetaPanel({ label, value }: MetaPanelProps) {
+function MetaPanel({ label, value, icon, valueAlign = 'left' }: MetaPanelProps) {
   return (
     <section className="rc-meta-panel">
-      <h3>{label}</h3>
+      <div className="rc-meta-panel__heading">
+        <PanelTitleIcon icon={icon} />
+        <h3>{label}</h3>
+        <PanelTitleIcon icon={icon} mirrored />
+      </div>
       {Array.isArray(value) ? (
         <div className="rc-meta-panel__list">
-          {value.map((line) => (
-            <p key={line}>{line}</p>
-          ))}
+          {value.map((line) => {
+            if (typeof line === 'string') {
+              return <p key={line}>{line}</p>
+            }
+
+            return (
+              <p key={`${line.label}:${line.text}`}>
+                <strong className="rc-meta-panel__sub-title">{line.label}:</strong> {line.text}
+              </p>
+            )
+          })}
         </div>
       ) : (
-        <p>{value}</p>
+        <p className={clsx(valueAlign === 'center' && 'rc-meta-panel__value--center')}>{value}</p>
       )}
     </section>
+  )
+}
+
+interface MetaPanelLine {
+  label: string
+  text: string
+}
+
+type PanelTitleIconKind = 'blades' | 'wand' | 'bow'
+
+function PanelTitleIcon({ icon, mirrored = false }: { icon: PanelTitleIconKind; mirrored?: boolean }) {
+  return (
+    <span className={clsx('rc-meta-panel__icon', mirrored && 'is-mirrored')} aria-hidden="true">
+      {icon === 'blades' && (
+        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+          <path
+            d="M5 4.5 11 10.5m8-6-6 6M4.5 19.5l7-7m8 7-7-7"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.45"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M2.8 3.1 5.4 5.7M18.6 5.4l2.6-2.6M2.8 20.9l2.6-2.6m12.9 2.6 2.6-2.6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.45"
+            strokeLinecap="round"
+          />
+        </svg>
+      )}
+      {icon === 'wand' && (
+        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+          <path
+            d="m4.8 19.2 8.3-8.3m-7.1 9.4 2.1 1.1 1.2-2.1m5.8-12.1 1.1-2.2 1.1 2.2 2.2 1.1-2.2 1.1-1.1 2.2-1.1-2.2-2.2-1.1 2.2-1.1ZM19 13.8l.8-1.5.8 1.5 1.5.8-1.5.8-.8 1.5-.8-1.5-1.5-.8 1.5-.8Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.45"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+      {icon === 'bow' && (
+        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+          <path
+            d="M7 4.2c4 2.8 4 12.8 0 15.6m10-15.6c-4 2.8-4 12.8 0 15.6M7 12h10m-4.7-3.8 3.4 3.8-3.4 3.8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.45"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+    </span>
   )
 }
 
