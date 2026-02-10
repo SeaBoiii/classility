@@ -23,11 +23,11 @@
             "power",
             "arcana"
           ],
-          "value": 23
+          "value": 22
         },
         {
           "type": "top_diff_lte",
-          "value": 5
+          "value": 6
         },
         {
           "type": "spread_between",
@@ -72,7 +72,7 @@
             "guard",
             "faith"
           ],
-          "value": 22
+          "value": 21
         },
         {
           "type": "top_diff_lte",
@@ -121,7 +121,7 @@
             "swift",
             "guile"
           ],
-          "value": 25
+          "value": 26
         },
         {
           "type": "top_diff_lte",
@@ -170,11 +170,11 @@
             "command",
             "arcana"
           ],
-          "value": 22
+          "value": 21
         },
         {
           "type": "top_diff_lte",
-          "value": 7
+          "value": 8
         },
         {
           "type": "spread_between",
@@ -219,7 +219,7 @@
             "swift",
             "tactic"
           ],
-          "value": 25
+          "value": 26
         },
         {
           "type": "top_diff_lte",
@@ -268,11 +268,11 @@
             "faith",
             "arcana"
           ],
-          "value": 22
+          "value": 21
         },
         {
           "type": "top_diff_lte",
-          "value": 7
+          "value": 8
         },
         {
           "type": "spread_between",
@@ -366,11 +366,11 @@
             "command",
             "guard"
           ],
-          "value": 22
+          "value": 21
         },
         {
           "type": "top_diff_lte",
-          "value": 7
+          "value": 8
         },
         {
           "type": "spread_between",
@@ -406,7 +406,7 @@
         {
           "type": "min",
           "dim": "power",
-          "value": 15
+          "value": 16
         },
         {
           "type": "top_diff_gte",
@@ -450,7 +450,7 @@
         },
         {
           "type": "top_diff_gte",
-          "value": 6
+          "value": 7
         },
         {
           "type": "spread_between",
@@ -486,7 +486,7 @@
         {
           "type": "min",
           "dim": "swift",
-          "value": 14
+          "value": 15
         },
         {
           "type": "top_diff_gte",
@@ -530,7 +530,7 @@
         },
         {
           "type": "top_diff_gte",
-          "value": 6
+          "value": 7
         },
         {
           "type": "spread_between",
@@ -606,7 +606,7 @@
         {
           "type": "min",
           "dim": "faith",
-          "value": 12
+          "value": 11
         },
         {
           "type": "top_diff_gte",
@@ -646,7 +646,7 @@
         {
           "type": "min",
           "dim": "guile",
-          "value": 15
+          "value": 16
         },
         {
           "type": "top_diff_gte",
