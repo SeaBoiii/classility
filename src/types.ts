@@ -56,6 +56,8 @@ export interface ResultDefinition {
   isFallback?: boolean
   title: string
   classSprite?: string
+  partyRoleCrest?: string
+  signatureEquipment?: string
   tagline: string
   summary: string
   lore: string
@@ -67,6 +69,7 @@ export interface ResultDefinition {
   risk: string
   partyRole: string
   growthQuest: string
+  growthQuestDifficulty?: number
   signatureItem?: string
   battleHabit?: string
   showcaseScores?: Partial<Scores>

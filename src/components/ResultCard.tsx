@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import growthQuestArt from '../assets/growth_quest.png'
 import { dimensionLabelMap } from '../lib/data'
 import { dominantPair } from '../lib/scoring'
 import { resolveStatTone } from '../lib/statTones'
@@ -19,6 +20,7 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
   const [firstDim, secondDim] = dominantPair(scores, dimensionIds)
   const signatureItem = result.signatureItem ?? defaultSignatureItem(result.id, result.title)
   const battleHabit = result.battleHabit ?? defaultBattleHabit(result.id)
+  const growthQuestDifficulty = clampGrowthQuestDifficulty(result.growthQuestDifficulty)
 
   return (
     <div
@@ -125,14 +127,30 @@ export function ResultCard({ result, scores, dimensions, className, exportMode =
           <Flourish />
 
           <footer className="rc-footer">
-            <MetaPanel label="Party Role" value={result.partyRole} icon="blades" valueAlign="center" />
-            <MetaPanel label="Growth Quest" value={result.growthQuest} icon="wand" />
             <MetaPanel
+              label="Party Role"
+              value={result.partyRole}
+              icon="blades"
+              valueAlign="center"
+              artSrc={result.partyRoleCrest}
+              artAlt={`${result.title} party crest`}
+              artClassName="rc-meta-panel__art--party-role"
+              panelClassName="rc-meta-panel--party-role"
+            />
+            <GrowthQuestPanel
+              label="Growth Quest"
+              value={result.growthQuest}
+              difficulty={growthQuestDifficulty}
+              icon="wand"
+              artSrc={growthQuestArt}
+              artAlt="Growth quest illustration"
+            />
+            <BonusFlavorPanel
               label="Bonus Flavor"
-              value={[
-                { label: 'Signature Item', text: signatureItem },
-                { label: 'Battle Habit', text: battleHabit },
-              ]}
+              signatureItem={signatureItem}
+              battleHabit={battleHabit}
+              equipmentSrc={result.signatureEquipment}
+              equipmentAlt={`${result.title} signature equipment`}
               icon="bow"
             />
           </footer>
@@ -158,46 +176,176 @@ function MetaLine({ label, value }: MetaLineProps) {
 
 interface MetaPanelProps {
   label: string
-  value: string | Array<string | MetaPanelLine>
+  value: string | string[]
   icon: PanelTitleIconKind
   valueAlign?: 'left' | 'center'
+  artSrc?: string
+  artAlt?: string
+  artClassName?: string
+  panelClassName?: string
 }
 
-function MetaPanel({ label, value, icon, valueAlign = 'left' }: MetaPanelProps) {
+function MetaPanel({
+  label,
+  value,
+  icon,
+  valueAlign = 'left',
+  artSrc,
+  artAlt = '',
+  artClassName,
+  panelClassName,
+}: MetaPanelProps) {
   return (
-    <section className="rc-meta-panel">
+    <section className={clsx('rc-meta-panel', artSrc && 'rc-meta-panel--with-art', panelClassName)}>
       <div className="rc-meta-panel__heading">
         <PanelTitleIcon icon={icon} />
         <h3>{label}</h3>
         <PanelTitleIcon icon={icon} mirrored />
       </div>
-      {Array.isArray(value) ? (
-        <div className="rc-meta-panel__list">
-          {value.map((line) => {
-            if (typeof line === 'string') {
-              return <p key={line}>{line}</p>
-            }
-
-            return (
-              <p key={`${line.label}:${line.text}`}>
-                <strong className="rc-meta-panel__sub-title">{line.label}:</strong> {line.text}
-              </p>
-            )
-          })}
-        </div>
-      ) : (
-        <p className={clsx(valueAlign === 'center' && 'rc-meta-panel__value--center')}>{value}</p>
-      )}
+      <div className="rc-meta-panel__body">
+        {Array.isArray(value) ? (
+          <div className="rc-meta-panel__content rc-meta-panel__list">
+            {value.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
+        ) : (
+          <p className={clsx('rc-meta-panel__content', valueAlign === 'center' && 'rc-meta-panel__value--center')}>{value}</p>
+        )}
+        {artSrc ? (
+          <div className={clsx('rc-meta-panel__art', artClassName)}>
+            <img src={artSrc} alt={artAlt} loading="lazy" />
+          </div>
+        ) : null}
+      </div>
     </section>
   )
 }
 
-interface MetaPanelLine {
+interface BonusFlavorPanelProps {
   label: string
-  text: string
+  signatureItem: string
+  battleHabit: string
+  equipmentSrc?: string
+  equipmentAlt?: string
+  icon: PanelTitleIconKind
+}
+
+function BonusFlavorPanel({
+  label,
+  signatureItem,
+  battleHabit,
+  equipmentSrc,
+  equipmentAlt = '',
+  icon,
+}: BonusFlavorPanelProps) {
+  return (
+    <section className={clsx('rc-meta-panel', equipmentSrc && 'rc-meta-panel--with-art')}>
+      <div className="rc-meta-panel__heading">
+        <PanelTitleIcon icon={icon} />
+        <h3>{label}</h3>
+        <PanelTitleIcon icon={icon} mirrored />
+      </div>
+      <div className="rc-meta-panel__body rc-meta-panel__body--bonus">
+        <p>
+          <strong className="rc-meta-panel__sub-title">Signature Item:</strong> {signatureItem}
+        </p>
+        {equipmentSrc ? (
+          <div className="rc-meta-panel__equipment-frame">
+            <EquipmentOrnament />
+            <div className="rc-meta-panel__art rc-meta-panel__art--equipment">
+              <img src={equipmentSrc} alt={equipmentAlt} loading="lazy" />
+            </div>
+            <EquipmentOrnament mirrored />
+          </div>
+        ) : null}
+        <p>
+          <strong className="rc-meta-panel__sub-title">Battle Habit:</strong> {battleHabit}
+        </p>
+      </div>
+    </section>
+  )
 }
 
 type PanelTitleIconKind = 'blades' | 'wand' | 'bow'
+
+interface GrowthQuestPanelProps {
+  label: string
+  value: string
+  difficulty: number
+  icon: PanelTitleIconKind
+  artSrc: string
+  artAlt: string
+}
+
+function GrowthQuestPanel({ label, value, difficulty, icon, artSrc, artAlt }: GrowthQuestPanelProps) {
+  const normalizedDifficulty = clampGrowthQuestDifficulty(difficulty)
+
+  return (
+    <section className="rc-meta-panel rc-meta-panel--with-art rc-meta-panel--growth">
+      <div className="rc-meta-panel__heading">
+        <PanelTitleIcon icon={icon} />
+        <h3>{label}</h3>
+        <PanelTitleIcon icon={icon} mirrored />
+      </div>
+      <div className="rc-meta-panel__body">
+        <p className="rc-meta-panel__content">{value}</p>
+
+        <div
+          className="rc-growth-difficulty"
+          data-difficulty={normalizedDifficulty}
+          aria-label={`Growth quest difficulty ${normalizedDifficulty} of 5`}
+        >
+          <span className="rc-growth-difficulty__label">Quest Difficulty</span>
+          <div className="rc-growth-difficulty__glyphs">
+            {Array.from({ length: 5 }, (_, index) => (
+              <span key={index} className={clsx('rc-growth-glyph', index < normalizedDifficulty && 'is-active')} aria-hidden="true">
+                <GrowthGlyphIcon />
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="rc-meta-panel__art rc-meta-panel__art--growth-quest">
+          <img src={artSrc} alt={artAlt} loading="lazy" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function GrowthGlyphIcon() {
+  return (
+    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+      <path
+        d="M12 2.8v18.4M7 6.8h10M6.2 11.8h11.6M7 16.8h10M12 4.2l1.6 1.6-1.6 1.6-1.6-1.6L12 4.2Zm0 12.4 1.6 1.6-1.6 1.6-1.6-1.6 1.6-1.6Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function EquipmentOrnament({ mirrored = false }: { mirrored?: boolean }) {
+  return (
+    <span className={clsx('rc-meta-panel__equipment-ornament', mirrored && 'is-mirrored')} aria-hidden="true">
+      <svg viewBox="0 0 24 40" preserveAspectRatio="xMidYMid meet">
+        <path
+          d="M5 3h5l4 4v26l-4 4H5m11-28h3m-3 7h3m-3 7h3m-3 7h3"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.35"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M8 12h3m-3 8h3" fill="none" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" />
+      </svg>
+    </span>
+  )
+}
 
 function PanelTitleIcon({ icon, mirrored = false }: { icon: PanelTitleIconKind; mirrored?: boolean }) {
   return (
@@ -284,6 +432,14 @@ function defaultBattleHabit(id: string): string {
     class_oracle: 'Read the field before committing power.',
   }
   return overrides[id] ?? 'Find the opening, then commit without hesitation.'
+}
+
+function clampGrowthQuestDifficulty(value?: number): number {
+  if (typeof value !== 'number' || Number.isNaN(value)) {
+    return 3
+  }
+
+  return Math.min(5, Math.max(1, Math.round(value)))
 }
 
 interface SpriteSliceProps {

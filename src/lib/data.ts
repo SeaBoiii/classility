@@ -32,6 +32,16 @@ const sceneModules = import.meta.glob('../assets/scenes/*.{png,jpg,jpeg,webp,avi
   import: 'default',
 }) as Record<string, string>
 
+const crestModules = import.meta.glob('../assets/crests/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
+const equipmentModules = import.meta.glob('../assets/equipments/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>
+
 function normalizeText(value: string): string {
   return textFixes.reduce((text, [from, to]) => text.split(from).join(to), value)
 }
@@ -85,14 +95,34 @@ function resolveQuestionScene(pathOrFilename?: string): string | undefined {
   return resolveAsset(pathOrFilename, sceneModules)
 }
 
+function resolvePartyRoleCrest(pathOrFilename?: string): string | undefined {
+  return resolveAsset(pathOrFilename, crestModules)
+}
+
+function resolveSignatureEquipment(pathOrFilename?: string): string | undefined {
+  return resolveAsset(pathOrFilename, equipmentModules)
+}
+
 const dimensionFile = normalizeDeep(dimensionsRaw) as DimensionDataFile
 const questionFile = normalizeDeep(questionsRaw) as QuestionsOnlyDataFile
 const resultsFile = normalizeDeep(resultsRaw) as ResultsData
 
 const hydratedResults = resultsFile.results.map<ResultDefinition>((result) => {
+  const classSprite = resolveClassSprite(result.classSprite) ?? result.classSprite
+  const partyRoleCrest =
+    resolvePartyRoleCrest(result.partyRoleCrest) ??
+    resolvePartyRoleCrest(result.classSprite) ??
+    result.partyRoleCrest
+  const signatureEquipment =
+    resolveSignatureEquipment(result.signatureEquipment) ??
+    resolveSignatureEquipment(result.classSprite) ??
+    result.signatureEquipment
+
   return {
     ...result,
-    classSprite: resolveClassSprite(result.classSprite) ?? result.classSprite,
+    classSprite,
+    partyRoleCrest,
+    signatureEquipment,
     showcaseScores: undefined,
   }
 })

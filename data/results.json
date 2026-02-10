@@ -48,7 +48,8 @@
         "You prefer solutions that end the problem, not manage it."
       ],
       "classSprite": "spellblade.png",
-      "lore2": "In any company, you are the bridge between scholars and soldiers, proving mastery is not choosing one language of power but translating both in real time."
+      "lore2": "In any company, you are the bridge between scholars and soldiers, proving mastery is not choosing one language of power but translating both in real time.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_paladin",
@@ -98,7 +99,8 @@
         "You protect what matters, even when it costs you."
       ],
       "classSprite": "paladin.png",
-      "lore2": "Your oath hardens when doubt appears. You remind allies that courage is a discipline, not a mood, and that mercy can still carry a blade."
+      "lore2": "Your oath hardens when doubt appears. You remind allies that courage is a discipline, not a mood, and that mercy can still carry a blade.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_assassin",
@@ -148,7 +150,8 @@
         "You can be calm while moving fast."
       ],
       "classSprite": "assassin.png",
-      "lore2": "You study habit, timing, and noise like scripture. When the strike comes, it is less violence than verdict: exact, brief, and irreversible."
+      "lore2": "You study habit, timing, and noise like scripture. When the strike comes, it is less violence than verdict: exact, brief, and irreversible.",
+      "growthQuestDifficulty": 5
     },
     {
       "id": "class_bard",
@@ -198,7 +201,8 @@
         "You inspire action through meaning."
       ],
       "classSprite": "bard.png",
-      "lore2": "You curate the emotional weather of a squad. A well-timed chord, warning, or joke can save as surely as armor when morale starts to crack."
+      "lore2": "You curate the emotional weather of a squad. A well-timed chord, warning, or joke can save as surely as armor when morale starts to crack.",
+      "growthQuestDifficulty": 3
     },
     {
       "id": "class_monk",
@@ -248,7 +252,8 @@
         "You move fast, but not impulsively."
       ],
       "classSprite": "monk.png",
-      "lore2": "Your focus turns motion into mathematics. Every breath is an adjustment, every step a refusal to waste force on ego."
+      "lore2": "Your focus turns motion into mathematics. Every breath is an adjustment, every step a refusal to waste force on ego.",
+      "growthQuestDifficulty": 3
     },
     {
       "id": "class_druid",
@@ -298,7 +303,8 @@
         "You can restore strength without demanding dependence."
       ],
       "classSprite": "druid.png",
-      "lore2": "You see conflict as an ecosystem, not a duel. Healing, restraint, and ferocity are all natural tools when balance is threatened."
+      "lore2": "You see conflict as an ecosystem, not a duel. Healing, restraint, and ferocity are all natural tools when balance is threatened.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_artificer",
@@ -348,7 +354,8 @@
         "You win by making problems smaller."
       ],
       "classSprite": "artificer.png",
-      "lore2": "You trust craftsmanship over luck. Under pressure, your mind assembles options from scraps, runes, and leverage until the battlefield obeys design."
+      "lore2": "You trust craftsmanship over luck. Under pressure, your mind assembles options from scraps, runes, and leverage until the battlefield obeys design.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_captain",
@@ -398,7 +405,8 @@
         "You make teams feel safer and sharper."
       ],
       "classSprite": "captain.png",
-      "lore2": "People look to you when plans break. You convert fear into assignments, then assignments into momentum that keeps everyone moving together."
+      "lore2": "People look to you when plans break. You convert fear into assignments, then assignments into momentum that keeps everyone moving together.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_berserker",
@@ -439,7 +447,8 @@
         "You become most alive under pressure."
       ],
       "classSprite": "berserker.png",
-      "lore2": "Your fury is selective, not blind. You strike like a siege engine at a single fault line until the entire front collapses."
+      "lore2": "Your fury is selective, not blind. You strike like a siege engine at a single fault line until the entire front collapses.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_guardian",
@@ -480,7 +489,8 @@
         "You carry responsibility without flinching."
       ],
       "classSprite": "guardian.png",
-      "lore2": "You measure victory by who survives. The burden you carry becomes a shelter others can fight from with confidence."
+      "lore2": "You measure victory by who survives. The burden you carry becomes a shelter others can fight from with confidence.",
+      "growthQuestDifficulty": 3
     },
     {
       "id": "class_ranger",
@@ -521,7 +531,8 @@
         "You prefer precision over brute force."
       ],
       "classSprite": "ranger.png",
-      "lore2": "Distance is your language. You read terrain, wind, and intent, then choose the one route that turns pursuit into advantage."
+      "lore2": "Distance is your language. You read terrain, wind, and intent, then choose the one route that turns pursuit into advantage.",
+      "growthQuestDifficulty": 2
     },
     {
       "id": "class_tactician",
@@ -562,7 +573,8 @@
         "You prefer repeatable wins."
       ],
       "classSprite": "tactician.png",
-      "lore2": "You collect small edges before anyone notices. By the time the clash begins, your answer has already been staged across the board."
+      "lore2": "You collect small edges before anyone notices. By the time the clash begins, your answer has already been staged across the board.",
+      "growthQuestDifficulty": 5
     },
     {
       "id": "class_sorcerer",
@@ -603,7 +615,8 @@
         "You make surprising connections."
       ],
       "classSprite": "sorcerer.png",
-      "lore2": "Power answers you in unpredictable shapes. You thrive where others hesitate, improvising wonders that can either rescue the party or scorch the plan."
+      "lore2": "Power answers you in unpredictable shapes. You thrive where others hesitate, improvising wonders that can either rescue the party or scorch the plan.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_cleric",
@@ -644,7 +657,8 @@
         "You choose meaning over ego."
       ],
       "classSprite": "cleric.png",
-      "lore2": "Faith for you is active labor. You restore bodies, steady spirits, and keep hope operational when exhaustion starts rewriting priorities."
+      "lore2": "Faith for you is active labor. You restore bodies, steady spirits, and keep hope operational when exhaustion starts rewriting priorities.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_rogue",
@@ -685,7 +699,8 @@
         "You understand incentives and pressure points."
       ],
       "classSprite": "rogue.png",
-      "lore2": "You excel at asymmetry. Locks, lies, and blind spots become tools that let your team win without paying full price in blood."
+      "lore2": "You excel at asymmetry. Locks, lies, and blind spots become tools that let your team win without paying full price in blood.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_warlord",
@@ -726,7 +741,8 @@
         "You create momentum with clarity."
       ],
       "classSprite": "warlord.png",
-      "lore2": "Your authority is earned in motion. You read the whole line, call the pivot, and make scattered fighters behave like one weapon."
+      "lore2": "Your authority is earned in motion. You read the whole line, call the pivot, and make scattered fighters behave like one weapon.",
+      "growthQuestDifficulty": 4
     },
     {
       "id": "class_fallback",
@@ -749,7 +765,8 @@
         "You value optionality over strict specialization."
       ],
       "classSprite": "wayfarer.png",
-      "lore2": "Your path is still forming, but that range is real strength. With intent and repetition, your mixed toolkit can mature into a distinct doctrine."
+      "lore2": "Your path is still forming, but that range is real strength. With intent and repetition, your mixed toolkit can mature into a distinct doctrine.",
+      "growthQuestDifficulty": 3
     }
   ]
 }
