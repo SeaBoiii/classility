@@ -2,460 +2,1180 @@
   "questions": [
     {
       "id": "q1",
-      "prompt": "A bandit blocks the road and demands a toll. You…",
+      "prompt": "A bandit blocks the road and demands a toll. You\u2026",
       "options": [
         {
           "text": "Step forward and end it fast.",
-          "weights": { "power": 4, "guard": 0, "swift": 1, "tactic": 0, "arcana": 0, "faith": 0, "guile": -1, "command": 0 }
+          "weights": {
+            "power": 5,
+            "guard": 0,
+            "swift": 1,
+            "tactic": -1,
+            "arcana": 3,
+            "faith": 0,
+            "guile": -1,
+            "command": 5
+          }
         },
         {
           "text": "Hold position and protect the group.",
-          "weights": { "power": 1, "guard": 4, "swift": 0, "tactic": 0, "arcana": 0, "faith": 1, "guile": 0, "command": -1 }
+          "weights": {
+            "power": 1,
+            "guard": 4,
+            "swift": 2,
+            "tactic": 6,
+            "arcana": 0,
+            "faith": -1,
+            "guile": 0,
+            "command": -3
+          }
         },
         {
           "text": "Create a plan with angles and timing.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 4, "arcana": 0, "faith": 0, "guile": 0, "command": -1 }
+          "weights": {
+            "power": 0,
+            "guard": 3,
+            "swift": 0,
+            "tactic": 4,
+            "arcana": 2,
+            "faith": -4,
+            "guile": 0,
+            "command": -1
+          }
         },
         {
           "text": "Talk them down while your hand stays near a dagger.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 4, "command": -1 }
+          "weights": {
+            "power": 1,
+            "guard": 0,
+            "swift": 0,
+            "tactic": -1,
+            "arcana": 3,
+            "faith": 0,
+            "guile": 4,
+            "command": -3
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q2",
-      "prompt": "Your party enters a cursed library. The air hums. You reach for…",
+      "prompt": "Your party enters a cursed library. The air hums. You reach for\u2026",
       "options": [
         {
           "text": "A rune that responds to curiosity.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 4, "faith": 0, "guile": 0, "command": -1 }
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": 0,
+            "tactic": -3,
+            "arcana": 6,
+            "faith": 3,
+            "guile": -3,
+            "command": 2
+          }
         },
         {
           "text": "A prayer you trust when things turn strange.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": 0, "faith": 4, "guile": 0, "command": -1 }
+          "weights": {
+            "power": 0,
+            "guard": 1,
+            "swift": 1,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": 4,
+            "guile": -6,
+            "command": -4
+          }
         },
         {
           "text": "A map of the shelves and the safest routes.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 4, "arcana": 0, "faith": 0, "guile": 1, "command": -1 }
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": 0,
+            "tactic": 4,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 1,
+            "command": -2
+          }
         },
         {
           "text": "A quiet step between shadows and stacks.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 0, "arcana": 0, "faith": 0, "guile": 4, "command": -1 }
+          "weights": {
+            "power": -3,
+            "guard": 2,
+            "swift": 1,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 3,
+            "guile": 3,
+            "command": 6
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q3",
-      "prompt": "A duel is inevitable. Your advantage is…",
+      "prompt": "A duel is inevitable. Your advantage is\u2026",
       "options": [
         {
           "text": "A heavier strike that changes the fight.",
-          "weights": { "power": 4, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": -1, "command": 1 }
+          "weights": {
+            "power": 4,
+            "guard": -2,
+            "swift": -1,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": -2,
+            "guile": -1,
+            "command": 1
+          }
         },
         {
-          "text": "Footwork—hit first, vanish, repeat.",
-          "weights": { "power": 0, "guard": 0, "swift": 4, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": -1 }
+          "text": "Footwork\u2014hit first, vanish, repeat.",
+          "weights": {
+            "power": 0,
+            "guard": -3,
+            "swift": 8,
+            "tactic": 2,
+            "arcana": 3,
+            "faith": -3,
+            "guile": 0,
+            "command": -1
+          }
         },
         {
           "text": "Reading them and countering perfectly.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 4, "arcana": 0, "faith": 0, "guile": 0, "command": -1 }
+          "weights": {
+            "power": 0,
+            "guard": 3,
+            "swift": -2,
+            "tactic": 7,
+            "arcana": 1,
+            "faith": 0,
+            "guile": 0,
+            "command": -1
+          }
         },
         {
           "text": "A feint that turns their confidence into a mistake.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 1, "arcana": 0, "faith": 0, "guile": 4, "command": -2 }
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": 2,
+            "tactic": -1,
+            "arcana": -2,
+            "faith": 0,
+            "guile": 0,
+            "command": -2
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q4",
-      "prompt": "A village begs for help after a raid. You feel pulled to…",
+      "prompt": "A village begs for help after a raid. You feel pulled to\u2026",
       "options": [
         {
           "text": "Guard the weak and rebuild defenses.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 1, "arcana": 0, "faith": 1, "guile": 0, "command": 0 }
+          "weights": {
+            "power": -1,
+            "guard": 4,
+            "swift": -4,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": 5,
+            "guile": 0,
+            "command": -2
+          }
         },
         {
           "text": "Hunt the raiders immediately.",
-          "weights": { "power": 3, "guard": 0, "swift": 2, "tactic": 0, "arcana": 0, "faith": 0, "guile": -1, "command": 0 }
+          "weights": {
+            "power": 2,
+            "guard": -5,
+            "swift": 2,
+            "tactic": 2,
+            "arcana": 0,
+            "faith": -3,
+            "guile": 0,
+            "command": 2
+          }
         },
         {
           "text": "Organize everyone into roles and recovery.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": 4 }
+          "weights": {
+            "power": 0,
+            "guard": 1,
+            "swift": 0,
+            "tactic": -1,
+            "arcana": -6,
+            "faith": -3,
+            "guile": 2,
+            "command": 7
+          }
         },
         {
           "text": "Tend wounds and keep hope alive.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": 0, "faith": 4, "guile": 0, "command": -1 }
+          "weights": {
+            "power": -3,
+            "guard": 0,
+            "swift": -2,
+            "tactic": 2,
+            "arcana": -3,
+            "faith": 4,
+            "guile": -1,
+            "command": 1
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q5",
-      "prompt": "A trap corridor lies ahead. Your first instinct is…",
+      "prompt": "A trap corridor lies ahead. Your first instinct is\u2026",
       "options": [
         {
           "text": "Take point and tank the risk for others.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 1 }
+          "weights": {
+            "power": -2,
+            "guard": 6,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": 1,
+            "faith": 0,
+            "guile": 1,
+            "command": 0
+          }
         },
         {
           "text": "Disarm it with careful timing and tools.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 4, "arcana": 0, "faith": 0, "guile": 1, "command": -1 }
+          "weights": {
+            "power": 2,
+            "guard": 0,
+            "swift": -2,
+            "tactic": 7,
+            "arcana": 0,
+            "faith": -2,
+            "guile": 1,
+            "command": 0
+          }
         },
         {
           "text": "Slip through like it was never there.",
-          "weights": { "power": 0, "guard": 0, "swift": 3, "tactic": 0, "arcana": 0, "faith": 0, "guile": 3, "command": -2 }
+          "weights": {
+            "power": -2,
+            "guard": 1,
+            "swift": 3,
+            "tactic": 0,
+            "arcana": -3,
+            "faith": -3,
+            "guile": 4,
+            "command": -2
+          }
         },
         {
-          "text": "Study the pattern—there’s a hidden rule.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 2, "arcana": 2, "faith": 0, "guile": 0, "command": -1 }
+          "text": "Study the pattern\u2014there\u2019s a hidden rule.",
+          "weights": {
+            "power": 3,
+            "guard": 0,
+            "swift": 0,
+            "tactic": -1,
+            "arcana": 2,
+            "faith": 0,
+            "guile": -2,
+            "command": 0
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q6",
-      "prompt": "A stranger offers you a forbidden spell. You…",
+      "prompt": "A stranger offers you a forbidden spell. You\u2026",
       "options": [
         {
           "text": "Take it. Knowledge is meant to be held.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 4, "faith": -1, "guile": 1, "command": 0 }
+          "weights": {
+            "power": 3,
+            "guard": 1,
+            "swift": 0,
+            "tactic": -1,
+            "arcana": 9,
+            "faith": -1,
+            "guile": -1,
+            "command": 0
+          }
         },
         {
-          "text": "Refuse. Some doors shouldn’t open.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": -1, "faith": 4, "guile": 0, "command": 0 }
+          "text": "Refuse. Some doors shouldn\u2019t open.",
+          "weights": {
+            "power": -3,
+            "guard": -1,
+            "swift": 0,
+            "tactic": -3,
+            "arcana": -1,
+            "faith": 5,
+            "guile": -2,
+            "command": 2
+          }
         },
         {
           "text": "Negotiate terms and safeguards first.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 2, "arcana": 1, "faith": 0, "guile": 0, "command": 3 }
+          "weights": {
+            "power": 2,
+            "guard": 1,
+            "swift": -3,
+            "tactic": 2,
+            "arcana": 3,
+            "faith": -3,
+            "guile": 1,
+            "command": 3
+          }
         },
         {
-          "text": "Smile, distract, and learn what they’re really after.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 0, "arcana": 0, "faith": 0, "guile": 4, "command": 0 }
+          "text": "Smile, distract, and learn what they\u2019re really after.",
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": 1,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 4,
+            "command": 2
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q7",
-      "prompt": "A tournament begins. You choose your role as…",
+      "prompt": "A tournament begins. You choose your role as\u2026",
       "options": [
         {
-          "text": "The finisher—decisive, feared.",
-          "weights": { "power": 4, "guard": 0, "swift": 1, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": -1 }
+          "text": "The finisher\u2014decisive, feared.",
+          "weights": {
+            "power": 1,
+            "guard": 0,
+            "swift": 3,
+            "tactic": -1,
+            "arcana": -3,
+            "faith": 0,
+            "guile": 0,
+            "command": -2
+          }
         },
         {
-          "text": "The bulwark—no one falls behind you.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 0, "arcana": 0, "faith": 1, "guile": 0, "command": 0 }
+          "text": "The bulwark\u2014no one falls behind you.",
+          "weights": {
+            "power": -2,
+            "guard": 5,
+            "swift": -2,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": -1,
+            "guile": -1,
+            "command": 0
+          }
         },
         {
-          "text": "The mind—winning before the match starts.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 4, "arcana": 1, "faith": 0, "guile": 0, "command": -1 }
+          "text": "The mind\u2014winning before the match starts.",
+          "weights": {
+            "power": 2,
+            "guard": 0,
+            "swift": 0,
+            "tactic": 4,
+            "arcana": 1,
+            "faith": 0,
+            "guile": 0,
+            "command": -3
+          }
         },
         {
-          "text": "The shadow—clean, quiet victories.",
-          "weights": { "power": 0, "guard": 0, "swift": 2, "tactic": 0, "arcana": 0, "faith": 0, "guile": 4, "command": -2 }
+          "text": "The shadow\u2014clean, quiet victories.",
+          "weights": {
+            "power": 0,
+            "guard": 2,
+            "swift": 3,
+            "tactic": 0,
+            "arcana": 1,
+            "faith": 0,
+            "guile": 4,
+            "command": -1
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q8",
-      "prompt": "A wounded ally collapses mid-fight. You…",
+      "prompt": "A wounded ally collapses mid-fight. You\u2026",
       "options": [
         {
           "text": "Step in front and hold the line.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 1 }
+          "weights": {
+            "power": 3,
+            "guard": 4,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": 1,
+            "faith": 0,
+            "guile": 7,
+            "command": 1
+          }
         },
         {
           "text": "Patch them up fast and keep them breathing.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": 0, "faith": 4, "guile": 0, "command": 0 }
+          "weights": {
+            "power": -1,
+            "guard": 1,
+            "swift": 0,
+            "tactic": -2,
+            "arcana": 0,
+            "faith": 4,
+            "guile": 0,
+            "command": 0
+          }
         },
         {
-          "text": "Call instructions—everyone rotates with you.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": 4 }
+          "text": "Call instructions\u2014everyone rotates with you.",
+          "weights": {
+            "power": -2,
+            "guard": -2,
+            "swift": 0,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": -2,
+            "guile": 2,
+            "command": 4
+          }
         },
         {
-          "text": "Create an opening so the enemy can’t capitalize.",
-          "weights": { "power": 1, "guard": 0, "swift": 2, "tactic": 0, "arcana": 0, "faith": 0, "guile": 2, "command": -1 }
+          "text": "Create an opening so the enemy can\u2019t capitalize.",
+          "weights": {
+            "power": 3,
+            "guard": 0,
+            "swift": 5,
+            "tactic": 1,
+            "arcana": -1,
+            "faith": -3,
+            "guile": -1,
+            "command": -1
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q9",
-      "prompt": "A dragon circles overhead. The best answer is…",
+      "prompt": "A dragon circles overhead. The best answer is\u2026",
       "options": [
         {
           "text": "Hit it with everything before it lands.",
-          "weights": { "power": 4, "guard": 0, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": -1, "command": 0 }
+          "weights": {
+            "power": 2,
+            "guard": 1,
+            "swift": 2,
+            "tactic": -1,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 0,
+            "command": 0
+          }
         },
         {
           "text": "Fortify and wait for the right moment.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": 0 }
+          "weights": {
+            "power": 0,
+            "guard": 4,
+            "swift": -2,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 0,
+            "command": -1
+          }
         },
         {
-          "text": "Exploit its pattern—wings, wind, and timing.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 4, "arcana": 1, "faith": 0, "guile": 0, "command": -1 }
+          "text": "Exploit its pattern\u2014wings, wind, and timing.",
+          "weights": {
+            "power": 3,
+            "guard": 0,
+            "swift": 0,
+            "tactic": 4,
+            "arcana": 3,
+            "faith": -2,
+            "guile": 0,
+            "command": -1
+          }
         },
         {
           "text": "Use terrain and misdirection to survive.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 1, "arcana": 0, "faith": 0, "guile": 4, "command": -2 }
+          "weights": {
+            "power": 0,
+            "guard": 2,
+            "swift": 1,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": -2,
+            "guile": 4,
+            "command": -3
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q10",
-      "prompt": "You find a relic that amplifies intent. It reacts most to…",
+      "prompt": "You find a relic that amplifies intent. It reacts most to\u2026",
       "options": [
         {
           "text": "Resolve through devotion and care.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 4, "guile": 0, "command": 1 }
+          "weights": {
+            "power": -2,
+            "guard": 0,
+            "swift": -3,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 4,
+            "guile": 0,
+            "command": -1
+          }
         },
         {
           "text": "Curiosity that refuses to be small.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 4, "faith": -1, "guile": 0, "command": 0 }
+          "weights": {
+            "power": 0,
+            "guard": 1,
+            "swift": 0,
+            "tactic": -2,
+            "arcana": 6,
+            "faith": -1,
+            "guile": 0,
+            "command": 4
+          }
         },
         {
           "text": "Authority that makes people move together.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 4 }
+          "weights": {
+            "power": -1,
+            "guard": -1,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 0,
+            "command": 2
+          }
         },
         {
           "text": "A sharp read and a sharper lie.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 4, "command": 0 }
+          "weights": {
+            "power": 3,
+            "guard": -3,
+            "swift": 0,
+            "tactic": -4,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 4,
+            "command": 0
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q11",
-      "prompt": "A battle is lost unless someone buys time. You…",
+      "prompt": "A battle is lost unless someone buys time. You\u2026",
       "options": [
         {
           "text": "Stay. Even if it hurts.",
-          "weights": { "power": 1, "guard": 4, "swift": -1, "tactic": 0, "arcana": 0, "faith": 1, "guile": 0, "command": 0 }
+          "weights": {
+            "power": 1,
+            "guard": 4,
+            "swift": -1,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 2,
+            "guile": 0,
+            "command": 0
+          }
         },
         {
-          "text": "Charge—make them fear you.",
-          "weights": { "power": 4, "guard": 0, "swift": 1, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 0 }
+          "text": "Charge\u2014make them fear you.",
+          "weights": {
+            "power": 7,
+            "guard": 0,
+            "swift": 3,
+            "tactic": 0,
+            "arcana": 1,
+            "faith": 0,
+            "guile": 0,
+            "command": 5
+          }
         },
         {
           "text": "Set a controlled retreat with chokepoints.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 4, "arcana": 0, "faith": 0, "guile": 0, "command": 1 }
+          "weights": {
+            "power": 0,
+            "guard": 1,
+            "swift": 3,
+            "tactic": 4,
+            "arcana": 0,
+            "faith": 2,
+            "guile": 1,
+            "command": 2
+          }
         },
         {
           "text": "Disappear, reappear, cut their momentum.",
-          "weights": { "power": 0, "guard": 0, "swift": 3, "tactic": 0, "arcana": 0, "faith": 0, "guile": 3, "command": -1 }
+          "weights": {
+            "power": -3,
+            "guard": -2,
+            "swift": 3,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 5,
+            "command": -4
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q12",
-      "prompt": "You’re asked to teach a beginner. You focus on…",
+      "prompt": "You\u2019re asked to teach a beginner. You focus on\u2026",
       "options": [
         {
-          "text": "Fundamentals and repetition—mastery first.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 4, "arcana": 0, "faith": 0, "guile": 0, "command": 1 }
+          "text": "Fundamentals and repetition\u2014mastery first.",
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": -3,
+            "tactic": 3,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 0,
+            "command": -3
+          }
         },
         {
-          "text": "Confidence—make them brave enough to try.",
-          "weights": { "power": 2, "guard": 0, "swift": 1, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 2 }
+          "text": "Confidence\u2014make them brave enough to try.",
+          "weights": {
+            "power": 4,
+            "guard": -3,
+            "swift": 1,
+            "tactic": -1,
+            "arcana": 3,
+            "faith": 0,
+            "guile": 1,
+            "command": 5
+          }
         },
         {
-          "text": "Safety—how to survive mistakes.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 0, "arcana": 0, "faith": 1, "guile": 0, "command": 0 }
+          "text": "Safety\u2014how to survive mistakes.",
+          "weights": {
+            "power": -6,
+            "guard": 4,
+            "swift": 4,
+            "tactic": -2,
+            "arcana": 0,
+            "faith": -1,
+            "guile": 4,
+            "command": 6
+          }
         },
         {
-          "text": "Creativity—let them find their own style.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 0, "arcana": 4, "faith": 0, "guile": 1, "command": -1 }
+          "text": "Creativity\u2014let them find their own style.",
+          "weights": {
+            "power": 2,
+            "guard": 0,
+            "swift": 2,
+            "tactic": -3,
+            "arcana": 2,
+            "faith": 0,
+            "guile": -2,
+            "command": -1
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q13",
-      "prompt": "A rival challenges you to a race through ruins. You win by…",
+      "prompt": "A rival challenges you to a race through ruins. You win by\u2026",
       "options": [
         {
           "text": "Speed and clean momentum.",
-          "weights": { "power": 0, "guard": 0, "swift": 4, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": -1 }
+          "weights": {
+            "power": -2,
+            "guard": 0,
+            "swift": 7,
+            "tactic": -2,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 0,
+            "command": 2
+          }
         },
         {
           "text": "Knowing the route better than they do.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 4, "arcana": 0, "faith": 0, "guile": 0, "command": -1 }
+          "weights": {
+            "power": 3,
+            "guard": 0,
+            "swift": 1,
+            "tactic": 4,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 0,
+            "command": -2
+          }
         },
         {
           "text": "A shortcut no one else dares.",
-          "weights": { "power": 1, "guard": 0, "swift": 3, "tactic": 0, "arcana": 0, "faith": 0, "guile": 2, "command": -2 }
+          "weights": {
+            "power": 1,
+            "guard": -2,
+            "swift": 3,
+            "tactic": 3,
+            "arcana": -1,
+            "faith": 0,
+            "guile": 2,
+            "command": -2
+          }
         },
         {
           "text": "A charm that bends doors and distances.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 0, "arcana": 4, "faith": 0, "guile": 0, "command": -1 }
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": 1,
+            "tactic": 0,
+            "arcana": 1,
+            "faith": -2,
+            "guile": 0,
+            "command": -4
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q14",
-      "prompt": "Your party is arguing. You naturally…",
+      "prompt": "Your party is arguing. You naturally\u2026",
       "options": [
         {
           "text": "Set a clear call and move forward.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": 4 }
+          "weights": {
+            "power": -2,
+            "guard": 0,
+            "swift": 3,
+            "tactic": -1,
+            "arcana": 0,
+            "faith": -3,
+            "guile": -1,
+            "command": 4
+          }
         },
         {
           "text": "Lower the temperature and refocus on care.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": 0, "faith": 4, "guile": 0, "command": 0 }
+          "weights": {
+            "power": 5,
+            "guard": 1,
+            "swift": -3,
+            "tactic": -2,
+            "arcana": 0,
+            "faith": 5,
+            "guile": -2,
+            "command": 0
+          }
         },
         {
           "text": "Reframe the problem so both sides can win.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 3, "arcana": 0, "faith": 0, "guile": 0, "command": 2 }
+          "weights": {
+            "power": 2,
+            "guard": 0,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": -2,
+            "faith": 0,
+            "guile": 0,
+            "command": 2
+          }
         },
         {
           "text": "Let them talk, then redirect with a precise nudge.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 3, "command": 1 }
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 1,
+            "guile": 3,
+            "command": -3
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q15",
-      "prompt": "You’re offered a dangerous contract. The clause you care about most is…",
+      "prompt": "You\u2019re offered a dangerous contract. The clause you care about most is\u2026",
       "options": [
         {
-          "text": "Payout and leverage—make it worth it.",
-          "weights": { "power": 1, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 4, "command": 0 }
+          "text": "Payout and leverage\u2014make it worth it.",
+          "weights": {
+            "power": 1,
+            "guard": 0,
+            "swift": -3,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 4,
+            "command": -1
+          }
         },
         {
           "text": "Protection and contingencies.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": 0 }
+          "weights": {
+            "power": -3,
+            "guard": 7,
+            "swift": 1,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": -3,
+            "guile": 0,
+            "command": 0
+          }
         },
         {
-          "text": "Control—what happens if things go wrong.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 4, "arcana": 0, "faith": 0, "guile": 1, "command": 0 }
+          "text": "Control\u2014what happens if things go wrong.",
+          "weights": {
+            "power": 1,
+            "guard": 0,
+            "swift": 0,
+            "tactic": 1,
+            "arcana": -1,
+            "faith": 0,
+            "guile": 0,
+            "command": 6
+          }
         },
         {
-          "text": "Authority—who answers to your call.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 4 }
+          "text": "Authority\u2014who answers to your call.",
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": -2,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 4,
+            "guile": 0,
+            "command": 4
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q16",
-      "prompt": "A sacred spring can either heal or empower. You choose…",
+      "prompt": "A sacred spring can either heal or empower. You choose\u2026",
       "options": [
         {
-          "text": "Heal—people first.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 4, "guile": 0, "command": 1 }
+          "text": "Heal\u2014people first.",
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": -2,
+            "tactic": 0,
+            "arcana": -2,
+            "faith": 4,
+            "guile": -4,
+            "command": -2
+          }
         },
         {
-          "text": "Empower—more force ends future fights.",
-          "weights": { "power": 4, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 0 }
+          "text": "Empower\u2014more force ends future fights.",
+          "weights": {
+            "power": 4,
+            "guard": 2,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 0,
+            "command": -2
+          }
         },
         {
           "text": "Blend it into a controlled ritual.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 2, "arcana": 2, "faith": 0, "guile": 0, "command": 0 }
+          "weights": {
+            "power": 1,
+            "guard": -3,
+            "swift": -1,
+            "tactic": 2,
+            "arcana": 4,
+            "faith": -1,
+            "guile": 0,
+            "command": -3
+          }
         },
         {
-          "text": "Bottle it quietly. You’ll decide later.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 3, "command": 0 }
+          "text": "Bottle it quietly. You\u2019ll decide later.",
+          "weights": {
+            "power": 1,
+            "guard": 1,
+            "swift": 0,
+            "tactic": 2,
+            "arcana": 1,
+            "faith": 1,
+            "guile": 3,
+            "command": 0
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q17",
-      "prompt": "Your signature move in a crisis is…",
+      "prompt": "Your signature move in a crisis is\u2026",
       "options": [
         {
           "text": "A decisive strike that changes the room.",
-          "weights": { "power": 4, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 1 }
+          "weights": {
+            "power": 4,
+            "guard": 1,
+            "swift": 3,
+            "tactic": -4,
+            "arcana": 3,
+            "faith": 0,
+            "guile": 0,
+            "command": 4
+          }
         },
         {
           "text": "A shield-step that keeps everyone alive.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 0, "arcana": 0, "faith": 1, "guile": 0, "command": 0 }
+          "weights": {
+            "power": 1,
+            "guard": 6,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": -2,
+            "faith": 1,
+            "guile": 3,
+            "command": -2
+          }
         },
         {
-          "text": "A rapid pivot—turning danger into distance.",
-          "weights": { "power": 0, "guard": 0, "swift": 4, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": -1 }
+          "text": "A rapid pivot\u2014turning danger into distance.",
+          "weights": {
+            "power": -2,
+            "guard": 0,
+            "swift": 4,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": -2,
+            "guile": 4,
+            "command": 2
+          }
         },
         {
           "text": "A command that snaps everyone into alignment.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 4 }
+          "weights": {
+            "power": -3,
+            "guard": -1,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": 2,
+            "faith": -3,
+            "guile": 2,
+            "command": 3
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q18",
-      "prompt": "You’re choosing gear for an expedition. You always pack…",
+      "prompt": "You\u2019re choosing gear for an expedition. You always pack\u2026",
       "options": [
         {
-          "text": "Tools and notes—solutions beat luck.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 4, "arcana": 0, "faith": 0, "guile": 0, "command": 1 }
+          "text": "Tools and notes\u2014solutions beat luck.",
+          "weights": {
+            "power": 2,
+            "guard": -3,
+            "swift": 0,
+            "tactic": 7,
+            "arcana": -4,
+            "faith": 0,
+            "guile": -1,
+            "command": 2
+          }
         },
         {
-          "text": "Components and catalysts—anything might be useful.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 4, "faith": 0, "guile": 0, "command": -1 }
+          "text": "Components and catalysts\u2014anything might be useful.",
+          "weights": {
+            "power": -2,
+            "guard": -4,
+            "swift": -2,
+            "tactic": -2,
+            "arcana": 1,
+            "faith": 1,
+            "guile": 1,
+            "command": -3
+          }
         },
         {
-          "text": "Bandages and tinctures—someone will need them.",
-          "weights": { "power": 0, "guard": 1, "swift": 0, "tactic": 0, "arcana": 0, "faith": 4, "guile": 0, "command": 0 }
+          "text": "Bandages and tinctures\u2014someone will need them.",
+          "weights": {
+            "power": 0,
+            "guard": 7,
+            "swift": 0,
+            "tactic": 0,
+            "arcana": 3,
+            "faith": 1,
+            "guile": 0,
+            "command": 0
+          }
         },
         {
-          "text": "A second identity—never travel as yourself.",
-          "weights": { "power": 0, "guard": 0, "swift": 1, "tactic": 0, "arcana": 0, "faith": 0, "guile": 4, "command": -1 }
+          "text": "A second identity\u2014never travel as yourself.",
+          "weights": {
+            "power": 0,
+            "guard": 2,
+            "swift": 1,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 4,
+            "command": -1
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q19",
-      "prompt": "A magical storm distorts time for one hour. You use it to…",
+      "prompt": "A magical storm distorts time for one hour. You use it to\u2026",
       "options": [
         {
           "text": "Strike while everything is confused.",
-          "weights": { "power": 3, "guard": 0, "swift": 2, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 0 }
+          "weights": {
+            "power": 0,
+            "guard": 0,
+            "swift": 2,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 0,
+            "guile": -3,
+            "command": 0
+          }
         },
         {
           "text": "Anchor your team and prevent chaos.",
-          "weights": { "power": 0, "guard": 3, "swift": 0, "tactic": 1, "arcana": 0, "faith": 1, "guile": 0, "command": 1 }
+          "weights": {
+            "power": 4,
+            "guard": 3,
+            "swift": 0,
+            "tactic": 1,
+            "arcana": 0,
+            "faith": 1,
+            "guile": 0,
+            "command": 1
+          }
         },
         {
-          "text": "Test the rules—learn how it works.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 2, "arcana": 3, "faith": 0, "guile": 0, "command": 0 }
+          "text": "Test the rules\u2014learn how it works.",
+          "weights": {
+            "power": 4,
+            "guard": -2,
+            "swift": 3,
+            "tactic": -1,
+            "arcana": 3,
+            "faith": 0,
+            "guile": 3,
+            "command": -1
+          }
         },
         {
           "text": "Slip through it unseen and take what matters.",
-          "weights": { "power": 0, "guard": 0, "swift": 2, "tactic": 0, "arcana": 0, "faith": 0, "guile": 3, "command": -1 }
+          "weights": {
+            "power": 2,
+            "guard": 0,
+            "swift": 2,
+            "tactic": 0,
+            "arcana": 0,
+            "faith": 0,
+            "guile": 2,
+            "command": -1
+          }
         }
       ],
       "image": ""
     },
     {
       "id": "q20",
-      "prompt": "When you’re at your best, you feel like…",
+      "prompt": "When you\u2019re at your best, you feel like\u2026",
       "options": [
         {
-          "text": "A clean decisive moment—no doubt, just impact.",
-          "weights": { "power": 4, "guard": 0, "swift": 0, "tactic": 0, "arcana": 0, "faith": 0, "guile": 0, "command": 1 }
+          "text": "A clean decisive moment\u2014no doubt, just impact.",
+          "weights": {
+            "power": 4,
+            "guard": 0,
+            "swift": 2,
+            "tactic": 0,
+            "arcana": -4,
+            "faith": 3,
+            "guile": 1,
+            "command": 1
+          }
         },
         {
-          "text": "A steady wall—calm, present, unbreakable.",
-          "weights": { "power": 0, "guard": 4, "swift": 0, "tactic": 0, "arcana": 0, "faith": 1, "guile": 0, "command": 0 }
+          "text": "A steady wall\u2014calm, present, unbreakable.",
+          "weights": {
+            "power": 0,
+            "guard": 4,
+            "swift": 0,
+            "tactic": 2,
+            "arcana": 0,
+            "faith": 1,
+            "guile": 3,
+            "command": -5
+          }
         },
         {
-          "text": "A perfectly timed play—precision becomes victory.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 4, "arcana": 1, "faith": 0, "guile": 0, "command": 0 }
+          "text": "A perfectly timed play\u2014precision becomes victory.",
+          "weights": {
+            "power": 0,
+            "guard": -1,
+            "swift": 0,
+            "tactic": 4,
+            "arcana": 2,
+            "faith": 4,
+            "guile": 8,
+            "command": 2
+          }
         },
         {
-          "text": "A chorus of voices moving as one—your call, their trust.",
-          "weights": { "power": 0, "guard": 0, "swift": 0, "tactic": 1, "arcana": 0, "faith": 0, "guile": 0, "command": 4 }
+          "text": "A chorus of voices moving as one\u2014your call, their trust.",
+          "weights": {
+            "power": 0,
+            "guard": -2,
+            "swift": 0,
+            "tactic": 1,
+            "arcana": 2,
+            "faith": 0,
+            "guile": -4,
+            "command": 4
+          }
         }
       ],
       "image": ""

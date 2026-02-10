@@ -23,11 +23,11 @@
             "power",
             "arcana"
           ],
-          "value": 26
+          "value": 23
         },
         {
           "type": "top_diff_lte",
-          "value": 4
+          "value": 5
         },
         {
           "type": "spread_between",
@@ -72,11 +72,11 @@
             "guard",
             "faith"
           ],
-          "value": 26
+          "value": 22
         },
         {
           "type": "top_diff_lte",
-          "value": 4
+          "value": 6
         },
         {
           "type": "spread_between",
@@ -121,7 +121,7 @@
             "swift",
             "guile"
           ],
-          "value": 26
+          "value": 25
         },
         {
           "type": "top_diff_lte",
@@ -170,11 +170,11 @@
             "command",
             "arcana"
           ],
-          "value": 26
+          "value": 22
         },
         {
           "type": "top_diff_lte",
-          "value": 4
+          "value": 7
         },
         {
           "type": "spread_between",
@@ -219,7 +219,7 @@
             "swift",
             "tactic"
           ],
-          "value": 26
+          "value": 25
         },
         {
           "type": "top_diff_lte",
@@ -268,11 +268,11 @@
             "faith",
             "arcana"
           ],
-          "value": 26
+          "value": 22
         },
         {
           "type": "top_diff_lte",
-          "value": 4
+          "value": 7
         },
         {
           "type": "spread_between",
@@ -317,11 +317,11 @@
             "tactic",
             "arcana"
           ],
-          "value": 26
+          "value": 22
         },
         {
           "type": "top_diff_lte",
-          "value": 4
+          "value": 7
         },
         {
           "type": "spread_between",
@@ -366,11 +366,11 @@
             "command",
             "guard"
           ],
-          "value": 26
+          "value": 22
         },
         {
           "type": "top_diff_lte",
-          "value": 4
+          "value": 7
         },
         {
           "type": "spread_between",
@@ -406,11 +406,11 @@
         {
           "type": "min",
           "dim": "power",
-          "value": 14
+          "value": 15
         },
         {
           "type": "top_diff_gte",
-          "value": 6
+          "value": 7
         },
         {
           "type": "spread_between",
@@ -454,7 +454,7 @@
         },
         {
           "type": "spread_between",
-          "min": 12,
+          "min": 11,
           "max": 40
         }
       ],
@@ -494,7 +494,7 @@
         },
         {
           "type": "spread_between",
-          "min": 12,
+          "min": 11,
           "max": 40
         }
       ],
@@ -526,7 +526,7 @@
         {
           "type": "min",
           "dim": "tactic",
-          "value": 14
+          "value": 15
         },
         {
           "type": "top_diff_gte",
@@ -534,7 +534,7 @@
         },
         {
           "type": "spread_between",
-          "min": 12,
+          "min": 11,
           "max": 40
         }
       ],
@@ -566,15 +566,15 @@
         {
           "type": "min",
           "dim": "arcana",
-          "value": 14
+          "value": 13
         },
         {
           "type": "top_diff_gte",
-          "value": 6
+          "value": 5
         },
         {
           "type": "spread_between",
-          "min": 12,
+          "min": 10,
           "max": 40
         }
       ],
@@ -606,15 +606,15 @@
         {
           "type": "min",
           "dim": "faith",
-          "value": 14
+          "value": 12
         },
         {
           "type": "top_diff_gte",
-          "value": 6
+          "value": 5
         },
         {
           "type": "spread_between",
-          "min": 12,
+          "min": 10,
           "max": 40
         }
       ],
@@ -646,7 +646,7 @@
         {
           "type": "min",
           "dim": "guile",
-          "value": 14
+          "value": 15
         },
         {
           "type": "top_diff_gte",
@@ -654,7 +654,7 @@
         },
         {
           "type": "spread_between",
-          "min": 12,
+          "min": 11,
           "max": 40
         }
       ],
@@ -686,15 +686,15 @@
         {
           "type": "min",
           "dim": "command",
-          "value": 14
+          "value": 12
         },
         {
           "type": "top_diff_gte",
-          "value": 6
+          "value": 5
         },
         {
           "type": "spread_between",
-          "min": 12,
+          "min": 10,
           "max": 40
         }
       ],
@@ -731,7 +731,8 @@
         "You stay flexible when situations change quickly.",
         "You are still calibrating what role fits you best.",
         "You value optionality over strict specialization."
-      ]
+      ],
+      "classSprite": "warfarer.png"
     }
   ]
 }
