@@ -1,6 +1,6 @@
 import { toPng } from 'html-to-image'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { DebugPanel } from '../components/DebugPanel'
 import { ResultCard } from '../components/ResultCard'
 import { TextureOverlay } from '../components/TextureOverlay'
@@ -93,24 +93,7 @@ export function ResultPage() {
   }
 
   if (!answers || !evaluation) {
-    return (
-      <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_30%_10%,#1f1a2a_0%,#0c0c12_60%,#09090f_100%)] p-8 text-[#f3e6cb]">
-        <TextureOverlay opacity={0.22} />
-        <section className="relative mx-auto mt-24 max-w-2xl rounded-xl border border-[#6f5635] bg-[#16131c]/90 p-8 text-center">
-          <h1 className="font-title text-3xl text-[#f4dca8]">No quiz attempt found</h1>
-          <p className="mt-3 font-body text-lg text-[#e0d0ad]">
-            Take the quiz first, or use /#/result?seed=demo for a deterministic debug run.
-          </p>
-          <button
-            type="button"
-            onClick={() => navigate('/quiz')}
-            className="mt-6 rounded-md border border-[#bd9b5c] px-5 py-2 font-title text-xs tracking-[0.16em] uppercase text-[#f2daa5] transition hover:bg-[#2a2013] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffd68b]"
-          >
-            Start Quiz
-          </button>
-        </section>
-      </main>
-    )
+    return <Navigate replace to="/" />
   }
 
   return (
