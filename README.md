@@ -1,13 +1,23 @@
-# Classility: RPG Classes Personality Test
+# Classility: RPG Class Personality Quiz
 
-Fantasy-themed interactive personality quiz with deterministic class evaluation and collectible PNG card export.
+Classility is a fantasy-themed quiz app that maps player choices to RPG class archetypes and renders a high-fidelity result card (web + PNG export).
 
-## Stack
+## Features
 
-- Vite + React + TypeScript
+- Landing page with animated inward-opening doors and direct transition into quiz.
+- 20-question RPG quiz with optional scene image per question.
+- Smooth fade question transition between answers.
+- Deterministic class evaluation using weighted dimensions + rule conditions.
+- Rich result card with lore, stat profile, party role, growth quest difficulty, crest/equipment art, and animated title treatment.
+- Built-in PNG export pipeline for class cards (`900x1400`).
+- Result route guard: users with no saved attempt are redirected to landing page.
+
+## Tech Stack
+
+- React 19 + TypeScript + Vite
 - Tailwind CSS
-- React Router
-- Playwright (PNG export CLI)
+- React Router (`HashRouter` for GitHub Pages compatibility)
+- Playwright (card export automation)
 
 ## Quick Start
 
@@ -16,149 +26,122 @@ npm install
 npm run dev
 ```
 
-Build:
+Build and lint:
 
 ```bash
 npm run build
+npm run lint
 ```
 
-## Export Commands
+## Routes
 
-Single class card:
+- `/#/` landing page
+- `/#/quiz` quiz flow
+- `/#/result` latest result (redirects to landing if no attempt exists)
+- `/#/result?seed=demo` deterministic seeded result for debugging
+- `/#/cards` class card browser
+- `/#/card/:id` standalone card renderer (used by export script)
 
-```bash
-npm run export -- --id class_spellblade
-```
+## Data Model
 
-Export all class cards:
+### `data/dimensions.json`
 
-```bash
-npm run export:all
-```
+Defines scoring axes:
 
-First-time Playwright setup on a machine:
+- `id`
+- `label`
+- `left` / `right`
+- optional `description`
+
+### `data/questions.json`
+
+Defines quiz content:
+
+- `id`
+- `prompt`
+- optional `image` (resolved from `src/assets/scenes/`)
+- `options` (must be exactly 4)
+- per-option `weights` keyed by dimension id
+
+### `data/results.json`
+
+Defines class outputs and evaluator rules:
+
+- Core identity: `id`, `title`, `tagline`, `summary`, `lore`, optional `lore2`
+- Visuals: `classSprite`, `partyRoleCrest`, `signatureEquipment`
+- Meta flavor: `traits`, `style`, `risk`, `partyRole`, `growthQuest`, `growthQuestDifficulty`, `signatureItem`, `battleHabit`
+- Matching: `priority`, `conditions`, optional `isFallback`
+
+`src/lib/data.ts` resolves asset filenames against:
+
+- `src/assets/class_sprites/`
+- `src/assets/scenes/`
+- `src/assets/crests/`
+- `src/assets/equipments/`
+
+## Evaluation Rules
+
+Scoring and matching live in:
+
+- `src/lib/scoring.ts`
+- `src/lib/evaluator.ts`
+
+Supported condition operators:
+
+- `min`, `max_le`, `max_ge`
+- `diff_greater`, `diff_abs_lte`
+- `top_is`, `not_top_is`
+- `rank_is`
+- `top_diff_gte`, `top_diff_lte`
+- `total_min`, `total_max`
+- `sum_min`, `sum_max`
+- `spread_between`
+
+Selection behavior:
+
+- All conditions in a class must pass.
+- Passing non-fallback classes are ranked by `priority` (desc), then file order.
+- If none pass, nearest non-fallback is chosen.
+- Fallback (`isFallback: true`) is used only as a last resort.
+
+## Scripts
+
+- `npm run dev` start local dev server
+- `npm run build` type-check + production build
+- `npm run lint` run ESLint
+- `npm run export -- --id <class_id>` export one class PNG to `out/`
+- `npm run export:all` export all class PNGs to `out/`
+- `npm run split:crests` split combined crest/equipment PNGs into separate assets
+- `npm run tune:reachability` analyze class reachability
+- `npm run tune:reachability:apply` apply reachability tuning to `data/questions.json`
+- `npm run tune:balance` optimize reachability + class distribution balance
+- `npm run tune:balance:apply` apply balanced tuning
+- `npm run tune:balance:apply-best` write best candidate even if strict target is not met
+
+Playwright setup (first time on a machine):
 
 ```bash
 npx playwright install chromium
 ```
 
-Generated images go to `out/`.
+## Crest/Equipment Split Workflow
 
-## Reachability Tuner
+If you add new combined class art to `src/assets/crests_equipments/*.png`:
 
-Evaluate/tune question weights to maximize class reachability based on result conditions:
+1. Run `npm run split:crests`
+2. Script writes splits to:
+   - `src/assets/crests/<name>.png`
+   - `src/assets/equipments/<name>.png`
+3. Reference those filenames in `data/results.json` (`partyRoleCrest`, `signatureEquipment`) or rely on filename fallback from `classSprite`.
 
-```bash
-npm run tune:reachability
-```
+## PNG Export Notes
 
-Apply tuned weights back into `data/questions.json` (creates backup first):
+`scripts/export.ts` spins up Vite, opens `/#/card/:id?export=1`, waits for fonts, validates `900x1400`, then captures PNG with transparent outer background.
 
-```bash
-npm run tune:reachability:apply
-```
+## GitHub Pages
 
-Tune for both 100% reachability and balanced class probabilities:
+Configured for Pages deployment:
 
-```bash
-npm run tune:balance
-```
-
-Apply balanced tuning result:
-
-```bash
-npm run tune:balance:apply
-```
-
-Apply best balanced candidate even if strict target is not met:
-
-```bash
-npm run tune:balance:apply-best
-```
-
-Useful flags:
-
-- `--target-reachability 1` (or `100`) for 100% goal
-- `--timeout-ms 3600000` for long runs
-- `--workers 0` to auto-use CPU cores (`N-1`)
-- `--search-iterations`, `--search-restarts` for deeper per-class search
-- `--weight-mutation-count`, `--weight-mutation-step`, `--weight-limit` for mutation behavior
-- `--optimize-probability` to include class outcome distribution tuning
-- `--target-probability 6.25` for equal per-class target (percent or ratio accepted)
-- `--target-probabilities class_a=8,class_b=5,...` for per-class targets by id
-- `--probability-samples 40000` for Monte Carlo distribution estimates
-- `--probability-tolerance 1` acceptable max deviation from target (percent or ratio)
-- `--write-best` writes the best candidate even if target is not fully reached
-- fallback classes (`isFallback: true`) are excluded from tuning targets by default
-
-## GitHub Pages Deployment
-
-This project is configured for GitHub Pages:
-
-- Uses `HashRouter` so route refreshes work on Pages.
-- Uses dynamic Vite `base` during GitHub Actions builds (`/<repo-name>/`).
-- Includes workflow: `.github/workflows/deploy-pages.yml`.
-
-Enable once in repository settings:
-
-1. Open GitHub repo `Settings` -> `Pages`.
-2. Set `Source` to `GitHub Actions`.
-3. Push to `main` (or run the workflow manually).
-
-## Routes
-
-- `/` landing page with `Start Adventure` door animation
-- `/dimensions` explanation of all 8 dimensions and their low/high trait scales
-- `/quiz` quiz UI (20 questions, each supports optional image)
-- `/result` result from latest attempt
-- `/result?seed=demo` deterministic debug seed run
-- `/cards` class card browser (`Single` and `All` views)
-- `/card/:id` standalone 900x1400 card renderer (used by export script)
-
-On GitHub Pages, these are accessed with hash URLs (example: `/#/result?seed=demo`).
-
-## Data
-
-- `data/dimensions.json`
-  - source of dimension labels, descriptions, and low/high trait terms
-- `data/questions.json`
-  - 20 questions
-  - each question has 4 options with weighted dimension deltas + `image` field
-- `data/results.json`
-  - class definitions (`title`, optional `classSprite`, `tagline`, `summary`, `lore`, `traits`, `style`, `risk`, `partyRole`, `growthQuest`, `signatureItem`, `battleHabit`, `priority`, `conditions`)
-  - optional `isFallback: true` for a rare fallback class
-
-## Scoring + Evaluator
-
-- `src/lib/scoring.ts`
-  - sums weights from selected options
-  - clamps each dimension to `[-20, 20]`
-  - computes ranks with stable tie-break by dimension order
-  - computes totals, spread, top/second dims
-- `src/lib/evaluator.ts`
-  - implements all condition operators:
-    - `min`, `max_le`, `max_ge`
-    - `diff_greater`, `diff_abs_lte`
-    - `top_is`, `not_top_is`
-    - `rank_is`
-    - `top_diff_gte`, `top_diff_lte`
-    - `total_min`, `total_max`
-    - `sum_min`, `sum_max`
-    - `spread_between`
-  - requires every condition in a result to pass (AND)
-  - selects passed non-fallback results by `priority` descending; ties by file order
-  - if none pass, chooses nearest non-fallback match; fallback class is only used as last resort
-- `src/lib/data.ts`
-  - ensures `showcaseScores` is not pre-defined in result data
-
-## UI Components
-
-- `src/components/ResultCard.tsx`: premium 900x1400 ornate card
-- `src/components/StatBar.tsx`: centered zero stat bars with fixed ticks
-- `src/components/DebugPanel.tsx`: debug toggle showing scores/ranks/condition pass-fail
-
-## PNG Export Details
-
-- `scripts/export.ts` launches a local Vite server, opens `/#/card/:id?export=1`, and captures PNG via Playwright.
-- Viewport is exactly `900x1400`.
-- Capture uses `omitBackground: true` for transparency outside the rounded card.
+- `HashRouter` is used in `src/main.tsx`.
+- Vite base path is computed in `vite.config.ts` (`/<repo>/` on GitHub Actions).
+- Workflow file: `.github/workflows/deploy-pages.yml`.
